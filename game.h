@@ -52,6 +52,9 @@ class game
 		Uint32 curr_physics_update;
 		float delta_time;
 
+		int cam_x_dir = 0;
+		int cam_y_dir = 0;
+
 		int cam_x_position = 0;
 		int cam_y_position = 0;
 

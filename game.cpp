@@ -39,8 +39,8 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		cam_x_tiles = width / tile_size;	// how many x tiles in view
 		cam_y_tiles = height / tile_size;	// how many y tiles in view
 
-		total_x_tiles = cam_x_tiles * 2;	// total x tiles
-		total_y_tiles = cam_y_tiles * 2;	// total y tiles
+		total_x_tiles = cam_x_tiles * 5;	// total x tiles
+		total_y_tiles = cam_y_tiles * 5;	// total y tiles
 
 		// use factory to create objects here
 		//std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
@@ -66,16 +66,16 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		{
 			for (int y = 0; y < total_y_tiles; y++)
 			{
-				random_num = rand() % 2 + 1;
-				switch (random_num)
+				random_num = rand() % 2 + 1;	// random tile (either one or two)
+				switch (random_num)		// which tile to add
 				{
-					case 1:
+					case 1:		// one tile
 						{
 						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::ONE_TILE, renderer);
 						tile_vec[x].emplace_back(std::move(tile));
 						break;
 						}
-					case 2:
+					case 2:		// two tile
 						{
 						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::TWO_TILE, renderer);
 						tile_vec[x].emplace_back(std::move(tile));
@@ -100,13 +100,13 @@ void game::handle_events()
 	SDL_Event event;
 	SDL_PollEvent(&event);
 	
-	if (event.type == SDL_QUIT)
+	if (event.type == SDL_QUIT)	// quit
 	{
 		is_running = false;
 		return;
 	}
 
-	else if (event.type == SDL_KEYDOWN)
+	else if (event.type == SDL_KEYDOWN)	// keydown
 	{
 		switch (event.key.keysym.sym)
 		{
@@ -114,7 +114,7 @@ void game::handle_events()
 				break;	
 		}
 	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN)
+	else if (event.type == SDL_MOUSEBUTTONDOWN)	// mouse button down
 	{
 		return;
 	}
@@ -126,37 +126,36 @@ void game::check_keystates()
 	
 	if (keystates[SDL_SCANCODE_UP])		// up arrow
 	{
-		cam_y_velocity = -75;
+		cam_y_dir = -1;
 		return;
 	}
 	else if (keystates[SDL_SCANCODE_DOWN])	// down arrow
 	{
-		cam_y_velocity = 75;
+		cam_y_dir = 1;
 		return;
 	}
 	else if (keystates[SDL_SCANCODE_RIGHT])	// right arrow
 	{
-		cam_x_velocity = 75;
+		cam_x_dir = 1;
 		return;
 	}
 	else if (keystates[SDL_SCANCODE_LEFT])	// left arrow
 	{
-		cam_x_velocity = -75;
+		cam_x_dir = -1;
 		return;
 	}
 	else
 	{
-		cam_x_velocity = 0;
-		cam_y_velocity = 0;	
+		cam_x_dir = 0;
+		cam_y_dir = 0;	
 	}
 }
 
 void game::update()
 {
-	curr_physics_update = SDL_GetTicks();
-	delta_time = (curr_physics_update - last_physics_update) / 1000.0f;
+	cam_x_velocity = cam_x_dir * 1;
+	cam_x_position += cam_x_velocity; //* delta_time;
 
-	cam_x_position += cam_x_velocity * delta_time;
 	if (cam_x_position < 0)
 	{
 		cam_x_position = 0;
@@ -166,7 +165,9 @@ void game::update()
 		cam_x_position = total_x_tiles / 2;
 	}
 
-	cam_y_position += cam_y_velocity * delta_time;
+	cam_y_velocity = cam_y_dir * 1;
+	cam_y_position += cam_y_velocity; // * delta_time;
+
 	if (cam_y_position < 0)
 	{
 		cam_y_position = 0;
@@ -175,11 +176,6 @@ void game::update()
 	{
 		cam_y_position = total_y_tiles / 2;
 	}
-
-	//std::cout << delta_time << std::endl;
-
-	last_physics_update = curr_physics_update;
-
 }
 
 void game::render()
