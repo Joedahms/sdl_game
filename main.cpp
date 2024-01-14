@@ -13,10 +13,17 @@ int main(int argc, const char* argv[])
 	float elapsedMS;
 
 	game_obj = new game();
-	game_obj->init("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, false);
+	game_obj->init("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false);
 
 	while (game_obj->running())
 	{
+		int X; 
+		int Y;
+		Uint32 mouse = SDL_GetMouseState(&X, &Y);
+
+		std::cout << X << std::endl;
+		std::cout << Y << std::endl;
+
 		frame_start = SDL_GetPerformanceCounter();
 
 		game_obj->handle_events();

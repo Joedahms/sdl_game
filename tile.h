@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL_image.h>
 
-enum tile_id { ONE_TILE, TWO_TILE };
+enum tile_id { WATER_TILE, DIRT_TILE };
 
 class Tile
 {
@@ -13,6 +13,7 @@ class Tile
 		virtual ~Tile() = default;
 		
 		SDL_Texture* tile_texture;
+		bool selected = true;
 	private:
 };
 

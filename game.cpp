@@ -27,26 +27,34 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 	{
 		std::cout << "subsystems initialized" << std::endl;
 
+		// create window
 		window = SDL_CreateWindow(title, x_pos, y_pos, width, height, flags);
 		if (window)
 		{
 			std::cout << "window created" << std::endl;
 		}
 
+		// create renderer
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		if (renderer)
 		{
 			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 			std::cout << "renderer created" << std::endl;
 		}
+		
+		// initialize textures
+		init_textures();	
 
-		//cam_x_tiles = width / tile_size;	// how many x tiles in view
-		//cam_y_tiles = height / tile_size;	// how many y tiles in view
-		camera->visible_x_tiles = width / tile_size;
+		// set size of 2d vector of destination rectangles
+		dest_rect.resize(width / tile_size, std::vector<SDL_Rect>(height / tile_size));	
+
+		// set amount of tiles visible in window
+		camera->visible_x_tiles = width / tile_size;	
 		camera->visible_y_tiles = height / tile_size;
 
-		total_x_tiles = camera->visible_x_tiles * 5;	// total x tiles based on cam
-		total_y_tiles = camera->visible_y_tiles * 5;	// total y tiles based on cam
+		// total amount of tiles in game world
+		total_x_tiles = camera->visible_x_tiles * 5;	
+		total_y_tiles = camera->visible_y_tiles * 5;
 
 		// use factory to create objects here
 		//std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
@@ -77,13 +85,13 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 				{
 					case 1:		// one tile
 						{
-						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::ONE_TILE, renderer);
+						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::WATER_TILE, renderer);
 						tile_vec[x].emplace_back(std::move(tile));
 						break;
 						}
 					case 2:		// two tile
 						{
-						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::TWO_TILE, renderer);
+						std::unique_ptr<Tile> tile = tile_factory->create(tile_id::DIRT_TILE, renderer);
 						tile_vec[x].emplace_back(std::move(tile));
 						break;
 						}
@@ -101,16 +109,21 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 	}
 }
 
+void game::init_textures()
+{
+	SDL_Surface* tmp_surface = IMG_Load("selected.png");
+	selected_tex = SDL_CreateTextureFromSurface(renderer, tmp_surface);
+	SDL_FreeSurface(tmp_surface);
+}
+
 void game::handle_events()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
-		std::cout << "event" << std::endl;
 		switch (event.type)
 		{
 			case SDL_QUIT:
-				std::cout << "quit" << std::endl;
 				is_running = false;
 				return;
 		}
@@ -160,12 +173,9 @@ void game::update()
 {
 	current_ticks = SDL_GetTicks();
 
-
 	delta_time = current_ticks - prev_ticks;
 	total_delta_time += delta_time;	
 	prev_ticks = current_ticks;
-
-	std::cout << current_ticks << std::endl;
 
 	if (total_delta_time >= 128)
 	{
@@ -204,7 +214,15 @@ void game::render()
 	{
 		for (int y = 0; y < camera->visible_y_tiles; y++)
 		{
-			SDL_RenderCopy(renderer, tile_vec[x + camera->x_pos][y + camera->y_pos]->tile_texture, NULL, &dest_rect[x][y]);
+			auto & curr_tile = tile_vec[x + camera->x_pos][y + camera->y_pos];
+
+			SDL_RenderCopy(renderer, curr_tile->tile_texture, NULL, &dest_rect[x][y]);
+
+			if (curr_tile->selected)
+			{
+				SDL_RenderCopy(renderer, selected_tex, NULL, &dest_rect[x][y]);
+			}
+			
 		}
 	}
 	SDL_RenderPresent(renderer);

@@ -1,7 +1,7 @@
 CFLAGS = -c -g
 
-game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o camera.o
-	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o camera.o -o game -lSDL2 -lSDL2_image
+game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o
+	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o -o game -lSDL2 -lSDL2_image
 
 main.o: main.cpp game.h
 	g++ $(CFLAGS) main.cpp
@@ -22,14 +22,14 @@ character.o: character.cpp character.h
 	g++ $(CFLAGS) character.cpp
 
 
-tile_factory.o: tile_factory.cpp tile_factory.h tile.h one_tile.h two_tile.h
+tile_factory.o: tile_factory.cpp tile_factory.h tile.h water_tile.h dirt_tile.h
 	g++ $(CFLAGS) tile_factory.cpp
 
-one_tile.o: one_tile.cpp one_tile.h tile.h
-	g++ $(CFLAGS) one_tile.cpp
+water_tile.o: water_tile.cpp water_tile.h tile.h
+	g++ $(CFLAGS) water_tile.cpp
 
-two_tile.o: two_tile.cpp two_tile.h tile.h
-	g++ $(CFLAGS) two_tile.cpp
+dirt_tile.o: dirt_tile.cpp dirt_tile.h tile.h
+	g++ $(CFLAGS) dirt_tile.cpp
 
 tile.o: tile.cpp tile.h
 	g++ $(CFLAGS) tile.cpp
