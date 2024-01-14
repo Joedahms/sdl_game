@@ -86,7 +86,7 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 				}	
 			}
 		}
-		last_physics_update = SDL_GetTicks();	// first physics tick count
+		prev_ticks = SDL_GetTicks();	// first physics tick count
 		is_running = true;			// game is running
 	}
 	else 
@@ -98,26 +98,26 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 void game::handle_events()
 {
 	SDL_Event event;
-	SDL_PollEvent(&event);
-	
-	if (event.type == SDL_QUIT)	// quit
+	while (SDL_PollEvent(&event) != 0)
 	{
-		is_running = false;
-		return;
-	}
-
-	else if (event.type == SDL_KEYDOWN)	// keydown
-	{
-		switch (event.key.keysym.sym)
+		std::cout << "event" << std::endl;
+		switch (event.type)
 		{
-			default:
-				break;	
+			case SDL_QUIT:
+				std::cout << "quit" << std::endl;
+				is_running = false;
+				return;
 		}
 	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN)	// mouse button down
-	{
-		return;
-	}
+
+	//else if (event.type == SDL_KEYDOWN)	// keydown
+	//{
+		//switch (event.key.keysym.sym)
+		//{
+	//		default:
+	//			break;	
+	//	}
+	//}
 }
 
 void game::check_keystates()
@@ -153,28 +153,41 @@ void game::check_keystates()
 
 void game::update()
 {
-	cam_x_velocity = cam_x_dir * 1;
-	cam_x_position += cam_x_velocity; //* delta_time;
+	current_ticks = SDL_GetTicks();
 
-	if (cam_x_position < 0)
-	{
-		cam_x_position = 0;
-	}
-	if (cam_x_position > total_x_tiles / 2)
-	{
-		cam_x_position = total_x_tiles / 2;
-	}
 
-	cam_y_velocity = cam_y_dir * 1;
-	cam_y_position += cam_y_velocity; // * delta_time;
+	delta_time = current_ticks - prev_ticks;
+	total_delta_time += delta_time;	
+	prev_ticks = current_ticks;
 
-	if (cam_y_position < 0)
+	std::cout << current_ticks << std::endl;
+
+	if (total_delta_time >= 128)
 	{
-		cam_y_position = 0;
-	}
-	if (cam_y_position > total_y_tiles / 2)
-	{
-		cam_y_position = total_y_tiles / 2;
+		total_delta_time = 0;
+		cam_x_velocity = cam_x_dir * 1;
+		cam_x_position += cam_x_velocity; //* delta_time;
+
+		if (cam_x_position < 0)
+		{
+			cam_x_position = 0;
+		}
+		if (cam_x_position > total_x_tiles / 2)
+		{
+			cam_x_position = total_x_tiles / 2;
+		}
+
+		cam_y_velocity = cam_y_dir * 1;
+		cam_y_position += cam_y_velocity; // * delta_time;
+
+		if (cam_y_position < 0)
+		{
+			cam_y_position = 0;
+		}
+		if (cam_y_position > total_y_tiles / 2)
+		{
+			cam_y_position = total_y_tiles / 2;
+		}
 	}
 }
 
@@ -182,9 +195,9 @@ void game::render()
 {
 	SDL_RenderClear(renderer);
 	
-	for (int x = 0; x < 25; x++)
+	for (int x = 0; x < cam_x_tiles; x++)
 	{
-		for (int y = 0; y < 20; y++)
+		for (int y = 0; y < cam_y_tiles; y++)
 		{
 			SDL_RenderCopy(renderer, tile_vec[x + cam_x_position][y + cam_y_position]->tile_texture, NULL, &dest_rect[x][y]);
 		}
