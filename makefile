@@ -1,7 +1,7 @@
 CFLAGS = -c -g
 
-game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o
-	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o -o game -lSDL2 -lSDL2_image
+game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o camera.o
+	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o one_tile.o two_tile.o tile.o camera.o -o game -lSDL2 -lSDL2_image
 
 main.o: main.cpp game.h
 	g++ $(CFLAGS) main.cpp
@@ -33,6 +33,10 @@ two_tile.o: two_tile.cpp two_tile.h tile.h
 
 tile.o: tile.cpp tile.h
 	g++ $(CFLAGS) tile.cpp
+
+
+camera.o: camera.cpp camera.h
+	g++ $(CFLAGS) camera.cpp
 
 clean: 
 	rm game

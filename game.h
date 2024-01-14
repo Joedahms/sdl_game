@@ -18,6 +18,8 @@
 #include "one_tile.h"
 #include "two_tile.h"
 
+#include "camera.h"
+
 class game
 {
 	public:
@@ -48,26 +50,16 @@ class game
 		SDL_Window* window;
 		SDL_Renderer* renderer;
 
+		std::unique_ptr<Camera> camera = std::make_unique<Camera>();
+
 		int delta_time = 0;
 		int total_delta_time = 0;
 
 		Uint32 current_ticks;
 		Uint32 prev_ticks;
 
-		int cam_x_dir = 0;
-		int cam_y_dir = 0;
-
-		int cam_x_position = 0;
-		int cam_y_position = 0;
-
-		int cam_x_velocity = 0;
-		int cam_y_velocity = 0;
-
 		int tile_size = 16;
 
-		int cam_x_tiles;	// how many x tiles in view
-		int cam_y_tiles;	// how many y tiles in view
-		
 		int total_x_tiles;	// total x tiles
 		int total_y_tiles;	// total y tiles
 
