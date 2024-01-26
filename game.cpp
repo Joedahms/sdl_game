@@ -171,38 +171,61 @@ void game::check_keystates()
 
 void game::update()
 {
-	current_ticks = SDL_GetTicks();
+	current_ticks = SDL_GetTicks();				// current ticks
 
-	delta_time = current_ticks - prev_ticks;
-	total_delta_time += delta_time;	
-	prev_ticks = current_ticks;
+	delta_time = current_ticks - prev_ticks;		// calc delta time from ticks
+	total_delta_time += delta_time;				// num used to check if time to update
+	prev_ticks = current_ticks;				// set prev ticks
 
-	if (total_delta_time >= 128)
+	if (total_delta_time >= 128)				// update if its time
 	{
-		total_delta_time = 0;
-		camera->x_vel = camera->get_x_dir() * 1;
-		camera->x_pos += camera->x_vel; //* delta_time;
+		total_delta_time = 0;				// reset counter
+		camera->x_vel = camera->get_x_dir() * 1;	// camera x velocity
+		camera->x_pos += camera->x_vel; 		// camera x position
 
-		if (camera->x_pos < 0)
+		if (camera->x_pos < 0)				// left side of map
 		{
 			camera->x_pos = 0;
 		}
-		if (camera->x_pos > total_x_tiles / 2)
+		if (camera->x_pos > total_x_tiles / 2)		// right side of map
 		{
 			camera->x_pos = total_x_tiles / 2;
 		}
 
-		camera->y_vel = camera->get_y_dir() * 1;
-		camera->y_pos += camera->y_vel; // * delta_time;
+		camera->y_vel = camera->get_y_dir() * 1;	// camera y velocity
+		camera->y_pos += camera->y_vel; 		// camera y position
 
-		if (camera->y_pos < 0)
+		if (camera->y_pos < 0)				// left side of map
 		{
 			camera->y_pos = 0;
 		}
-		if (camera->y_pos > total_y_tiles / 2)
+		if (camera->y_pos > total_y_tiles / 2)		// right side of map
 		{
 			camera->y_pos = total_y_tiles / 2;
 		}
+
+		// selected stuff
+		int X; 
+		int Y;
+		Uint32 mouse = SDL_GetMouseState(&X, &Y);	// see where mouse is
+
+		int x_coord = floor(X / 16);			// x coordinate of moused over tile
+		int y_coord = floor(Y / 16);			// y coordinate of moused over tile
+
+
+		for (int x = 0; x < camera->visible_x_tiles; x++)
+		{
+			for (int y = 0; y < camera->visible_y_tiles; y++)
+			{
+				tile_vec[x][y]->selected = false;
+			}
+		}
+
+		tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
+
+			
+
+
 	}
 }
 
@@ -210,19 +233,18 @@ void game::render()
 {
 	SDL_RenderClear(renderer);
 	
-	for (int x = 0; x < camera->visible_x_tiles; x++)
+	for (int x = 0; x < camera->visible_x_tiles; x++)		// visible x tiles
 	{
-		for (int y = 0; y < camera->visible_y_tiles; y++)
+		for (int y = 0; y < camera->visible_y_tiles; y++)	// visible y tiles
 		{
-			auto & curr_tile = tile_vec[x + camera->x_pos][y + camera->y_pos];
+			auto & curr_tile = tile_vec[x + camera->x_pos][y + camera->y_pos];	// curr_tile
 
-			SDL_RenderCopy(renderer, curr_tile->tile_texture, NULL, &dest_rect[x][y]);
+			SDL_RenderCopy(renderer, curr_tile->tile_texture, NULL, &dest_rect[x][y]);	// render all visible tiles
 
-			if (curr_tile->selected)
+			if (curr_tile->selected)							// if selected
 			{
-				SDL_RenderCopy(renderer, selected_tex, NULL, &dest_rect[x][y]);
+				SDL_RenderCopy(renderer, selected_tex, NULL, &dest_rect[x][y]);		// render selected texture over it
 			}
-			
 		}
 	}
 	SDL_RenderPresent(renderer);

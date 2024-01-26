@@ -21,8 +21,8 @@ int main(int argc, const char* argv[])
 		int Y;
 		Uint32 mouse = SDL_GetMouseState(&X, &Y);
 
-		std::cout << X << std::endl;
-		std::cout << Y << std::endl;
+		//std::cout << X << std::endl;
+		//std::cout << Y << std::endl;
 
 		frame_start = SDL_GetPerformanceCounter();
 

@@ -37,7 +37,7 @@ class game
 		bool running() { return is_running; }
 
 	private:
-		bool is_running = false;
+		bool is_running = false;	// if game is running
 
 		int tile_size = 16;
 
@@ -50,22 +50,24 @@ class game
 		std::vector<std::vector<std::unique_ptr<Tile>>> tile_vec; // tile map
 		std::vector<std::vector<SDL_Rect>> dest_rect;	// needs to be dependent on screen size
 
-		SDL_Texture* selected_tex;
+		SDL_Texture* selected_tex;	// texture for selected tile
 
 		SDL_Window* window;		// window
 		SDL_Renderer* renderer;		// renderer
 
 		std::unique_ptr<Camera> camera = std::make_unique<Camera>();	// camera
 		
+		// used in update
 		int delta_time = 0;
 		int total_delta_time = 0;
 
-		Uint32 current_ticks;
+		// used in update
+		Uint32 current_ticks;	
 		Uint32 prev_ticks;
 
-
-		int total_x_tiles;	// total x tiles
-		int total_y_tiles;	// total y tiles
+		// set in init
+		int total_x_tiles;	
+		int total_y_tiles;
 
 };
 

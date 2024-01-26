@@ -13,7 +13,7 @@ class Tile
 		virtual ~Tile() = default;
 		
 		SDL_Texture* tile_texture;
-		bool selected = true;
+		bool selected = false;
 	private:
 };
 
