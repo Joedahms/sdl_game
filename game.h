@@ -27,7 +27,7 @@ class game
 		~game();
 
 		void init(const char* title, int x_pos, int y_pos, int width, int height, bool fullscreen);
-		void init_vis_tiles();
+		void init_ts_dependent();
 		void init_textures();
 		void handle_events();
 		void check_keystates();

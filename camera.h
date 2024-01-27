@@ -33,6 +33,10 @@ class Camera
 
 		void zero_dir();
 
+		// modify x & y positions so zoom to center of camera
+		void zoom_in();
+		void zoom_out();
+
 	private:
 		// direction
 		int x_dir = 0;

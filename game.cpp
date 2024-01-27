@@ -48,17 +48,8 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		// initialize textures
 		init_textures();	
 
-		// initialize visible tiles
-		init_vis_tiles();
-
-		/*
-		// set size of 2d vector of destination rectangles
-		dest_rect.resize(width / tile_size, std::vector<SDL_Rect>(height / tile_size));	
-
-		// set amount of tiles visible in window
-		camera->visible_x_tiles = width / tile_size;	
-		camera->visible_y_tiles = height / tile_size;
-		*/
+		// initializations dependent on tile size 
+		init_ts_dependent();
 
 		// total amount of tiles in game world
 		total_x_tiles = camera->visible_x_tiles * 5;	
@@ -70,20 +61,6 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		//player_vec[0]->print();
 		//player->print();
 		
-		/*
-		// set up rectangles for rendering
-		for (int x = 0; x < camera->visible_x_tiles; x++)
-		{
-			for (int y = 0; y < camera->visible_y_tiles; y++)
-			{
-				dest_rect[x][y].x = x*tile_size;	// x position
-				dest_rect[x][y].y = y*tile_size;	// y position
-				dest_rect[x][y].w = tile_size;		// width
-				dest_rect[x][y].h = tile_size;		// height
-			}
-		}
-		*/
-
 		tile_vec.resize(total_x_tiles);	// total x tiles
 		int random_num;			
 		for (int x = 0; x < total_x_tiles; x++)	// create tiles
@@ -119,7 +96,9 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 	}
 }
 
-void game::init_vis_tiles()
+// initializations dependent on tile size
+// seperate from init to allow for camera zooming
+void game::init_ts_dependent()
 {
 	// set size of 2d vector of destination rectangles
 	dest_rect.resize(screen_width / tile_size, std::vector<SDL_Rect>(screen_height / tile_size));	
@@ -150,8 +129,6 @@ void game::init_textures()
 
 void game::handle_events()
 {
-
-	std::cout << "before handle events" << tile_size << std::endl;
 	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
@@ -161,36 +138,30 @@ void game::handle_events()
 				is_running = false;
 				return;
 			case SDL_MOUSEWHEEL:
-				if(event.wheel.y > 0) // scroll up
+				if(event.wheel.y > 0) // scroll up zoom in
 		 		{
 					if (tile_size == 16)
 					{
 						tile_size = 32;
-						init_vis_tiles();
+						camera->zoom_in();
+						init_ts_dependent();
+						//std::cout << camera->visible_x_tiles << std::endl;
+						//std::cout << camera->visible_y_tiles << std::endl;
 					}
 				}
-				else if(event.wheel.y < 0) // scroll down
+				else if(event.wheel.y < 0) // scroll down zoom out
 				{
         				if (tile_size == 32)
 					{
 						tile_size = 16;
-						init_vis_tiles();
+						camera->zoom_out();
+						init_ts_dependent();
+						//std::cout << camera->visible_x_tiles << std::endl;
+						//std::cout << camera->visible_y_tiles << std::endl;
 					}	
 				}
 		}
 	}
-
-	std::cout << "after handle events" << tile_size << std::endl;
-
-
-	//else if (event.type == SDL_KEYDOWN)	// keydown
-	//{
-		//switch (event.key.keysym.sym)
-		//{
-	//		default:
-	//			break;	
-	//	}
-	//}
 }
 
 void game::check_keystates()
@@ -221,7 +192,6 @@ void game::check_keystates()
 	{
 		camera->zero_dir();
 	}
-	std::cout << "check keystates" << std::endl;
 }
 
 void game::update()
@@ -278,22 +248,16 @@ void game::update()
 
 		tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
 	}
-	std::cout << "update" << std::endl;
 }
 
 void game::render()
 {
 	SDL_RenderClear(renderer);
-	std::cout << camera->visible_x_tiles << std::endl;
-	std::cout << camera->visible_y_tiles << std::endl;
-	
 	for (int x = 0; x < camera->visible_x_tiles; x++)		// visible x tiles
 	{
-		std::cout << "x" << x << std::endl;
 		for (int y = 0; y < camera->visible_y_tiles; y++)	// visible y tiles
 		{
 			auto & curr_tile = tile_vec[x + camera->x_pos][y + camera->y_pos];	// curr_tile
-			std::cout << "y" << y << std::endl;
 
 			SDL_RenderCopy(renderer, curr_tile->tile_texture, NULL, &dest_rect[x][y]);	// render all visible tiles
 
@@ -304,7 +268,6 @@ void game::render()
 		}
 	}
 	SDL_RenderPresent(renderer);
-	std::cout << "render" << std::endl;
 }
 
 void game::clean()
