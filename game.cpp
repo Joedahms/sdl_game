@@ -130,34 +130,36 @@ void game::init_textures()
 void game::handle_events()
 {
 	SDL_Event event;
-	while (SDL_PollEvent(&event) != 0)
+	while (SDL_PollEvent(&event) != 0)		// got an event
 	{
-		switch (event.type)
+		switch (event.type)			// what is the event type
 		{
-			case SDL_QUIT:
-				is_running = false;
+			case SDL_QUIT:			// quit event
+				is_running = false;	// not running anymore
 				return;
-			case SDL_MOUSEWHEEL:
-				if(event.wheel.y > 0) // scroll up zoom in
+			case SDL_MOUSEWHEEL:		// mousewheel event
+				if(event.wheel.y > 0)	// scroll up zoom in
 		 		{
 					if (tile_size == 16)
 					{
-						tile_size = 32;
-						camera->zoom_in();
-						init_ts_dependent();
-						//std::cout << camera->visible_x_tiles << std::endl;
-						//std::cout << camera->visible_y_tiles << std::endl;
+						zoom_in_flag = true;
+						zoom_out_flag = false;
+
+						tile_size = 32;		// set new tile size
+						camera->zoom_in();	// zoom in (change cam x and y)
+						init_ts_dependent();	// change vars dependent on tile size
 					}
 				}
 				else if(event.wheel.y < 0) // scroll down zoom out
 				{
         				if (tile_size == 32)
 					{
-						tile_size = 16;
-						camera->zoom_out();
-						init_ts_dependent();
-						//std::cout << camera->visible_x_tiles << std::endl;
-						//std::cout << camera->visible_y_tiles << std::endl;
+						zoom_in_flag = false;
+						zoom_out_flag = true;
+
+						tile_size = 16;		// set new tile size
+						camera->zoom_out();	// zoom out (change cam x and y)
+						init_ts_dependent();	// change vars dependent on tile size
 					}	
 				}
 		}
@@ -188,10 +190,31 @@ void game::check_keystates()
 		camera->neg_x_dir();
 		return;
 	}
-	else
+	else					// camera not moving
 	{
 		camera->zero_dir();
 	}
+}
+
+void game::set_selected_tile()
+{
+	int X; 
+	int Y;
+	Uint32 mouse = SDL_GetMouseState(&X, &Y);	// see where mouse is
+
+	int x_coord = floor(X / tile_size) + camera->x_pos;			// x coordinate of moused over tile
+	int y_coord = floor(Y / tile_size) + camera->y_pos;			// y coordinate of moused over tile
+
+	for (int x = 0; x < camera->visible_x_tiles + camera->x_pos; x++)
+	{
+		for (int y = 0; y < camera->visible_y_tiles + camera->y_pos; y++)
+		{
+			tile_vec[x][y]->selected = false;
+		}
+	}
+
+	tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
+
 }
 
 void game::update()
@@ -205,6 +228,8 @@ void game::update()
 	if (total_delta_time >= 128)				// update if its time
 	{
 		total_delta_time = 0;				// reset counter
+		camera->update(total_x_tiles, total_y_tiles);	// update camera
+		/*
 		camera->x_vel = camera->get_x_dir() * 1;	// camera x velocity
 		camera->x_pos += camera->x_vel; 		// camera x position
 
@@ -212,9 +237,11 @@ void game::update()
 		{
 			camera->x_pos = 0;
 		}
-		if (camera->x_pos > total_x_tiles / 2)		// right side of map
+		// if camera x pos + visible x tiles is greater than total x tiles
+		// then camera x pos = total x tiles - visible x tiles
+		if (camera->x_pos + camera->visible_x_tiles > total_x_tiles)		// right side of map
 		{
-			camera->x_pos = total_x_tiles / 2;
+			camera->x_pos = camera->total_x_tiles - camera->visible_x_tiles;
 		}
 
 		camera->y_vel = camera->get_y_dir() * 1;	// camera y velocity
@@ -228,30 +255,16 @@ void game::update()
 		{
 			camera->y_pos = total_y_tiles / 2;
 		}
+		*/
 
-		// selected stuff
-		int X; 
-		int Y;
-		Uint32 mouse = SDL_GetMouseState(&X, &Y);	// see where mouse is
-
-		int x_coord = floor(X / 16);			// x coordinate of moused over tile
-		int y_coord = floor(Y / 16);			// y coordinate of moused over tile
-
-
-		for (int x = 0; x < camera->visible_x_tiles; x++)
-		{
-			for (int y = 0; y < camera->visible_y_tiles; y++)
-			{
-				tile_vec[x][y]->selected = false;
-			}
-		}
-
-		tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
+		set_selected_tile();
 	}
 }
 
 void game::render()
 {
+	std::cout << "cam x pos: " << camera->x_pos << std::endl;
+	std::cout << "cam y pos: " << camera->y_pos << std::endl;
 	SDL_RenderClear(renderer);
 	for (int x = 0; x < camera->visible_x_tiles; x++)		// visible x tiles
 	{

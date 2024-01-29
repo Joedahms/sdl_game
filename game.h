@@ -31,6 +31,7 @@ class game
 		void init_textures();
 		void handle_events();
 		void check_keystates();
+		void set_selected_tile();
 		void update();
 		void render();
 		void clean();
@@ -40,7 +41,7 @@ class game
 	private:
 		bool is_running = false;	// if game is running
 
-		int tile_size = 16;
+		int tile_size = 16;		// zoomed out
 
 		std::unique_ptr<CharacterFactory> character_factory = std::make_unique<CharacterFactory>();	// character factory
 	 	std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();	// tile factory
@@ -73,6 +74,12 @@ class game
 		// screen dimensions
 		int screen_width;
 		int screen_height;
+
+		// zoom flags
+		// game starts zoomed out
+		bool zoom_in_flag = false;
+		bool zoom_out_flag = true;
+		
 
 };
 

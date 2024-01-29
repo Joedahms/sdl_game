@@ -37,11 +37,13 @@ class Camera
 		void zoom_in();
 		void zoom_out();
 
+		// move camera and check boundries
+		void update(int, int); 
+
 	private:
 		// direction
 		int x_dir = 0;
 		int y_dir = 0;
-
-		};
+};
 
 #endif
