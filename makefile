@@ -1,43 +1,26 @@
-CFLAGS = -c -g
+CXX = g++
+CXXFLAGS = -g -Wall -Isrc
+LDLIBS = -lSDL2 -lSDL2_image
+BUILD_DIR = build
+GAME_DIR = game
 
-game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o
-	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o -o game -lSDL2 -lSDL2_image
+SOURCES = $(wildcard src/*.cpp)
+OBJECTS = $(patsubst src/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 
-main.o: main.cpp game.h
-	g++ $(CFLAGS) main.cpp
+$(shell mkdir -p $(BUILD_DIR) $(GAME_DIR))
 
-game.o: game.cpp game.h
-	g++ $(CFLAGS) game.cpp
+$(GAME_DIR)/game: $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(LDLIBS)
 
-player.o: player.cpp player.h character.h
-	g++ $(CFLAGS) player.cpp
+$(BUILD_DIR)/%.o: src/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-npc.o: npc.cpp npc.h character.h
-	g++ $(CFLAGS) npc.cpp
+.PHONY: clean
 
-character_factory.o: character_factory.cpp character_factory.h player.h npc.h
-	g++ $(CFLAGS) character_factory.cpp
+clean:
+	rm -rf $(BUILD_DIR) $(GAME_DIR)/game
 
-character.o: character.cpp character.h
-	g++ $(CFLAGS) character.cpp
+.PHONY: run
 
-
-tile_factory.o: tile_factory.cpp tile_factory.h tile.h water_tile.h dirt_tile.h
-	g++ $(CFLAGS) tile_factory.cpp
-
-water_tile.o: water_tile.cpp water_tile.h tile.h
-	g++ $(CFLAGS) water_tile.cpp
-
-dirt_tile.o: dirt_tile.cpp dirt_tile.h tile.h
-	g++ $(CFLAGS) dirt_tile.cpp
-
-tile.o: tile.cpp tile.h
-	g++ $(CFLAGS) tile.cpp
-
-
-camera.o: camera.cpp camera.h
-	g++ $(CFLAGS) camera.cpp
-
-clean: 
-	rm game
-	rm *.o
+run:
+	@cd $(GAME_DIR) && ./game
