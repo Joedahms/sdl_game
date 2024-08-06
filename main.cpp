@@ -21,9 +21,6 @@ int main(int argc, const char* argv[])
 		int Y;
 		Uint32 mouse = SDL_GetMouseState(&X, &Y);
 
-		//std::cout << X << std::endl;
-		//std::cout << Y << std::endl;
-
 		frame_start = SDL_GetPerformanceCounter();
 
 		game_obj->handle_events();
@@ -34,8 +31,6 @@ int main(int argc, const char* argv[])
 		frame_end = SDL_GetPerformanceCounter();
 		elapsedMS = (frame_end - frame_start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
 
-		//SDL_Delay(abs(floor(16.666f - elapsedMS)));
-		//SDL_Delay(floor(60 - elapsedMS));
 	}
 	
 	game_obj->clean();

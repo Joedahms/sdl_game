@@ -10,7 +10,7 @@ class CharacterFactory
 {
 	public:
 		virtual std::unique_ptr<Character> create(character_id id);
-		virtual ~CharacterFactory() = default;
+		//virtual ~CharacterFactory() = default;
 };
 
 #endif

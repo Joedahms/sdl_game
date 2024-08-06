@@ -10,7 +10,7 @@ class TileFactory
 {
 	public:
 		virtual std::unique_ptr<Tile> create(tile_id id, SDL_Renderer*);
-		virtual ~TileFactory() = default;
+	//	virtual ~TileFactory() = default;
 };
 
 #endif

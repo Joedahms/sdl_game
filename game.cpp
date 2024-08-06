@@ -120,9 +120,10 @@ void game::init_ts_dependent()
 	}
 }
 
+// tile textures initialized upon creation
 void game::init_textures()
 {
-	SDL_Surface* tmp_surface = IMG_Load("selected.png");
+	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
 	selected_tex = SDL_CreateTextureFromSurface(renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
 }
@@ -130,15 +131,13 @@ void game::init_textures()
 void game::handle_events()
 {
 	SDL_Event event;
-	while (SDL_PollEvent(&event) != 0)		// got an event
-	{
-		switch (event.type)			// what is the event type
-		{
+	while (SDL_PollEvent(&event) != 0) {		// got an event
+		switch (event.type) {			// what is the event type
 			case SDL_QUIT:			// quit event
 				is_running = false;	// not running anymore
 				return;
 			case SDL_MOUSEWHEEL:		// mousewheel event
-				if(event.wheel.y > 0)	// scroll up zoom in
+				if (event.wheel.y > 0)	// scroll up zoom in
 		 		{
 					if (tile_size == 16)
 					{
@@ -150,7 +149,7 @@ void game::handle_events()
 						init_ts_dependent();	// change vars dependent on tile size
 					}
 				}
-				else if(event.wheel.y < 0) // scroll down zoom out
+				else if (event.wheel.y < 0) // scroll down zoom out
 				{
         				if (tile_size == 32)
 					{
@@ -219,44 +218,16 @@ void game::set_selected_tile()
 
 void game::update()
 {
-	current_ticks = SDL_GetTicks();				// current ticks
+	current_ticks = SDL_GetTicks();	
 
 	delta_time = current_ticks - prev_ticks;		// calc delta time from ticks
 	total_delta_time += delta_time;				// num used to check if time to update
 	prev_ticks = current_ticks;				// set prev ticks
 
-	if (total_delta_time >= 128)				// update if its time
+	if (total_delta_time >= 128)				// update if it is time
 	{
 		total_delta_time = 0;				// reset counter
 		camera->update(total_x_tiles, total_y_tiles);	// update camera
-		/*
-		camera->x_vel = camera->get_x_dir() * 1;	// camera x velocity
-		camera->x_pos += camera->x_vel; 		// camera x position
-
-		if (camera->x_pos < 0)				// left side of map
-		{
-			camera->x_pos = 0;
-		}
-		// if camera x pos + visible x tiles is greater than total x tiles
-		// then camera x pos = total x tiles - visible x tiles
-		if (camera->x_pos + camera->visible_x_tiles > total_x_tiles)		// right side of map
-		{
-			camera->x_pos = camera->total_x_tiles - camera->visible_x_tiles;
-		}
-
-		camera->y_vel = camera->get_y_dir() * 1;	// camera y velocity
-		camera->y_pos += camera->y_vel; 		// camera y position
-
-		if (camera->y_pos < 0)				// left side of map
-		{
-			camera->y_pos = 0;
-		}
-		if (camera->y_pos > total_y_tiles / 2)		// right side of map
-		{
-			camera->y_pos = total_y_tiles / 2;
-		}
-		*/
-
 		set_selected_tile();
 	}
 }

@@ -54,10 +54,10 @@ class game
 
 		SDL_Texture* selected_tex;	// texture for selected tile
 
-		SDL_Window* window;		// window
-		SDL_Renderer* renderer;		// renderer
+		SDL_Window* window;		
+		SDL_Renderer* renderer;	
 
-		std::unique_ptr<Camera> camera = std::make_unique<Camera>();	// camera
+		std::unique_ptr<Camera> camera = std::make_unique<Camera>();
 		
 		// used in update
 		int delta_time = 0;
