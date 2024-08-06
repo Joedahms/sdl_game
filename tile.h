@@ -5,16 +5,17 @@
 
 enum tile_id { WATER_TILE, DIRT_TILE };
 
-class Tile
-{
+class Tile {
 	public:
 		virtual void print() = 0;
-		//Tile(SDL_Renderer*);
-		virtual ~Tile() = default;
+		void setSelected();
+		void unsetSelected();
+		bool getSelected();
+		SDL_Texture* getTileTexture();
 		
-		SDL_Texture* tile_texture;
+	protected:
+		SDL_Texture* tileTexture;
 		bool selected = false;
-	private:
 };
 
 #endif

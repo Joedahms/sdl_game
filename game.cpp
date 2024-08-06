@@ -208,11 +208,13 @@ void game::set_selected_tile()
 	{
 		for (int y = 0; y < camera->visible_y_tiles + camera->y_pos; y++)
 		{
-			tile_vec[x][y]->selected = false;
+			//tile_vec[x][y]->selected = false;
+			tile_vec[x][y]->unsetSelected();
 		}
 	}
 
-	tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
+//	tile_vec[x_coord][y_coord]->selected = true;	// set moused over tile as selected
+	tile_vec[x_coord][y_coord]->setSelected();
 
 }
 
@@ -243,9 +245,9 @@ void game::render()
 		{
 			auto & curr_tile = tile_vec[x + camera->x_pos][y + camera->y_pos];	// curr_tile
 
-			SDL_RenderCopy(renderer, curr_tile->tile_texture, NULL, &dest_rect[x][y]);	// render all visible tiles
+			SDL_RenderCopy(renderer, curr_tile->getTileTexture(), NULL, &dest_rect[x][y]);	// render all visible tiles
 
-			if (curr_tile->selected)							// if selected
+			if (curr_tile->getSelected())							// if selected
 			{
 				SDL_RenderCopy(renderer, selected_tex, NULL, &dest_rect[x][y]);		// render selected texture over it
 			}

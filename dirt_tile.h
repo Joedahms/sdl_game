@@ -7,7 +7,6 @@ class DirtTile : public Tile
 {
 	public:
 		DirtTile(SDL_Renderer*);
-		~DirtTile();
 		void print();
 };
 

@@ -6,11 +6,9 @@
 #include "tile.h"
 
 // factory for character objects
-class TileFactory
-{
+class TileFactory {
 	public:
-		virtual std::unique_ptr<Tile> create(tile_id id, SDL_Renderer*);
-	//	virtual ~TileFactory() = default;
+		std::unique_ptr<Tile> create(tile_id id, SDL_Renderer*);
 };
 
 #endif
