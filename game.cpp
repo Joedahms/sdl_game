@@ -50,8 +50,9 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		init_textures();	
 
 		// Create and initialize main menu
-		mainMenu = std::make_unique<MainMenu>();
-		mainMenu->init(renderer);
+		mainMenu = std::make_unique<MainMenu>(renderer);
+		//mainMenu->init(renderer);
+		
 
 		// initializations dependent on tile size 
 		init_ts_dependent();

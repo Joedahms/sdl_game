@@ -5,11 +5,20 @@
 
 class MenuBackground : public MenuElement {
 	public:
+		MenuBackground(SDL_Renderer*, int, int, int, int);
 		void init(SDL_Renderer*);
 		void draw(SDL_Renderer*);
 		void remove();
 
 	private:
+		int xPos;
+		int yPos;
+		int width;
+		int height;
+
+		SDL_Texture* texture;
+		SDL_Rect rect;
+		//
 		// color
 		// border
 		// position

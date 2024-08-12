@@ -13,10 +13,10 @@
 #include "player.h"
 #include "npc.h"
 
-#include "tile.h"
-#include "tile_factory.h"
-#include "water_tile.h"
-#include "dirt_tile.h"
+#include "tile/tile.h"
+#include "tile/tile_factory.h"
+#include "tile/water_tile.h"
+#include "tile/dirt_tile.h"
 
 #include "camera/camera.h"
 
