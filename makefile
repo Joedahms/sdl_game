@@ -1,7 +1,10 @@
 CFLAGS = -c -g
 
-game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o
-	g++ main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o -o game -lSDL2 -lSDL2_image
+game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o main_menu.o
+	g++ \
+	main.o game.o player.o npc.o character_factory.o character.o tile_factory.o \
+	water_tile.o dirt_tile.o tile.o camera.o main_menu.o \
+       	-o game -lSDL2 -lSDL2_image
 
 main.o: main.cpp game.h
 	g++ $(CFLAGS) main.cpp
@@ -21,7 +24,6 @@ character_factory.o: character_factory.cpp character_factory.h player.h npc.h
 character.o: character.cpp character.h
 	g++ $(CFLAGS) character.cpp
 
-
 tile_factory.o: tile_factory.cpp tile_factory.h tile.h water_tile.h dirt_tile.h
 	g++ $(CFLAGS) tile_factory.cpp
 
@@ -34,9 +36,11 @@ dirt_tile.o: dirt_tile.cpp dirt_tile.h tile.h
 tile.o: tile.cpp tile.h
 	g++ $(CFLAGS) tile.cpp
 
+camera.o: camera/camera.cpp camera/camera.h
+	g++ $(CFLAGS) camera/camera.cpp
 
-camera.o: camera.cpp camera.h
-	g++ $(CFLAGS) camera.cpp
+main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h
+	g++ $(CFLAGS) menu/main_menu.cpp
 
 clean: 
 	rm game

@@ -3,7 +3,8 @@
 #include <iostream>
 
 #include "game.h"
-#include "camera.h"
+#include "camera/camera.h"
+#include "menu/main_menu.h"
 
 game::game()
 {
@@ -47,6 +48,10 @@ void game::init(const char* title, int x_pos, int y_pos, int width, int height, 
 		
 		// initialize textures
 		init_textures();	
+
+		// Create and initialize main menu
+		mainMenu = std::make_unique<MainMenu>();
+		mainMenu->init(renderer);
 
 		// initializations dependent on tile size 
 		init_ts_dependent();
@@ -239,6 +244,20 @@ void game::render()
 	std::cout << "cam x pos: " << camera->x_pos << std::endl;
 	std::cout << "cam y pos: " << camera->y_pos << std::endl;
 	SDL_RenderClear(renderer);
+
+
+	/*
+	SDL_Surface* surface =  SDL_CreateRGBSurface(0,3,3,32,0,0,0,0);
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, surface);
+	SDL_FreeSurface(surface);
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = 100;
+	rect.h = 100;
+*/
+
+
 	for (int x = 0; x < camera->visible_x_tiles; x++)		// visible x tiles
 	{
 		for (int y = 0; y < camera->visible_y_tiles; y++)	// visible y tiles
@@ -253,13 +272,15 @@ void game::render()
 			}
 		}
 	}
+	mainMenu->draw(renderer);
+	//SDL_RenderCopy(renderer, tex, NULL, &rect);
 	SDL_RenderPresent(renderer);
 }
 
 void game::clean()
 {
 	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
+//	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "game cleaned" << std::endl;
 }

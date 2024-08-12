@@ -18,7 +18,9 @@
 #include "water_tile.h"
 #include "dirt_tile.h"
 
-#include "camera.h"
+#include "camera/camera.h"
+
+#include "menu/main_menu.h"
 
 class game
 {
@@ -45,6 +47,8 @@ class game
 
 		std::unique_ptr<CharacterFactory> character_factory = std::make_unique<CharacterFactory>();	// character factory
 	 	std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();	// tile factory
+
+		std::unique_ptr<Menu> mainMenu;// = std::make_unique<MainMenu>();
 
 		std::vector<std::unique_ptr<Character>> player_vec;	// player vector
 		std::vector<std::unique_ptr<Character>> npc_vec;	// npc vector
