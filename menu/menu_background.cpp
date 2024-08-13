@@ -29,7 +29,9 @@ void MenuBackground::init(SDL_Renderer* renderer) {
 }
 
 void MenuBackground::draw(SDL_Renderer* renderer) {
-	SDL_RenderCopy(renderer, texture, NULL, &rect);	
+	SDL_SetRenderDrawColor(renderer, 128, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &rect);
+	//SDL_RenderCopy(renderer, texture, NULL, &rect);	
 }
 
 void MenuBackground::remove() {
