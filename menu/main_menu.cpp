@@ -2,7 +2,7 @@
 #include "menu_background.h"
 
 MainMenu::MainMenu(SDL_Renderer* renderer) {
-	testBackground = std::make_unique<MenuBackground>(renderer, 0, 0, 100, 100);
+	testBackground = std::make_unique<MenuBackground>(renderer, 0, 0, 100, 100, RED);
 }
 
 // May not need this

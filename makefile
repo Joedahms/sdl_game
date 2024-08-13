@@ -42,7 +42,7 @@ camera.o: camera/camera.cpp camera/camera.h
 main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h
 	g++ $(CFLAGS) menu/main_menu.cpp
 
-menu_background.o: menu/menu_background.h menu/menu_element.h
+menu_background.o: menu/menu_background.cpp menu/menu_background.h menu/menu_element.h
 	g++ $(CFLAGS) menu/menu_background.cpp
 
 clean: 
