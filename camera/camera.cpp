@@ -1,13 +1,18 @@
 #include "camera.h"
 
-Camera::Camera()
+Camera::Camera(int screenHeight, int screenWidth, int initialTileSize)
 {
-
+	this->screenHeight = screenHeight;
+	this->screenWidth = screenWidth;
+	zoomChange(initialTileSize);	
 }
 
-Camera::~Camera()
-{
+int Camera::getVisibleXTiles() {
+	return visibleXTiles;
+}
 
+int Camera::getVisibleYTiles() {
+	return visibleYTiles;
 }
 
 int Camera::get_x_dir()
@@ -47,26 +52,48 @@ void Camera::zero_dir()
 }
 
 // move camera position for zoom in
-void Camera::zoom_in()
-{
-	x_pos += visible_x_tiles / 4;
-	y_pos += visible_y_tiles / 4;
+void Camera::zoomIn(int tileSize) {
+	x_pos += visibleXTiles / 4;
+	y_pos += visibleYTiles / 4;
+
+	zoomChange(tileSize);
 }
 
 // move camera position for zoom out
-void Camera::zoom_out()
-{
-	x_pos -= visible_x_tiles / 2;
+void Camera::zoomOut(int tileSize) {
+	x_pos -= visibleXTiles / 2;
 	if (x_pos < 0)			// x position past left side of map
 	{
 		x_pos = 0;
 	}
-	y_pos -= visible_y_tiles / 2;
+
+	y_pos -= visibleYTiles / 2;
 	if (y_pos < 0)			// y position past top of map
 	{
 		y_pos = 0;
 	}
 
+	zoomChange(tileSize);
+}
+
+void Camera::zoomChange(int tileSize) {
+	// add to camera
+	// set size of 2d vector of destination rectangles
+	destinationRect.resize(screenWidth / tileSize, std::vector<SDL_Rect>(screenHeight / tileSize));	
+
+	// set amount of tiles visible in window
+	this->visibleXTiles = screenWidth / tileSize;	
+	this->visibleYTiles = screenHeight / tileSize;
+	
+	// set up rectangles for rendering
+	for (int x = 0; x < this->visibleXTiles; x++) {
+		for (int y = 0; y < this->visibleYTiles; y++) {
+			destinationRect[x][y].x = x*tileSize;	// x position
+			destinationRect[x][y].y = y*tileSize;	// y position
+			destinationRect[x][y].w = tileSize;		// width
+			destinationRect[x][y].h = tileSize;		// height
+		}
+	}
 }
 
 void Camera::update(int total_x_tiles, int total_y_tiles)
@@ -80,9 +107,9 @@ void Camera::update(int total_x_tiles, int total_y_tiles)
 	}
 	// if camera x pos + visible x tiles is greater than total x tiles
 	// then camera x pos = total x tiles - visible x tiles
-	if (x_pos + visible_x_tiles > total_x_tiles)		// right side of map
+	if (x_pos + visibleXTiles > total_x_tiles)		// right side of map
 	{
-		x_pos = total_x_tiles - visible_x_tiles;
+		x_pos = total_x_tiles - visibleXTiles;
 	}
 
 	y_vel = get_y_dir() * 1;				// camera y velocity
@@ -92,8 +119,12 @@ void Camera::update(int total_x_tiles, int total_y_tiles)
 	{
 		y_pos = 0;
 	}
-	if (y_pos + visible_y_tiles > total_y_tiles)		// right side of map
+	if (y_pos + visibleYTiles > total_y_tiles)		// right side of map
 	{
-		y_pos = total_y_tiles - visible_y_tiles;
+		y_pos = total_y_tiles - visibleYTiles;
 	}
+}
+
+SDL_Rect & Camera::getDestinationRect(int xCoordinate, int yCoordinate) {
+	return destinationRect[xCoordinate][yCoordinate];
 }

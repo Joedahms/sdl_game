@@ -22,12 +22,10 @@
 
 #include "menu/main_menu.h"
 
-class game
-{
-	public:
-		game();
-		~game();
+#include "tile_map.h"
 
+class game {
+	public:
 		void init(const char* title, int x_pos, int y_pos, int width, int height, bool fullscreen);
 		void init_ts_dependent();
 		void init_textures();
@@ -43,25 +41,25 @@ class game
 	private:
 		bool is_running = false;	// if game is running
 
-		int tile_size = 16;		// zoomed out
+//		int tile_size = 16;		// zoomed out
 
 		std::unique_ptr<CharacterFactory> character_factory = std::make_unique<CharacterFactory>();	// character factory
-	 	std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();	// tile factory
+//	 	std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();	// tile factory
 
-		std::unique_ptr<Menu> mainMenu;// = std::make_unique<MainMenu>();
+		std::unique_ptr<Menu> mainMenu;// = std::make_unique<MainMenu>(renderer);
 
 		std::vector<std::unique_ptr<Character>> player_vec;	// player vector
 		std::vector<std::unique_ptr<Character>> npc_vec;	// npc vector
 		
-		std::vector<std::vector<std::unique_ptr<Tile>>> tile_vec; // tile map
-		std::vector<std::vector<SDL_Rect>> dest_rect;	// needs to be dependent on screen size
+		//std::vector<std::vector<std::unique_ptr<Tile>>> tile_vec; // tile map
+		//std::vector<std::vector<SDL_Rect>> dest_rect;	// needs to be dependent on screen size
 
 		SDL_Texture* selected_tex;	// texture for selected tile
 
 		SDL_Window* window;		
 		SDL_Renderer* renderer;	
 
-		std::unique_ptr<Camera> camera = std::make_unique<Camera>();
+		std::unique_ptr<Camera> camera;
 		
 		// used in update
 		int delta_time = 0;
@@ -75,15 +73,19 @@ class game
 		int total_x_tiles;	
 		int total_y_tiles;
 
+		/*
 		// screen dimensions
 		int screen_width;
 		int screen_height;
+		*/
 
 		// zoom flags
 		// game starts zoomed out
 		bool zoom_in_flag = false;
 		bool zoom_out_flag = true;
-		
+
+		// Tile map object
+		std::unique_ptr<TileMap> tileMap;// = std::make_unique<TileMap>(16, 1000, 1000, renderer);
 
 };
 

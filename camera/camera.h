@@ -1,11 +1,15 @@
 #ifndef CAMERA_H 
 #define CAMERA_H
 
-class Camera
-{
+#include <SDL2/SDL.h>
+#include <vector>
+
+class Camera {
 	public:
-		Camera();
-		~Camera();
+		Camera(int, int, int);
+
+		int getVisibleXTiles();
+		int getVisibleYTiles();
 
 		// position
 		int x_pos = 0;
@@ -15,9 +19,6 @@ class Camera
 		int x_vel = 0;
 		int y_vel = 0;
 		
-		// tiles in view
-		int visible_x_tiles;
-		int visible_y_tiles;
 
 		// get direction
 		int get_x_dir();
@@ -34,16 +35,30 @@ class Camera
 		void zero_dir();
 
 		// modify x & y positions so zoom to center of camera
-		void zoom_in();
-		void zoom_out();
+		void zoomIn(int);
+		void zoomOut(int);
 
 		// move camera and check boundries
 		void update(int, int); 
 
+		void zoomChange(int);
+
+		SDL_Rect & getDestinationRect(int, int);
+
+		std::vector<std::vector<SDL_Rect>> destinationRect;	// needs to be dependent on screen size
 	private:
 		// direction
 		int x_dir = 0;
 		int y_dir = 0;
+
+		int screenHeight;
+		int screenWidth;
+		
+		// tiles in view
+		int visibleXTiles;
+		int visibleYTiles;
+
+		//dest rect
 };
 
 #endif

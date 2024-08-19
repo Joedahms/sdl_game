@@ -1,15 +1,17 @@
 CFLAGS = -c -g
 
-game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o main_menu.o menu_background.o
+game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o main_menu.o menu_background.o \
+      tile_map.o
 	g++ \
 	main.o game.o player.o npc.o character_factory.o character.o tile_factory.o \
 	water_tile.o dirt_tile.o tile.o camera.o main_menu.o menu_background.o \
+	tile_map.o \
        	-o game -lSDL2 -lSDL2_image
 
 main.o: main.cpp game.h
 	g++ $(CFLAGS) main.cpp
 
-game.o: game.cpp game.h
+game.o: game.cpp game.h tile_map.h
 	g++ $(CFLAGS) game.cpp
 
 player.o: player.cpp player.h character.h
@@ -44,6 +46,9 @@ main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h
 
 menu_background.o: menu/menu_background.cpp menu/menu_background.h menu/menu_element.h
 	g++ $(CFLAGS) menu/menu_background.cpp
+
+tile_map.o: tile_map.cpp tile_map.h
+	g++ $(CFLAGS) tile_map.cpp
 
 clean: 
 	rm game
