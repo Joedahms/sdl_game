@@ -13,7 +13,7 @@ int main(int argc, const char* argv[])
 	float elapsedMS;
 
 	game_obj = new game();
-	game_obj->init("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false);
+	game_obj->initializeGame("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false);
 
 	while (game_obj->running())
 	{
@@ -23,8 +23,8 @@ int main(int argc, const char* argv[])
 
 		frame_start = SDL_GetPerformanceCounter();
 
-		game_obj->handle_events();
-		game_obj->check_keystates();
+		game_obj->handleEvents();
+		game_obj->checkKeystates();
 		game_obj->update();
 		game_obj->render();
 

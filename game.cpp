@@ -7,8 +7,19 @@
 #include "menu/main_menu.h"
 #include "tile_map.h"
 
-void game::init(const char* title, int x_pos, int y_pos, int screenWidth, int screenHeight, bool fullscreen)
-{
+/*
+ * Name: initializeGame
+ * Purpose: Setup the game object
+ * Input:
+ * - Title of game window
+ * - Window X Position
+ * - Window Y Position
+ * - Width of the screen
+ * - Height of the screen
+ * - Whether or not the game is fullscreen
+ * Output: None
+ */
+void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
 	int flags = 0;
 	if (fullscreen)
 	{
@@ -19,14 +30,14 @@ void game::init(const char* title, int x_pos, int y_pos, int screenWidth, int sc
 	{
 		std::cout << "subsystems initialized" << std::endl;
 
-		// create window
-		window = SDL_CreateWindow(title, x_pos, y_pos, screenWidth, screenHeight, flags);
+		// Window
+		window = SDL_CreateWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, flags);
 		if (window)
 		{
 			std::cout << "window created" << std::endl;
 		}
 
-		// create renderer
+		// Renderer
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		if (renderer)
 		{
@@ -34,13 +45,14 @@ void game::init(const char* title, int x_pos, int y_pos, int screenWidth, int sc
 			std::cout << "renderer created" << std::endl;
 		}
 		
-		// initialize textures
-		init_textures();	
+		initializeTextures();	
 
+		// Tilemap
 		tileMap = std::make_unique<TileMap>(16, 1000, 1000, renderer);
+
+		// Camera
 		camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
 		camera->zoomChange(16);
-		mainMenu = std::make_unique<MainMenu>(renderer);
 
 		// Create and initialize main menu
 		mainMenu = std::make_unique<MainMenu>(renderer);
@@ -50,63 +62,72 @@ void game::init(const char* title, int x_pos, int y_pos, int screenWidth, int sc
 		//player_vec.emplace_back(std::move(player));
 		//player_vec[0]->print();
 		//player->print();
+		
 		prev_ticks = SDL_GetTicks();	// first physics tick count
-		is_running = true;			// game is running
+		gameIsRunning = true;
 	}
 	else 
 	{
-		is_running = false;			
+		gameIsRunning = false;			
 	}
 }
 
-// tile textures initialized upon creation
-void game::init_textures()
+/*
+ * Name: initializeTextures
+ * Purpose: Initialize game textures
+ * Input: None
+ * Output: None
+ */ 
+void game::initializeTextures()
 {
 	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
-	selected_tex = SDL_CreateTextureFromSurface(renderer, tmp_surface);
+	selectedTexure = SDL_CreateTextureFromSurface(renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
 }
 
-void game::handle_events()
-{
+/*
+ * Name: handleEvents
+ * Purpose: Check if SDL event has occured and handle accordingly
+ * Input: None
+ * Output: None
+ */
+void game::handleEvents() {
 	SDL_Event event;
-	while (SDL_PollEvent(&event) != 0) {		// got an event
-		switch (event.type) {			// what is the event type
-			case SDL_QUIT:			// quit event
-				is_running = false;	// not running anymore
+	while (SDL_PollEvent(&event) != 0) {					// Event occured
+		switch (event.type) {			
+			case SDL_QUIT:			
+				gameIsRunning = false;	
 				return;
-			case SDL_MOUSEWHEEL:		// mousewheel event
-				if (event.wheel.y > 0)	// scroll up zoom in
-		 		{
-					if (tileMap->getTileSize() == 16)
-					{
+			case SDL_MOUSEWHEEL:					// Mousewheel event
+				if (event.wheel.y > 0) {			// Scroll up zoom in
+					if (tileMap->getTileSize() == 16) {
 						zoom_in_flag = true;
 						zoom_out_flag = false;
 
-		//				tile_size = 32;		// set new tile size
 						tileMap->setTileSize(32);
-						camera->zoomIn(32);	// zoom in (change cam x and y)
-//						init_ts_dependent();	// change vars dependent on tile size
+						camera->zoomIn(32);	
 					}
 				}
-				else if (event.wheel.y < 0) // scroll down zoom out
-				{
-        				if (tileMap->getTileSize() == 32)
-					{
+				else if (event.wheel.y < 0) { 			// Scroll down zoom out
+        				if (tileMap->getTileSize() == 32) {
 						zoom_in_flag = false;
 						zoom_out_flag = true;
 
-						//tile_size = 16;		// set new tile size
 						tileMap->setTileSize(16);
-						camera->zoomOut(16);	// zoom out (change cam x and y)
-						//init_ts_dependent();	// change vars dependent on tile size
+						camera->zoomOut(16);
 					}	
 				}
 		}
 	}
 }
 
-void game::check_keystates()
+/*
+ * Name: checkKeystates
+ * Purpose: Perform desired action(s) depending on which key is pressed
+ * Input: None
+ * Output: None
+ */
+void game::checkKeystates()
 {
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 	
@@ -136,8 +157,12 @@ void game::check_keystates()
 	}
 }
 
-void game::set_selected_tile()
-{
+/* Name: setSelectedTile
+ * Purpose: Determines where the mouse is and sets the tile it is over to selected
+ * Input: None
+ * Output: None
+ */
+void game::setSelectedTile() {
 	int X; 
 	int Y;
 	Uint32 mouse = SDL_GetMouseState(&X, &Y);	
@@ -155,6 +180,12 @@ void game::set_selected_tile()
 	tileMap->selectTile(xCoordinate, yCoordinate);
 }
 
+/*
+ * Name: update
+ * Purpose: Execute actions every game loop
+ * Input: None
+ * Output: None
+ */
 void game::update() {
 	current_ticks = SDL_GetTicks();	
 
@@ -166,10 +197,16 @@ void game::update() {
 	{
 		total_delta_time = 0;				// reset counter
 		camera->update(tileMap->getTotalXTiles(), tileMap->getTotalYTiles());	// update camera
-		set_selected_tile();
+		setSelectedTile();
 	}
 }
 
+/*
+ * Name: render
+ * Purpose: Either renders textures directly or calls functions to render
+ * Input: None
+ * Output: None
+ */
 void game::render() {
 	std::cout << "cam x pos: " << camera->x_pos << std::endl;
 	std::cout << "cam y pos: " << camera->y_pos << std::endl;
@@ -185,15 +222,20 @@ void game::render() {
 
 			if (tileMap->getSelected(currentXPosition, currentYPosition))							// if selected
 			{
-				std::cout << "selected" << std::endl;
-				SDL_RenderCopy(renderer, selected_tex, NULL, &(camera->destinationRect[x][y]));		// render selected texture over it
+				SDL_RenderCopy(renderer, selectedTexture, NULL, &(camera->destinationRect[x][y]));		// render selected texture over it
 			}
 		}
 	}
-	//mainMenu->draw(renderer);
+	mainMenu->draw(renderer);
 	SDL_RenderPresent(renderer);
 }
 
+/*
+ * Name: clean
+ * Purpose: Frees SDL resources and quits
+ * Input: None
+ * Output: None
+ */
 void game::clean()
 {
 	SDL_DestroyWindow(window);
