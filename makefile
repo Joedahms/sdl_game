@@ -1,4 +1,5 @@
 CFLAGS = -c -g
+SRC = src/
 
 game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.o water_tile.o dirt_tile.o tile.o camera.o main_menu.o menu_background.o \
       tile_map.o
@@ -8,47 +9,47 @@ game: main.o game.o player.o npc.o character_factory.o character.o tile_factory.
 	tile_map.o \
        	-o game -lSDL2 -lSDL2_image
 
-main.o: main.cpp game.h
-	g++ $(CFLAGS) main.cpp
+main.o: $(SRC)main.cpp $(SRC)game.h
+	g++ $(CFLAGS) $(SRC)main.cpp
 
-game.o: game.cpp game.h tile_map.h
-	g++ $(CFLAGS) game.cpp
+game.o: $(SRC)game.cpp $(SRC)game.h $(SRC)tile_map.h
+	g++ $(CFLAGS) $(SRC)game.cpp
 
-player.o: player.cpp player.h character.h
-	g++ $(CFLAGS) player.cpp
+player.o: $(SRC)player.cpp $(SRC)player.h $(SRC)character.h
+	g++ $(CFLAGS) $(SRC)player.cpp
 
-npc.o: npc.cpp npc.h character.h
-	g++ $(CFLAGS) npc.cpp
+npc.o: $(SRC)npc.cpp $(SRC)npc.h $(SRC)character.h
+	g++ $(CFLAGS) $(SRC)npc.cpp
 
-character_factory.o: character_factory.cpp character_factory.h player.h npc.h
-	g++ $(CFLAGS) character_factory.cpp
+character_factory.o: $(SRC)character_factory.cpp $(SRC)character_factory.h $(SRC)player.h $(SRC)npc.h
+	g++ $(CFLAGS) $(SRC)character_factory.cpp
 
-character.o: character.cpp character.h
-	g++ $(CFLAGS) character.cpp
+character.o: $(SRC)character.cpp $(SRC)character.h
+	g++ $(CFLAGS) $(SRC)character.cpp
 
-tile_factory.o: tile/tile_factory.cpp tile/tile_factory.h tile/tile.h tile/water_tile.h tile/dirt_tile.h
-	g++ $(CFLAGS) tile/tile_factory.cpp
+tile_factory.o: $(SRC)tile/tile_factory.cpp $(SRC)tile/tile_factory.h $(SRC)tile/tile.h $(SRC)tile/water_tile.h $(SRC)tile/dirt_tile.h
+	g++ $(CFLAGS) $(SRC)tile/tile_factory.cpp
 
-water_tile.o: tile/water_tile.cpp tile/water_tile.h tile/tile.h
-	g++ $(CFLAGS) tile/water_tile.cpp
+water_tile.o: $(SRC)tile/water_tile.cpp $(SRC)tile/water_tile.h $(SRC)tile/tile.h
+	g++ $(CFLAGS) $(SRC)tile/water_tile.cpp
 
-dirt_tile.o: tile/dirt_tile.cpp tile/dirt_tile.h tile/tile.h
-	g++ $(CFLAGS) tile/dirt_tile.cpp
+dirt_tile.o: $(SRC)tile/dirt_tile.cpp $(SRC)tile/dirt_tile.h $(SRC)tile/tile.h
+	g++ $(CFLAGS) $(SRC)tile/dirt_tile.cpp
 
-tile.o: tile/tile.cpp tile/tile.h
-	g++ $(CFLAGS) tile/tile.cpp
+tile.o: $(SRC)tile/tile.cpp $(SRC)tile/tile.h
+	g++ $(CFLAGS) $(SRC)tile/tile.cpp
 
-camera.o: camera/camera.cpp camera/camera.h
-	g++ $(CFLAGS) camera/camera.cpp
+camera.o: $(SRC)camera/camera.cpp $(SRC)camera/camera.h
+	g++ $(CFLAGS) $(SRC)camera/camera.cpp
 
-main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h menu/menu_button.h
-	g++ $(CFLAGS) menu/main_menu.cpp
+main_menu.o: $(SRC)menu/main_menu.cpp $(SRC)menu/main_menu.h $(SRC)menu/menu.h $(SRC)menu/menu_button.h
+	g++ $(CFLAGS) $(SRC)menu/main_menu.cpp
 
-menu_background.o: menu/menu_background.cpp menu/menu_background.h menu/menu_element.h
-	g++ $(CFLAGS) menu/menu_background.cpp
+menu_background.o: $(SRC)menu/menu_background.cpp $(SRC)menu/menu_background.h $(SRC)menu/menu_element.h
+	g++ $(CFLAGS) $(SRC)menu/menu_background.cpp
 
-tile_map.o: tile_map.cpp tile_map.h
-	g++ $(CFLAGS) tile_map.cpp
+tile_map.o: $(SRC)tile_map.cpp $(SRC)tile_map.h
+	g++ $(CFLAGS) $(SRC)tile_map.cpp
 
 clean: 
 	rm game

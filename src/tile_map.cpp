@@ -10,7 +10,7 @@ TileMap::TileMap(int tileSize, int totalXTiles, int totalYTiles, SDL_Renderer* r
 	this->totalYTiles = totalYTiles;
 	this->tileSize = tileSize;
 
-	tile_vec.resize(totalXTiles);	// total x tiles
+	tile_vec.resize(totalXTiles);
 	int random_num;			
 	for (int x = 0; x < totalXTiles; x++)	// create tiles
 	{
