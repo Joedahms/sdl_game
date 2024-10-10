@@ -16,6 +16,7 @@ class MainMenu : public Menu {
 				
 	private:
 		std::unique_ptr<MenuElement> testBackground;
+		std::unique_ptr<MenuElement> testButton;
 		// Buttons
 		// Backgrounds	
 

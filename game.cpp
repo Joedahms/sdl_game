@@ -55,7 +55,7 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
 		camera->zoomChange(16);
 
 		// Create and initialize main menu
-		mainMenu = std::make_unique<MainMenu>(renderer);
+		//mainMenu = std::make_unique<MainMenu>(renderer);
 
 		// use factory to create objects here
 		//std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
@@ -81,7 +81,7 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
 void game::initializeTextures()
 {
 	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
-	selectedTexure = SDL_CreateTextureFromSurface(renderer, tmp_surface);
+	selectedTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
 }
 

@@ -41,7 +41,7 @@ tile.o: tile/tile.cpp tile/tile.h
 camera.o: camera/camera.cpp camera/camera.h
 	g++ $(CFLAGS) camera/camera.cpp
 
-main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h
+main_menu.o: menu/main_menu.cpp menu/main_menu.h menu/menu.h menu/menu_button.h
 	g++ $(CFLAGS) menu/main_menu.cpp
 
 menu_background.o: menu/menu_background.cpp menu/menu_background.h menu/menu_element.h

@@ -36,10 +36,7 @@ TileMap::TileMap(int tileSize, int totalXTiles, int totalYTiles, SDL_Renderer* r
 			}	
 		}
 	}
-
-
 	// Initialize tile_vec
-
 }
 
 void TileMap::setTileSize(int newTileSize) {
