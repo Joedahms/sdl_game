@@ -4,8 +4,8 @@
 #include "tile/tile_factory.h"
 
 class TileMap {
-	public:
-		TileMap(int, int, int, SDL_Renderer*);
+  public:
+    TileMap(int, int, int, SDL_Renderer*);
 		void setTileSize(int);
 		int getTileSize();
 		void selectTile(int, int);
@@ -17,15 +17,14 @@ class TileMap {
 
 
 	private:
-		std::vector<std::vector<std::unique_ptr<Tile>>> tile_vec; // tile map
-	 	std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();	// tile factory
-									  
-		// set in init
+    std::vector<std::vector<std::unique_ptr<Tile>>> tileVector;
+    std::unique_ptr<TileFactory> tile_factory = std::make_unique<TileFactory>();
+  
+		// Total number of tiles on each axis
 		int totalXTiles;
 		int totalYTiles;
 
 		int tileSize;
-
 };
 
 #endif

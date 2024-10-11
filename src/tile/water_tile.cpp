@@ -1,13 +1,16 @@
 #include <iostream>
+#include <assert.h>
 
 #include "tile.h"
 #include "water_tile.h"
 
 WaterTile::WaterTile(SDL_Renderer* renderer)
 {
-	SDL_Surface* tmp_surface = IMG_Load("sprites/water_tile.png");
-	tileTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
-	SDL_FreeSurface(tmp_surface);
+	SDL_Surface* temporarySurface = IMG_Load("../src/sprites/water_tile.png");
+
+	tileTexture = SDL_CreateTextureFromSurface(renderer, temporarySurface);
+
+	SDL_FreeSurface(temporarySurface);
 }
 
 void WaterTile::print()

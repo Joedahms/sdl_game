@@ -27,6 +27,7 @@
 class game {
 	public:
 		void initializeGame(const char*, int, int, int, int, bool);
+    SDL_Window* setupWindow(const char*, int, int, int, int, bool);
 		void initializeTextures();
 		void handleEvents();
 		void checkKeystates();

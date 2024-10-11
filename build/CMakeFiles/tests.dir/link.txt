@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/tests.dir/test/main_test.cpp.o -o tests 
+/usr/bin/c++ CMakeFiles/tests.dir/test/main_test.cpp.o CMakeFiles/tests.dir/test/game_test.cpp.o -o tests 

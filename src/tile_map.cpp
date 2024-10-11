@@ -1,3 +1,4 @@
+#include <iostream>
 #include <memory>
 #include <vector>
 
@@ -10,33 +11,38 @@ TileMap::TileMap(int tileSize, int totalXTiles, int totalYTiles, SDL_Renderer* r
 	this->totalYTiles = totalYTiles;
 	this->tileSize = tileSize;
 
-	tile_vec.resize(totalXTiles);
-	int random_num;			
-	for (int x = 0; x < totalXTiles; x++)	// create tiles
-	{
-		for (int y = 0; y < totalYTiles; y++)
-		{
+	tileVector.resize(totalXTiles);
+	int random_num;
+
+  std::unique_ptr<Tile> waterTile;
+  std::unique_ptr<Tile> dirtTile;
+
+	for (int x = 0; x < totalXTiles; x++) {
+		for (int y = 0; y < totalYTiles; y++) {
 			random_num = rand() % 2 + 1;	// random tile (either one or two)
-			switch (random_num)		// which tile to add
-			{
-				case 1:		// one tile
-					{
-					std::unique_ptr<Tile> tile = tile_factory->create(tile_id::WATER_TILE, renderer);
-					tile_vec[x].emplace_back(std::move(tile));
+
+			switch (random_num) { // Which type of tile to add to the array
+				case 1: // Water tile
+          {
+          std::unique_ptr<Tile> waterTile = tile_factory->create(tile_id::WATER_TILE, renderer);
+					//waterTile = tile_factory->create(tile_id::WATER_TILE, renderer);
+					tileVector[x].emplace_back(std::move(waterTile));
 					break;
-					}
-				case 2:		// two tile
-					{
-					std::unique_ptr<Tile> tile = tile_factory->create(tile_id::DIRT_TILE, renderer);
-					tile_vec[x].emplace_back(std::move(tile));
+          }
+
+				case 2: // Dirt tile
+          {
+          std::unique_ptr<Tile> dirtTile = tile_factory->create(tile_id::DIRT_TILE, renderer);
+					//dirtTile = tile_factory->create(tile_id::DIRT_TILE, renderer);
+					tileVector[x].emplace_back(std::move(dirtTile));
 					break;
-					}
+          }
+
 				default:
-					break;
-			}	
+          break;
+			}
 		}
 	}
-	// Initialize tile_vec
 }
 
 void TileMap::setTileSize(int newTileSize) {
@@ -48,19 +54,19 @@ int TileMap::getTileSize() {
 }
 
 void TileMap::selectTile(int xCoordinate, int yCoordinate) {
-	tile_vec[xCoordinate][yCoordinate]->setSelected();
+	tileVector[xCoordinate][yCoordinate]->setSelected();
 }
 
 void TileMap::unselectTile(int xCoordinate, int yCoordinate) {
-	tile_vec[xCoordinate][yCoordinate]->unsetSelected();
+	tileVector[xCoordinate][yCoordinate]->unsetSelected();
 }
 
 SDL_Texture* TileMap::getTileTexture(int xCoordinate, int yCoordinate) {
-	return tile_vec[xCoordinate][yCoordinate]->getTileTexture();
+	return tileVector[xCoordinate][yCoordinate]->getTileTexture();
 }
 
 bool TileMap::getSelected(int xCoordinate, int yCoordinate) {
-	return tile_vec[xCoordinate][yCoordinate]->getSelected();
+	return tileVector[xCoordinate][yCoordinate]->getSelected();
 }
 
 int TileMap::getTotalXTiles() {

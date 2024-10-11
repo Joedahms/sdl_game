@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "tile.h"
 
 void Tile::setSelected() {
@@ -13,5 +15,6 @@ bool Tile::getSelected() {
 }
 
 SDL_Texture* Tile::getTileTexture() {
+  std::cout << "tile tex: " << tileTexture << std::endl;
 	return tileTexture;	
 }

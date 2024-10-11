@@ -19,7 +19,6 @@ class Camera {
 		int x_vel = 0;
 		int y_vel = 0;
 		
-
 		// get direction
 		int get_x_dir();
 		int get_y_dir();
@@ -46,6 +45,10 @@ class Camera {
 		SDL_Rect & getDestinationRect(int, int);
 
 		std::vector<std::vector<SDL_Rect>> destinationRect;	// needs to be dependent on screen size
+
+    int getScreenHeight();
+    int getScreenWidth();
+  
 	private:
 		// direction
 		int x_dir = 0;
@@ -54,11 +57,9 @@ class Camera {
 		int screenHeight;
 		int screenWidth;
 		
-		// tiles in view
+		// Number of tiles in view
 		int visibleXTiles;
 		int visibleYTiles;
-
-		//dest rect
 };
 
 #endif

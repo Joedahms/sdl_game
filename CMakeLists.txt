@@ -41,7 +41,8 @@ src/tile/water_tile.h
 src/tile_map.cpp
 src/tile_map.h)
 add_executable(tests 
-test/main_test.cpp)
+test/main_test.cpp
+test/game_test.cpp)
 
 target_compile_features(sdlGameEngine PRIVATE cxx_std_20)
 
