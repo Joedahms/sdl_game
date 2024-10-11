@@ -1,5 +1,5 @@
-CMakeFiles/tests.dir/test.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/test.cpp \
+CMakeFiles/tests.dir/test/main_test.cpp.o: \
+ /home/joe/Documents/coding_projects/sdl_tutorial/test/main_test.cpp \
  /usr/include/stdc-predef.h /usr/include/catch2/catch.hpp \
  /usr/include/c++/11/cstddef \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
