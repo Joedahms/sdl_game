@@ -1,3 +1,4 @@
 /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles/sdlGameEngine.dir
+/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles/tests.dir
 /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles/edit_cache.dir
 /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles/rebuild_cache.dir

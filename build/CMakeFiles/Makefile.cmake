@@ -10,6 +10,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/joe/Documents/coding_projects/sdl_tutorial/CMakeLists.txt"
   "CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.25.1/CMakeSystem.cmake"
+  "/usr/lib/cmake/Catch2/Catch2Config.cmake"
+  "/usr/lib/cmake/Catch2/Catch2ConfigVersion.cmake"
+  "/usr/lib/cmake/Catch2/Catch2Targets-none.cmake"
+  "/usr/lib/cmake/Catch2/Catch2Targets.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/sdl2_image/sdl2_image-config.cmake"
@@ -43,4 +47,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/sdlGameEngine.dir/DependInfo.cmake"
+  "CMakeFiles/tests.dir/DependInfo.cmake"
   )
