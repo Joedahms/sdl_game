@@ -129,6 +129,19 @@ sdlGameEngine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/build
 .PHONY : sdlGameEngine/fast
 
+#=============================================================================
+# Target rules for targets named tests
+
+# Build rule for target.
+tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
+
+# fast build rule for target.
+tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
+.PHONY : tests/fast
+
 src/camera/camera.o: src/camera/camera.cpp.o
 .PHONY : src/camera/camera.o
 
@@ -489,6 +502,30 @@ src/tile_map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s
 .PHONY : src/tile_map.cpp.s
 
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -498,6 +535,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sdlGameEngine"
+	@echo "... tests"
 	@echo "... src/camera/camera.o"
 	@echo "... src/camera/camera.i"
 	@echo "... src/camera/camera.s"
@@ -543,6 +581,9 @@ help:
 	@echo "... src/tile_map.o"
 	@echo "... src/tile_map.i"
 	@echo "... src/tile_map.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
