@@ -3,6 +3,7 @@
 
 #include <string>
 
+/*
 class Logger {
   public:
     int add(int, string); // Add to the log file
@@ -12,4 +13,5 @@ class Logger {
     int logLevel;         // Current log level
 }
 
+*/
 #endif

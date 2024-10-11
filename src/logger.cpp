@@ -3,6 +3,7 @@
 
 #include "logger.h"
 
+/*
 // Add a log to the log file
 int Logger::add(int logLevel, string logMessage) {
   if (logLevel != this.logLevel) {    // If not the current log level
@@ -16,3 +17,4 @@ int Logger::add(int logLevel, string logMessage) {
 
   return 0;
 }
+*/
