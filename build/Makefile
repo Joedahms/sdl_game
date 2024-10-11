@@ -502,29 +502,29 @@ src/tile_map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s
 .PHONY : src/tile_map.cpp.s
 
-test.o: test.cpp.o
-.PHONY : test.o
+test/main_test.o: test/main_test.cpp.o
+.PHONY : test/main_test.o
 
 # target to build an object file
-test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.o
-.PHONY : test.cpp.o
+test/main_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/main_test.cpp.o
+.PHONY : test/main_test.cpp.o
 
-test.i: test.cpp.i
-.PHONY : test.i
+test/main_test.i: test/main_test.cpp.i
+.PHONY : test/main_test.i
 
 # target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.i
-.PHONY : test.cpp.i
+test/main_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/main_test.cpp.i
+.PHONY : test/main_test.cpp.i
 
-test.s: test.cpp.s
-.PHONY : test.s
+test/main_test.s: test/main_test.cpp.s
+.PHONY : test/main_test.s
 
 # target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.s
-.PHONY : test.cpp.s
+test/main_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/main_test.cpp.s
+.PHONY : test/main_test.cpp.s
 
 # Help Target
 help:
@@ -581,9 +581,9 @@ help:
 	@echo "... src/tile_map.o"
 	@echo "... src/tile_map.i"
 	@echo "... src/tile_map.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
+	@echo "... test/main_test.o"
+	@echo "... test/main_test.i"
+	@echo "... test/main_test.s"
 .PHONY : help
 
 
