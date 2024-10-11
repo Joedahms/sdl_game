@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <assert.h>
 
 #include "game.h"
 #include "camera/camera.h"
@@ -20,22 +21,11 @@
  * Output: None
  */
 void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
-	int flags = 0;
-	if (fullscreen)
-	{
-		flags = SDL_WINDOW_FULLSCREEN;
-	}
+  this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
 		std::cout << "subsystems initialized" << std::endl;
-
-		// Window
-		window = SDL_CreateWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, flags);
-		if (window)
-		{
-			std::cout << "window created" << std::endl;
-		}
 
 		// Renderer
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -47,11 +37,13 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
 		
 		initializeTextures();	
 
-		// Tilemap
-		tileMap = std::make_unique<TileMap>(16, 1000, 1000, renderer);
+		// Initialize the tile map
+		tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
 
-		// Camera
+		// Initialize the camera
 		camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
+    assert(camera->getScreenHeight() == screenHeight);
+    assert(camera->getScreenWidth() == screenWidth);
 		camera->zoomChange(16);
 
 		// Create and initialize main menu
@@ -68,8 +60,26 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
 	}
 	else 
 	{
-		gameIsRunning = false;			
+		gameIsRunning = false;
 	}
+}
+
+SDL_Window* game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
+  int flags = 0;
+	if (fullscreen)
+	{
+		flags = SDL_WINDOW_FULLSCREEN;
+	}
+
+  // Create the window
+  try {
+    window = SDL_CreateWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, flags);
+    return window;
+  }
+  catch(...) {
+    std::cout << "Window setup error" << std::endl;
+    exit(1);
+  }
 }
 
 /*
@@ -78,8 +88,7 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
  * Input: None
  * Output: None
  */ 
-void game::initializeTextures()
-{
+void game::initializeTextures() {
 	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
 	selectedTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
@@ -219,6 +228,9 @@ void game::render() {
 			int currentXPosition = x + camera->x_pos;
 			int currentYPosition = y + camera->y_pos;
 			SDL_RenderCopy(renderer, tileMap->getTileTexture(currentXPosition, currentYPosition), NULL, &(camera->destinationRect[x][y]));	// render all visible tiles
+      std::cout << currentXPosition << std::endl;
+      std::cout << tileMap->getTileTexture(currentXPosition, currentYPosition) << std::endl;
+
 
 			if (tileMap->getSelected(currentXPosition, currentYPosition))							// if selected
 			{
@@ -226,7 +238,7 @@ void game::render() {
 			}
 		}
 	}
-	mainMenu->draw(renderer);
+	//mainMenu->draw(renderer);
 	SDL_RenderPresent(renderer);
 }
 

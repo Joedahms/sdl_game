@@ -1,13 +1,18 @@
 #include <iostream>
+#include <assert.h>
 
 #include "tile.h"
 #include "dirt_tile.h"
 
 DirtTile::DirtTile(SDL_Renderer* renderer)
 {
-	SDL_Surface* tmp_surface = IMG_Load("sprites/dirt_tile.png");
-	tileTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
-	SDL_FreeSurface(tmp_surface);
+	SDL_Surface* temporarySurface = IMG_Load("../src/sprites/dirt_tile.png");
+  assert(temporarySurface != 0);
+
+	tileTexture = SDL_CreateTextureFromSurface(renderer, temporarySurface);
+  assert(tileTexture != 0);
+
+	SDL_FreeSurface(temporarySurface);
 }
 
 void DirtTile::print()

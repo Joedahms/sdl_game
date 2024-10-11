@@ -128,3 +128,13 @@ void Camera::update(int total_x_tiles, int total_y_tiles)
 SDL_Rect & Camera::getDestinationRect(int xCoordinate, int yCoordinate) {
 	return destinationRect[xCoordinate][yCoordinate];
 }
+
+// Get the screen height
+int Camera::getScreenHeight() {
+  return this->screenHeight;
+}
+
+// Get the screen width
+int Camera::getScreenWidth() {
+  return this->screenWidth;
+}
