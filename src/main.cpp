@@ -36,7 +36,6 @@ int main(int argc, const char* argv[])
 
 		frame_end = SDL_GetPerformanceCounter();
 		elapsedMS = (frame_end - frame_start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
-
 	}
 	
 	game_obj->clean();

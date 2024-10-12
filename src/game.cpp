@@ -86,7 +86,6 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
   
   // Initialize the tile map
   tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
-
   
   // Initialize the camera
   camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
@@ -149,8 +148,8 @@ void game::handleEvents() {
 	while (SDL_PollEvent(&event) != 0) {    // SDL event occured
 		switch (event.type) {                 // Which type of event occured
 			case SDL_QUIT:                      // Quit event
-				gameIsRunning = false;
-				return;
+        gameIsRunning = false;
+        return;
 			case SDL_MOUSEWHEEL:                // Mousewheel event
 				if (event.wheel.y > 0) {          // Scroll up -> zoom in
 					if (tileMap->getTileSize() == 16) {
@@ -171,8 +170,16 @@ void game::handleEvents() {
 					}
 				}
         break;                        
+
+      case SDL_MOUSEMOTION:
+        button->checkHovered(event);
+        break;
+
+      case SDL_MOUSEBUTTONDOWN:
+        button->checkPressed(event);
+        break;
+
       default:
-        button->handleEvent(event);
         break;
 		}
 	}

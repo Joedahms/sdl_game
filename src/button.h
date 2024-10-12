@@ -3,16 +3,19 @@
 #include <string>
 
 class Button {
-public:
+  public:
+  Button(int, int, int, int, const std::string&, TTF_Font*);
+
+  std::string text; 
+  std::string logFile;
+
   SDL_Rect rect; 
   SDL_Color color; 
   bool hovered;
-  std::string text; 
   TTF_Font* font;
-  Button(int, int, int, int, const std::string&, TTF_Font*);
-  void handleEvent(const SDL_Event&);
+
+  bool checkHovered(const SDL_Event&);
+  bool checkPressed(const SDL_Event&);
+
   void render(SDL_Renderer*);
-
-  std::string logFile;
-
 };

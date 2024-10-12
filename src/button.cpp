@@ -10,16 +10,33 @@ Button::Button(int x, int y, int w, int h, const std::string& text, TTF_Font* fo
     this->font = font;
 }
 
-void Button::handleEvent(const SDL_Event& e) {
-  if (e.type == SDL_MOUSEMOTION) {
-    // Check if mouse is over the button
-    hovered = (e.motion.x > rect.x && e.motion.x < rect.x + rect.w &&
-                e.motion.y > rect.y && e.motion.y < rect.y + rect.h);
-  } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-    if (hovered) {
-      writeToLogFile(logFile, "button pressed");
-    }
+bool Button::checkHovered(const SDL_Event& sdlEvent) {
+  this->hovered = true;
+  if (sdlEvent.motion.x < rect.x) {            // Outside left edge of button
+    this->hovered = false;
+    return false;
   }
+  if (sdlEvent.motion.x > rect.x + rect.w) {   // Outside right edge of button
+    this->hovered = false;
+    return false;
+  }
+  if (sdlEvent.motion.y < rect.y) {            // Outside top edge of button
+    this->hovered = false;
+    return false;
+  }
+  if (sdlEvent.motion.y > rect.y + rect.h) {   // Outside bottom edge of button
+    this->hovered = false;
+    return false;
+  }
+  return true;
+}
+
+bool Button::checkPressed(const SDL_Event& sdlEvent) {
+  if (this->hovered) {
+    writeToLogFile(this->logFile, "button " + this->text + " pressed");
+    return true;
+  }
+  return false;
 }
 
 void Button::render(SDL_Renderer* renderer) {
