@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/sdlGameEngine.dir/src/button.cpp.o"
+  "CMakeFiles/sdlGameEngine.dir/src/button.cpp.o.d"
   "CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o"
   "CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o.d"
   "CMakeFiles/sdlGameEngine.dir/src/character.cpp.o"

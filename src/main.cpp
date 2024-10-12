@@ -26,6 +26,7 @@ int main(int argc, const char* argv[])
 		game_obj->handleEvents();
 		game_obj->checkKeystates();
 		game_obj->update();
+
 		game_obj->render();
 
 		frame_end = SDL_GetPerformanceCounter();

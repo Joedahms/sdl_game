@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <assert.h>
 
@@ -7,6 +8,7 @@
 #include "camera/camera.h"
 #include "menu/main_menu.h"
 #include "tile_map.h"
+
 
 /*
  * Name: initializeGame
@@ -23,45 +25,85 @@
 void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
   this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
-	{
-		std::cout << "subsystems initialized" << std::endl;
+  // Initialize SDL
+  try {
+    int sdlInitReturn = SDL_Init(SDL_INIT_EVERYTHING);
+    if (sdlInitReturn != 0) {
+      throw;
+    }
+  }
+  catch (...) {
+    std::cout << "Failed to initialize SDL" << std::endl;
+  }
 
-		// Renderer
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-		if (renderer)
-		{
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-			std::cout << "renderer created" << std::endl;
-		}
-		
-		initializeTextures();	
+  // Create renderer
+  try {
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (!renderer) {
+      throw;
+    }
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  }
+  catch (...) {
+    std::cout << "Error creating renderer" << std::endl;
+  }
 
-		// Initialize the tile map
-		tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
+  initializeTextures();
+  
+  // Initialize TTF
+  try {
+    int ttfInitReturn = TTF_Init();
+    if (ttfInitReturn == -1) {
+      throw;
+    }
+  }
+  catch (...) {
+    std::cout << "Failed to initialize TTF" << std::endl;
+  }
 
-		// Initialize the camera
-		camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
-    assert(camera->getScreenHeight() == screenHeight);
-    assert(camera->getScreenWidth() == screenWidth);
-		camera->zoomChange(16);
+  TTF_Font* font = TTF_OpenFont("../16020_FUTURAM.ttf", 24);
+  if (font == NULL) {
+    std::cout << TTF_GetError() << std::endl;
+  }
+  SDL_Color textColor = {255, 255, 255, 255}; // White color
+  SDL_Surface *textSurface = TTF_RenderText_Solid(font, "Hello, SDL2!", textColor);
+  SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+  SDL_FreeSurface(textSurface);
 
-		// Create and initialize main menu
-		//mainMenu = std::make_unique<MainMenu>(renderer);
+  int textWidth, textHeight;
+  SDL_QueryTexture(textTexture, NULL, NULL, &textWidth, &textHeight);
 
-		// use factory to create objects here
-		//std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
-		//player_vec.emplace_back(std::move(player));
-		//player_vec[0]->print();
-		//player->print();
-		
-		prev_ticks = SDL_GetTicks();	// first physics tick count
-		gameIsRunning = true;
-	}
-	else 
-	{
-		gameIsRunning = false;
-	}
+  SDL_Rect renderQuad = { 100, 100, textWidth, textHeight }; // Set position and size
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, textTexture, NULL, &renderQuad);
+
+  SDL_RenderPresent(renderer);
+
+  button = std::make_unique<Button>(200, 150, 200, 50, "click", font);
+  
+  // Initialize the tile map
+  tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
+
+  
+  // Initialize the camera
+  camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
+  assert(camera->getScreenHeight() == screenHeight);
+  assert(camera->getScreenWidth() == screenWidth);
+  camera->zoomChange(16);
+  
+
+  // Create and initialize main menu
+  //mainMenu = std::make_unique<MainMenu>(renderer);
+
+  // use factory to create objects here
+  //std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
+  //player_vec.emplace_back(std::move(player));
+  //player_vec[0]->print();
+  //player->print();
+  
+  prev_ticks = SDL_GetTicks();	// first physics tick count
+  gameIsRunning = true;
 }
 
 SDL_Window* game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
@@ -228,9 +270,6 @@ void game::render() {
 			int currentXPosition = x + camera->x_pos;
 			int currentYPosition = y + camera->y_pos;
 			SDL_RenderCopy(renderer, tileMap->getTileTexture(currentXPosition, currentYPosition), NULL, &(camera->destinationRect[x][y]));	// render all visible tiles
-      std::cout << currentXPosition << std::endl;
-      std::cout << tileMap->getTileTexture(currentXPosition, currentYPosition) << std::endl;
-
 
 			if (tileMap->getSelected(currentXPosition, currentYPosition))							// if selected
 			{
@@ -239,6 +278,7 @@ void game::render() {
 		}
 	}
 	//mainMenu->draw(renderer);
+  button->render(renderer);
 	SDL_RenderPresent(renderer);
 }
 

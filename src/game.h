@@ -24,6 +24,9 @@
 
 #include "tile_map.h"
 
+#include "button.h"
+
+
 class game {
 	public:
 		void initializeGame(const char*, int, int, int, int, bool);
@@ -68,6 +71,9 @@ class game {
 
 		// Tile map object
 		std::unique_ptr<TileMap> tileMap;// = std::make_unique<TileMap>(16, 1000, 1000, renderer);
+
+  std::unique_ptr<Button> button;
+
 };
 
 #endif
