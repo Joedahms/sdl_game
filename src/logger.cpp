@@ -3,18 +3,13 @@
 
 #include "logger.h"
 
-/*
-// Add a log to the log file
-int Logger::add(int logLevel, string logMessage) {
-  if (logLevel != this.logLevel) {    // If not the current log level
-    return 0;
-  }
-
-  // Add the log message to the file
-  ofstream logFile(this.logFileName);
-  logFile << logMessage;
+void clearLogFile(std::string logFileName) {
+  std::ofstream logFile(logFileName, std::ios_base::trunc);
   logFile.close();
-
-  return 0;
 }
-*/
+
+void writeToLogFile(std::string logFileName, std::string logMessage) {
+  std::ofstream logFile(logFileName, std::ios_base::app); // Open log file for appending
+  logFile << logMessage + '\n';                           // Add the message
+  logFile.close();                                        // Close the file
+}

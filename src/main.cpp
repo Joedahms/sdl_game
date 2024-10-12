@@ -1,19 +1,24 @@
 #include <SDL2/SDL.h>
 
 #include <iostream>
+#include <string>
 
 #include "game.h"
+#include "logger.h"
 
 game* game_obj = nullptr;
 
 int main(int argc, const char* argv[])
 {
+  std::string logFile = "../log.txt";
+  clearLogFile(logFile);
+
 	Uint64 frame_start;
 	Uint64 frame_end;
 	float elapsedMS;
 
 	game_obj = new game();
-	game_obj->initializeGame("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false);
+	game_obj->initializeGame("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false, logFile);
 
 	while (game_obj->running())
 	{

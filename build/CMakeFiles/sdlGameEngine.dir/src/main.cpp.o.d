@@ -357,4 +357,5 @@ CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu_element.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
- /usr/include/SDL2/SDL_ttf.h
+ /usr/include/SDL2/SDL_ttf.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h

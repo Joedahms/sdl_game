@@ -22,7 +22,8 @@
  * - Whether or not the game is fullscreen
  * Output: None
  */
-void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
+void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, std::string logFile) {
+  this->logFile = logFile;
   this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
   // Initialize SDL
@@ -81,6 +82,7 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
   SDL_RenderPresent(renderer);
 
   button = std::make_unique<Button>(200, 150, 200, 50, "click", font);
+  button->logFile = logFile;
   
   // Initialize the tile map
   tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
@@ -144,13 +146,13 @@ void game::initializeTextures() {
  */
 void game::handleEvents() {
 	SDL_Event event;
-	while (SDL_PollEvent(&event) != 0) {					// Event occured
-		switch (event.type) {			
-			case SDL_QUIT:			
-				gameIsRunning = false;	
+	while (SDL_PollEvent(&event) != 0) {    // SDL event occured
+		switch (event.type) {                 // Which type of event occured
+			case SDL_QUIT:                      // Quit event
+				gameIsRunning = false;
 				return;
-			case SDL_MOUSEWHEEL:					// Mousewheel event
-				if (event.wheel.y > 0) {			// Scroll up zoom in
+			case SDL_MOUSEWHEEL:                // Mousewheel event
+				if (event.wheel.y > 0) {          // Scroll up -> zoom in
 					if (tileMap->getTileSize() == 16) {
 						zoom_in_flag = true;
 						zoom_out_flag = false;
@@ -159,15 +161,19 @@ void game::handleEvents() {
 						camera->zoomIn(32);	
 					}
 				}
-				else if (event.wheel.y < 0) { 			// Scroll down zoom out
-        				if (tileMap->getTileSize() == 32) {
+				else if (event.wheel.y < 0) {     // Scroll down -> zoom out
+          if (tileMap->getTileSize() == 32) {
 						zoom_in_flag = false;
 						zoom_out_flag = true;
 
 						tileMap->setTileSize(16);
 						camera->zoomOut(16);
-					}	
+					}
 				}
+        break;                        
+      default:
+        button->handleEvent(event);
+        break;
 		}
 	}
 }

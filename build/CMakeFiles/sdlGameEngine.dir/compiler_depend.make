@@ -361,7 +361,8 @@ CMakeFiles/sdlGameEngine.dir/src/button.cpp.o: /home/joe/Documents/coding_projec
   /usr/include/SDL2/SDL_locale.h \
   /usr/include/SDL2/SDL_misc.h \
   /usr/include/SDL2/SDL_ttf.h \
-  /usr/include/SDL2/SDL.h
+  /usr/include/SDL2/SDL.h \
+  /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h
 
 CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.cpp \
   /usr/include/stdc-predef.h \
@@ -1967,7 +1968,8 @@ CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: /home/joe/Documents/coding_projects
   /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu_element.h \
   /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h \
   /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
-  /usr/include/SDL2/SDL_ttf.h
+  /usr/include/SDL2/SDL_ttf.h \
+  /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h
 
 CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/main_menu.cpp \
   /usr/include/stdc-predef.h \

@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "character.h"
 #include "character_factory.h"
@@ -29,7 +30,7 @@
 
 class game {
 	public:
-		void initializeGame(const char*, int, int, int, int, bool);
+		void initializeGame(const char*, int, int, int, int, bool, std::string);
     SDL_Window* setupWindow(const char*, int, int, int, int, bool);
 		void initializeTextures();
 		void handleEvents();
@@ -73,6 +74,8 @@ class game {
 		std::unique_ptr<TileMap> tileMap;// = std::make_unique<TileMap>(16, 1000, 1000, renderer);
 
   std::unique_ptr<Button> button;
+
+  std::string logFile;
 
 };
 
