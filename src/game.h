@@ -28,9 +28,10 @@
 #include "button.h"
 
 
-class game {
+class Game {
 	public:
-		void initializeGame(const char*, int, int, int, int, bool, std::string);
+    Game(const char*, int, int, int, int, bool, std::string);
+
     SDL_Window* setupWindow(const char*, int, int, int, int, bool);
 		void initializeTextures();
 		void handleEvents();
@@ -44,18 +45,21 @@ class game {
 
 	private:
 		bool gameIsRunning = false;
+    std::string logFile;
+
+    std::string state;
 
 		std::unique_ptr<CharacterFactory> character_factory = std::make_unique<CharacterFactory>();
 
-		std::unique_ptr<Menu> mainMenu;// = std::make_unique<MainMenu>(renderer);
+		std::unique_ptr<Menu> mainMenu;
 
-		std::vector<std::unique_ptr<Character>> player_vec;	// player vector
-		std::vector<std::unique_ptr<Character>> npc_vec;	// npc vector
+		std::vector<std::unique_ptr<Character>> player_vec;   // Vector of players
+		std::vector<std::unique_ptr<Character>> npc_vec;      // Vector of NPCs
 		
-		SDL_Texture* selectedTexture;	// texture for selected tile
+		SDL_Texture* selectedTexture;                         // Texture for selected tile
 
-		SDL_Window* window;		
-		SDL_Renderer* renderer;	
+		SDL_Window* window;
+		SDL_Renderer* renderer;
 
 		std::unique_ptr<Camera> camera;
 		
@@ -65,17 +69,16 @@ class game {
 		Uint32 current_ticks;	
 		Uint32 prev_ticks;
 
-		// zoom flags
-		// game starts zoomed out
+		// Zoom flags
+		// Game starts zoomed out
 		bool zoom_in_flag = false;
 		bool zoom_out_flag = true;
 
 		// Tile map object
 		std::unique_ptr<TileMap> tileMap;// = std::make_unique<TileMap>(16, 1000, 1000, renderer);
 
-  std::unique_ptr<Button> button;
+    std::unique_ptr<Button> testButton;
 
-  std::string logFile;
 
 };
 

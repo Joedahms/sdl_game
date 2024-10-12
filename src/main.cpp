@@ -6,8 +6,6 @@
 #include "game.h"
 #include "logger.h"
 
-game* game_obj = nullptr;
-
 int main(int argc, const char* argv[])
 {
   std::string logFile = "../log.txt";
@@ -17,10 +15,10 @@ int main(int argc, const char* argv[])
 	Uint64 frame_end;
 	float elapsedMS;
 
-	game_obj = new game();
-	game_obj->initializeGame("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false, logFile);
+  std::unique_ptr<Game> game = std::make_unique<Game>("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false, logFile);
+//	game_obj->initializeGame("game_engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 640, false, logFile);
 
-	while (game_obj->running())
+	while (game->running())
 	{
 		int X; 
 		int Y;
@@ -28,17 +26,16 @@ int main(int argc, const char* argv[])
 
 		frame_start = SDL_GetPerformanceCounter();
 
-		game_obj->handleEvents();
-		game_obj->checkKeystates();
-		game_obj->update();
-
-		game_obj->render();
+		game->handleEvents();
+		game->checkKeystates();
+		game->update();
+		game->render();
 
 		frame_end = SDL_GetPerformanceCounter();
 		elapsedMS = (frame_end - frame_start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
 	}
 	
-	game_obj->clean();
+	game->clean();
 
 	return 0;
 }

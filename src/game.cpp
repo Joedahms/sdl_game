@@ -9,20 +9,7 @@
 #include "menu/main_menu.h"
 #include "tile_map.h"
 
-
-/*
- * Name: initializeGame
- * Purpose: Setup the game object
- * Input:
- * - Title of game window
- * - Window X Position
- * - Window Y Position
- * - Width of the screen
- * - Height of the screen
- * - Whether or not the game is fullscreen
- * Output: None
- */
-void game::initializeGame(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, std::string logFile) {
+Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, std::string logFile) {
   this->logFile = logFile;
   this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
@@ -81,8 +68,8 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
 
   SDL_RenderPresent(renderer);
 
-  button = std::make_unique<Button>(200, 150, 200, 50, "click", font);
-  button->logFile = logFile;
+  testButton = std::make_unique<Button>(200, 150, 200, 50, "click", font);
+  testButton->logFile = logFile;
   
   // Initialize the tile map
   tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
@@ -92,7 +79,6 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
   assert(camera->getScreenHeight() == screenHeight);
   assert(camera->getScreenWidth() == screenWidth);
   camera->zoomChange(16);
-  
 
   // Create and initialize main menu
   //mainMenu = std::make_unique<MainMenu>(renderer);
@@ -107,7 +93,7 @@ void game::initializeGame(const char* windowTitle, int windowXPosition, int wind
   gameIsRunning = true;
 }
 
-SDL_Window* game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
+SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
   int flags = 0;
 	if (fullscreen)
 	{
@@ -131,7 +117,7 @@ SDL_Window* game::setupWindow(const char* windowTitle, int windowXPosition, int 
  * Input: None
  * Output: None
  */ 
-void game::initializeTextures() {
+void Game::initializeTextures() {
 	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
 	selectedTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
@@ -143,7 +129,7 @@ void game::initializeTextures() {
  * Input: None
  * Output: None
  */
-void game::handleEvents() {
+void Game::handleEvents() {
 	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0) {    // SDL event occured
 		switch (event.type) {                 // Which type of event occured
@@ -172,11 +158,11 @@ void game::handleEvents() {
         break;                        
 
       case SDL_MOUSEMOTION:
-        button->checkHovered(event);
+        testButton->checkHovered(event);
         break;
 
       case SDL_MOUSEBUTTONDOWN:
-        button->checkPressed(event);
+        testButton->checkPressed(event);
         break;
 
       default:
@@ -191,7 +177,7 @@ void game::handleEvents() {
  * Input: None
  * Output: None
  */
-void game::checkKeystates()
+void Game::checkKeystates()
 {
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 	
@@ -226,7 +212,7 @@ void game::checkKeystates()
  * Input: None
  * Output: None
  */
-void game::setSelectedTile() {
+void Game::setSelectedTile() {
 	int X; 
 	int Y;
 	Uint32 mouse = SDL_GetMouseState(&X, &Y);	
@@ -250,7 +236,7 @@ void game::setSelectedTile() {
  * Input: None
  * Output: None
  */
-void game::update() {
+void Game::update() {
 	current_ticks = SDL_GetTicks();	
 
 	delta_time = current_ticks - prev_ticks;		// calc delta time from ticks
@@ -271,7 +257,7 @@ void game::update() {
  * Input: None
  * Output: None
  */
-void game::render() {
+void Game::render() {
 	std::cout << "cam x pos: " << camera->x_pos << std::endl;
 	std::cout << "cam y pos: " << camera->y_pos << std::endl;
 	SDL_RenderClear(renderer);
@@ -291,7 +277,7 @@ void game::render() {
 		}
 	}
 	//mainMenu->draw(renderer);
-  button->render(renderer);
+  testButton->render(renderer);
 	SDL_RenderPresent(renderer);
 }
 
@@ -301,7 +287,7 @@ void game::render() {
  * Input: None
  * Output: None
  */
-void game::clean()
+void Game::clean()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
