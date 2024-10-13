@@ -10,22 +10,22 @@
 class MainMenu {
   public:
   MainMenu(std::string, SDL_Renderer*);
-  int handleEvents(bool*);
-  void render(SDL_Renderer*);
+  int handleEvents(bool*);              // Handle SDL events while in the main menu state
+  void render(SDL_Renderer*);           // Render the main menu
 
   private:
-  std::string logFile;
+  std::string logFile;                  // Path to the log file
 
-  TTF_Font* font;
-  SDL_Color textColor;
-  SDL_Texture* textTexture;
+  TTF_Font* font;                       // Font for all elements in the main menu
+  SDL_Color textColor;                  // Text color for all elements in the main menu
+  SDL_Texture* gameTitleTexture;
 
-  int textWidth;
-  int textHeight;
+  int gameTitleTextWidth;               // Width of the game title in pixels
+  int gameTitleTextHeight;              // Height of the game title in pixels
 
-  SDL_Rect renderQuad;
+  SDL_Rect gameTitleRectangle;
 
-  std::unique_ptr<Button> testButton;
+  std::unique_ptr<Button> startButton;  // Button to launch the game
 };
 
 #endif
