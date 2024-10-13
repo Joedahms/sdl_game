@@ -262,6 +262,30 @@ src/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/game.cpp.s
 .PHONY : src/game.cpp.s
 
+src/gameplay.o: src/gameplay.cpp.o
+.PHONY : src/gameplay.o
+
+# target to build an object file
+src/gameplay.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o
+.PHONY : src/gameplay.cpp.o
+
+src/gameplay.i: src/gameplay.cpp.i
+.PHONY : src/gameplay.i
+
+# target to preprocess a source file
+src/gameplay.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.i
+.PHONY : src/gameplay.cpp.i
+
+src/gameplay.s: src/gameplay.cpp.s
+.PHONY : src/gameplay.s
+
+# target to generate assembly for a file
+src/gameplay.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.s
+.PHONY : src/gameplay.cpp.s
+
 src/logger.o: src/logger.cpp.o
 .PHONY : src/logger.o
 
@@ -310,53 +334,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/menu/main_menu.o: src/menu/main_menu.cpp.o
-.PHONY : src/menu/main_menu.o
+src/main_menu.o: src/main_menu.cpp.o
+.PHONY : src/main_menu.o
 
 # target to build an object file
-src/menu/main_menu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.o
-.PHONY : src/menu/main_menu.cpp.o
+src/main_menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o
+.PHONY : src/main_menu.cpp.o
 
-src/menu/main_menu.i: src/menu/main_menu.cpp.i
-.PHONY : src/menu/main_menu.i
-
-# target to preprocess a source file
-src/menu/main_menu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.i
-.PHONY : src/menu/main_menu.cpp.i
-
-src/menu/main_menu.s: src/menu/main_menu.cpp.s
-.PHONY : src/menu/main_menu.s
-
-# target to generate assembly for a file
-src/menu/main_menu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.s
-.PHONY : src/menu/main_menu.cpp.s
-
-src/menu/menu_background.o: src/menu/menu_background.cpp.o
-.PHONY : src/menu/menu_background.o
-
-# target to build an object file
-src/menu/menu_background.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.o
-.PHONY : src/menu/menu_background.cpp.o
-
-src/menu/menu_background.i: src/menu/menu_background.cpp.i
-.PHONY : src/menu/menu_background.i
+src/main_menu.i: src/main_menu.cpp.i
+.PHONY : src/main_menu.i
 
 # target to preprocess a source file
-src/menu/menu_background.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.i
-.PHONY : src/menu/menu_background.cpp.i
+src/main_menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.i
+.PHONY : src/main_menu.cpp.i
 
-src/menu/menu_background.s: src/menu/menu_background.cpp.s
-.PHONY : src/menu/menu_background.s
+src/main_menu.s: src/main_menu.cpp.s
+.PHONY : src/main_menu.s
 
 # target to generate assembly for a file
-src/menu/menu_background.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.s
-.PHONY : src/menu/menu_background.cpp.s
+src/main_menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.s
+.PHONY : src/main_menu.cpp.s
 
 src/npc.o: src/npc.cpp.o
 .PHONY : src/npc.o
@@ -575,18 +575,18 @@ help:
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
+	@echo "... src/gameplay.o"
+	@echo "... src/gameplay.i"
+	@echo "... src/gameplay.s"
 	@echo "... src/logger.o"
 	@echo "... src/logger.i"
 	@echo "... src/logger.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/menu/main_menu.o"
-	@echo "... src/menu/main_menu.i"
-	@echo "... src/menu/main_menu.s"
-	@echo "... src/menu/menu_background.o"
-	@echo "... src/menu/menu_background.i"
-	@echo "... src/menu/menu_background.s"
+	@echo "... src/main_menu.o"
+	@echo "... src/main_menu.i"
+	@echo "... src/main_menu.s"
 	@echo "... src/npc.o"
 	@echo "... src/npc.i"
 	@echo "... src/npc.s"

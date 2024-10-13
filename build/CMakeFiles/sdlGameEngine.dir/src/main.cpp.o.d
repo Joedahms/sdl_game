@@ -352,10 +352,9 @@ CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/water_tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/main_menu.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu_element.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/main_menu.h \
  /usr/include/SDL2/SDL_ttf.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/gameplay.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h

@@ -6,14 +6,19 @@
 
 #include "game.h"
 #include "camera/camera.h"
-#include "menu/main_menu.h"
 #include "tile_map.h"
+#include "logger.h"
+#include "menu.h"
 
 Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, std::string logFile) {
+  writeToLogFile(logFile, "Constructing game...");
+  this->screenWidth = screenWidth;
+  this->screenHeight = screenHeight;
   this->logFile = logFile;
   this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
   // Initialize SDL
+  writeToLogFile(logFile, "Initializing SDL...");
   try {
     int sdlInitReturn = SDL_Init(SDL_INIT_EVERYTHING);
     if (sdlInitReturn != 0) {
@@ -21,10 +26,13 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
     }
   }
   catch (...) {
-    std::cout << "Failed to initialize SDL" << std::endl;
+    writeToLogFile(logFile, "Failed to initialize SDL");
+    exit(1);
   }
+  writeToLogFile(logFile, "SDL initialized");
 
   // Create renderer
+  writeToLogFile(logFile, "Creating renderer");
   try {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer) {
@@ -33,12 +41,13 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   }
   catch (...) {
-    std::cout << "Error creating renderer" << std::endl;
+    writeToLogFile(logFile, "Error creating renderer");
+    exit(1);
   }
+  writeToLogFile(logFile, "Renderer created");
 
-  initializeTextures();
-  
   // Initialize TTF
+  writeToLogFile(logFile, "Initializing TTF...");
   try {
     int ttfInitReturn = TTF_Init();
     if (ttfInitReturn == -1) {
@@ -46,42 +55,17 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
     }
   }
   catch (...) {
-    std::cout << "Failed to initialize TTF" << std::endl;
+    writeToLogFile(logFile, "Failed to initialize TTF");
+    exit(1);
   }
-
-  TTF_Font* font = TTF_OpenFont("../16020_FUTURAM.ttf", 24);
-  if (font == NULL) {
-    std::cout << TTF_GetError() << std::endl;
-  }
-  SDL_Color textColor = {255, 255, 255, 255}; // White color
-  SDL_Surface *textSurface = TTF_RenderText_Solid(font, "Hello, SDL2!", textColor);
-  SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-  SDL_FreeSurface(textSurface);
-
-  int textWidth, textHeight;
-  SDL_QueryTexture(textTexture, NULL, NULL, &textWidth, &textHeight);
-
-  SDL_Rect renderQuad = { 100, 100, textWidth, textHeight }; // Set position and size
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-  SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, textTexture, NULL, &renderQuad);
-
-  SDL_RenderPresent(renderer);
-
-  testButton = std::make_unique<Button>(200, 150, 200, 50, "click", font);
-  testButton->logFile = logFile;
+  writeToLogFile(logFile, "TTF initialized");
   
-  // Initialize the tile map
-  tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
   
-  // Initialize the camera
-  camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
-  assert(camera->getScreenHeight() == screenHeight);
-  assert(camera->getScreenWidth() == screenWidth);
-  camera->zoomChange(16);
 
   // Create and initialize main menu
-  //mainMenu = std::make_unique<MainMenu>(renderer);
+  this->mainMenu = std::make_unique<MainMenu>(this->logFile, this->renderer);
+  
+  this->gameplay = std::make_unique<Gameplay>(this->logFile);
 
   // use factory to create objects here
   //std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
@@ -94,6 +78,7 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
 }
 
 SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
+  writeToLogFile(logFile, "Creating SDL game window...");
   int flags = 0;
 	if (fullscreen)
 	{
@@ -106,21 +91,35 @@ SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int 
     return window;
   }
   catch(...) {
-    std::cout << "Window setup error" << std::endl;
+    writeToLogFile(logFile, "Error setting up SDL game window");
     exit(1);
   }
+  writeToLogFile(logFile, "SDL game window created");
 }
 
-/*
- * Name: initializeTextures
- * Purpose: Initialize game textures
- * Input: None
- * Output: None
- */ 
-void Game::initializeTextures() {
-	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
-	selectedTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
-	SDL_FreeSurface(tmp_surface);
+void Game::checkState() {
+  switch(this->state) {
+    case 0:
+    if (!this->mainMenuStateInitialized) {
+    
+    }
+    break;
+
+    case 1:
+    if (!this->gameplay->getStateEntered()) {
+      this->gameplay->enterGameplay(this->screenHeight, this->screenWidth, this->renderer);  
+    }
+    break;
+
+    case 2:
+    if (!this->pauseMenuStateInitialized) {
+      
+    }
+    break;
+
+    default:
+    break;
+  }
 }
 
 /*
@@ -130,8 +129,25 @@ void Game::initializeTextures() {
  * Output: None
  */
 void Game::handleEvents() {
-	SDL_Event event;
-	while (SDL_PollEvent(&event) != 0) {    // SDL event occured
+	//SDL_Event event;
+	//while (SDL_PollEvent(&event) != 0) {    // SDL event occured
+    switch (this->state) {
+      case 0: // Main menu
+      this->state = this->mainMenu->handleEvents(&this->gameIsRunning);
+      break;
+      case 1: // Gameplay
+      this->state = this->gameplay->handleEvents(&this->gameIsRunning);
+      break;
+      case 2: // Pause menu
+      // this->pauseMenu->handleEvents();
+      break;
+      default:
+      break;
+    }
+
+
+
+    /*
 		switch (event.type) {                 // Which type of event occured
 			case SDL_QUIT:                      // Quit event
         gameIsRunning = false;
@@ -158,53 +174,37 @@ void Game::handleEvents() {
         break;                        
 
       case SDL_MOUSEMOTION:
-        testButton->checkHovered(event);
+        this->mainMenu->testButton->checkHovered(event);
         break;
 
       case SDL_MOUSEBUTTONDOWN:
-        testButton->checkPressed(event);
+        this->mainMenu->testButton->checkPressed(event);
         break;
 
       default:
         break;
 		}
-	}
+    */
+	//}
 }
 
-/*
- * Name: checkKeystates
- * Purpose: Perform desired action(s) depending on which key is pressed
- * Input: None
- * Output: None
- */
 void Game::checkKeystates()
 {
-	const Uint8* keystates = SDL_GetKeyboardState(NULL);
-	
-	if (keystates[SDL_SCANCODE_UP])		// up arrow
-	{
-		camera->neg_y_dir();
-		return;
-	}
-	else if (keystates[SDL_SCANCODE_DOWN])	// down arrow
-	{
-		camera->pos_y_dir();
-		return;
-	}
-	else if (keystates[SDL_SCANCODE_RIGHT])	// right arrow
-	{
-		camera->pos_x_dir();
-		return;
-	}
-	else if (keystates[SDL_SCANCODE_LEFT])	// left arrow
-	{
-		camera->neg_x_dir();
-		return;
-	}
-	else					// camera not moving
-	{
-		camera->zero_dir();
-	}
+  switch(this->state) {
+    case 0:
+    break;
+
+    case 1:
+    this->gameplay->checkKeystates();
+    break;
+
+    case 2:
+    break;
+
+    default:
+    break;
+  }
+
 }
 
 /* Name: setSelectedTile
@@ -212,6 +212,7 @@ void Game::checkKeystates()
  * Input: None
  * Output: None
  */
+/*
 void Game::setSelectedTile() {
 	int X; 
 	int Y;
@@ -229,6 +230,7 @@ void Game::setSelectedTile() {
 	}
 	tileMap->selectTile(xCoordinate, yCoordinate);
 }
+*/
 
 /*
  * Name: update
@@ -246,9 +248,32 @@ void Game::update() {
 	if (total_delta_time >= 128)				// update if it is time
 	{
 		total_delta_time = 0;				// reset counter
-		camera->update(tileMap->getTotalXTiles(), tileMap->getTotalYTiles());	// update camera
-		setSelectedTile();
+    switch(this->state) {
+      case 0:
+      break;
+      case 1:
+      this->gameplay->update();
+      break;
+      case 2:
+      break;
+      default:
+      break;
+    } 
+		//camera->update(tileMap->getTotalXTiles(), tileMap->getTotalYTiles());	// update camera
+		//setSelectedTile();
 	}
+}
+
+void enterMainMenuState() {
+
+}
+
+void enterGameplayState() {
+
+}
+
+void enterPauseMenuState() {
+
 }
 
 /*
@@ -257,9 +282,30 @@ void Game::update() {
  * Input: None
  * Output: None
  */
-void Game::render() {
-	std::cout << "cam x pos: " << camera->x_pos << std::endl;
+void Game::renderState() {
+  switch(this->state) {
+    case 0: // Main menu
+    this->mainMenu->render(renderer);
+    break;
+
+    case 1: // Gameplay
+    this->gameplay->render(renderer);
+    break;
+
+    case 2: // Pause menu
+    break;
+
+    default:
+    break;
+  }
+}
+
+/*
+void Game::renderGameplay() {
+  // Print out camera position. Temporary for debugging
+  std::cout << "cam x pos: " << camera->x_pos << std::endl;
 	std::cout << "cam y pos: " << camera->y_pos << std::endl;
+
 	SDL_RenderClear(renderer);
 
 	for (int x = 0; x < camera->getVisibleXTiles(); x++)		// visible x tiles
@@ -276,10 +322,10 @@ void Game::render() {
 			}
 		}
 	}
-	//mainMenu->draw(renderer);
   testButton->render(renderer);
 	SDL_RenderPresent(renderer);
 }
+*/
 
 /*
  * Name: clean

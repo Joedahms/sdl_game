@@ -1,6 +1,8 @@
 #ifndef TILE_MAP_H
 #define TILE_MAP_H
 
+#include <vector>
+
 #include "tile/tile_factory.h"
 
 class TileMap {

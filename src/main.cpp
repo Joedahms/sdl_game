@@ -27,9 +27,10 @@ int main(int argc, const char* argv[])
 		frame_start = SDL_GetPerformanceCounter();
 
 		game->handleEvents();
+    game->checkState();
 		game->checkKeystates();
 		game->update();
-		game->render();
+		game->renderState();
 
 		frame_end = SDL_GetPerformanceCounter();
 		elapsedMS = (frame_end - frame_start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;

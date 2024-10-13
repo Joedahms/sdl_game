@@ -20,13 +20,6 @@ src/game.h
 src/logger.cpp
 src/logger.h
 src/main.cpp
-src/menu/main_menu.cpp
-src/menu/main_menu.h
-src/menu/menu_background.cpp
-src/menu/menu_background.h
-src/menu/menu_button.h
-src/menu/menu_element.h
-src/menu/menu.h
 src/npc.cpp
 src/npc.h
 src/player.cpp
@@ -43,6 +36,10 @@ src/tile_map.cpp
 src/tile_map.h
 src/button.h
 src/button.cpp
+src/main_menu.h
+src/main_menu.cpp
+src/gameplay.h
+src/gameplay.cpp
 )
 
 add_executable(tests
