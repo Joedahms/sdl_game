@@ -1,3 +1,2 @@
-*.o
-game
 log.txt
+build/Makefile
