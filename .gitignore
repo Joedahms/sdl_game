@@ -1,6 +1,9 @@
 log.txt
-build/Makefile
 *.o
 *.o.d
+
+build/Makefile
 build/CMakeCache.txt
 build/cmake_install.cmake 
+build/sdlGameEngine
+build/test
