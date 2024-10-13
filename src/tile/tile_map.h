@@ -1,7 +1,9 @@
 #ifndef TILE_MAP_H
 #define TILE_MAP_H
 
-#include "tile/tile_factory.h"
+#include <vector>
+
+#include "tile_factory.h"
 
 class TileMap {
   public:

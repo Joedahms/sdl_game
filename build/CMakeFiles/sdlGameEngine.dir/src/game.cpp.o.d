@@ -220,9 +220,9 @@ CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
- /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
- /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/SDL2/SDL_ttf.h /usr/include/c++/11/iostream \
+ /usr/include/c++/11/ostream /usr/include/c++/11/ios \
+ /usr/include/c++/11/iosfwd /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
  /usr/include/c++/11/cwchar /usr/include/c++/11/exception \
  /usr/include/c++/11/bits/exception_ptr.h \
@@ -342,17 +342,22 @@ CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/player.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/water_tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/main_menu.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/menu/menu_element.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/main_menu.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/gameplay.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h \
+ /usr/include/menu.h /usr/include/curses.h /usr/include/ncurses_dll.h \
+ /usr/include/unctrl.h /usr/include/eti.h

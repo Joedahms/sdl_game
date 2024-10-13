@@ -210,6 +210,9 @@ SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
 //The directory containing a CMake configuration file for SDL2_image.
 SDL2_image_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/sdl2_image
 
+//The directory containing a CMake configuration file for SDL2_ttf.
+SDL2_ttf_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/sdl2_ttf
+
 //Value Computed by CMake
 sdlGameEngine_BINARY_DIR:STATIC=/home/joe/Documents/coding_projects/sdl_tutorial/build
 

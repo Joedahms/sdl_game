@@ -3,15 +3,7 @@
 
 #include <string>
 
-/*
-class Logger {
-  public:
-    int add(int, string); // Add to the log file
+void clearLogFile(std::string);
+void writeToLogFile(std::string, std::string);
 
-  private:
-    string logFileName;   // Name of the log file
-    int logLevel;         // Current log level
-}
-
-*/
 #endif

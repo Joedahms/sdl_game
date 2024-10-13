@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 
-#include "tile/tile.h"
+#include "tile.h"
 #include "tile_map.h"
 
 // Pass tile size

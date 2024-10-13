@@ -142,6 +142,30 @@ tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
+src/button.o: src/button.cpp.o
+.PHONY : src/button.o
+
+# target to build an object file
+src/button.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/button.cpp.o
+.PHONY : src/button.cpp.o
+
+src/button.i: src/button.cpp.i
+.PHONY : src/button.i
+
+# target to preprocess a source file
+src/button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/button.cpp.i
+.PHONY : src/button.cpp.i
+
+src/button.s: src/button.cpp.s
+.PHONY : src/button.s
+
+# target to generate assembly for a file
+src/button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/button.cpp.s
+.PHONY : src/button.cpp.s
+
 src/camera/camera.o: src/camera/camera.cpp.o
 .PHONY : src/camera/camera.o
 
@@ -166,53 +190,101 @@ src/camera/camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.s
 .PHONY : src/camera/camera.cpp.s
 
-src/character.o: src/character.cpp.o
-.PHONY : src/character.o
+src/character/character.o: src/character/character.cpp.o
+.PHONY : src/character/character.o
 
 # target to build an object file
-src/character.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character.cpp.o
-.PHONY : src/character.cpp.o
+src/character/character.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o
+.PHONY : src/character/character.cpp.o
 
-src/character.i: src/character.cpp.i
-.PHONY : src/character.i
+src/character/character.i: src/character/character.cpp.i
+.PHONY : src/character/character.i
 
 # target to preprocess a source file
-src/character.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character.cpp.i
-.PHONY : src/character.cpp.i
+src/character/character.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.i
+.PHONY : src/character/character.cpp.i
 
-src/character.s: src/character.cpp.s
-.PHONY : src/character.s
+src/character/character.s: src/character/character.cpp.s
+.PHONY : src/character/character.s
 
 # target to generate assembly for a file
-src/character.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character.cpp.s
-.PHONY : src/character.cpp.s
+src/character/character.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.s
+.PHONY : src/character/character.cpp.s
 
-src/character_factory.o: src/character_factory.cpp.o
-.PHONY : src/character_factory.o
+src/character/character_factory.o: src/character/character_factory.cpp.o
+.PHONY : src/character/character_factory.o
 
 # target to build an object file
-src/character_factory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o
-.PHONY : src/character_factory.cpp.o
+src/character/character_factory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o
+.PHONY : src/character/character_factory.cpp.o
 
-src/character_factory.i: src/character_factory.cpp.i
-.PHONY : src/character_factory.i
+src/character/character_factory.i: src/character/character_factory.cpp.i
+.PHONY : src/character/character_factory.i
 
 # target to preprocess a source file
-src/character_factory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.i
-.PHONY : src/character_factory.cpp.i
+src/character/character_factory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.i
+.PHONY : src/character/character_factory.cpp.i
 
-src/character_factory.s: src/character_factory.cpp.s
-.PHONY : src/character_factory.s
+src/character/character_factory.s: src/character/character_factory.cpp.s
+.PHONY : src/character/character_factory.s
 
 # target to generate assembly for a file
-src/character_factory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.s
-.PHONY : src/character_factory.cpp.s
+src/character/character_factory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.s
+.PHONY : src/character/character_factory.cpp.s
+
+src/character/npc.o: src/character/npc.cpp.o
+.PHONY : src/character/npc.o
+
+# target to build an object file
+src/character/npc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o
+.PHONY : src/character/npc.cpp.o
+
+src/character/npc.i: src/character/npc.cpp.i
+.PHONY : src/character/npc.i
+
+# target to preprocess a source file
+src/character/npc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.i
+.PHONY : src/character/npc.cpp.i
+
+src/character/npc.s: src/character/npc.cpp.s
+.PHONY : src/character/npc.s
+
+# target to generate assembly for a file
+src/character/npc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.s
+.PHONY : src/character/npc.cpp.s
+
+src/character/player.o: src/character/player.cpp.o
+.PHONY : src/character/player.o
+
+# target to build an object file
+src/character/player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o
+.PHONY : src/character/player.cpp.o
+
+src/character/player.i: src/character/player.cpp.i
+.PHONY : src/character/player.i
+
+# target to preprocess a source file
+src/character/player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.i
+.PHONY : src/character/player.cpp.i
+
+src/character/player.s: src/character/player.cpp.s
+.PHONY : src/character/player.s
+
+# target to generate assembly for a file
+src/character/player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.s
+.PHONY : src/character/player.cpp.s
 
 src/game.o: src/game.cpp.o
 .PHONY : src/game.o
@@ -237,6 +309,30 @@ src/game.s: src/game.cpp.s
 src/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/game.cpp.s
 .PHONY : src/game.cpp.s
+
+src/gameplay.o: src/gameplay.cpp.o
+.PHONY : src/gameplay.o
+
+# target to build an object file
+src/gameplay.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o
+.PHONY : src/gameplay.cpp.o
+
+src/gameplay.i: src/gameplay.cpp.i
+.PHONY : src/gameplay.i
+
+# target to preprocess a source file
+src/gameplay.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.i
+.PHONY : src/gameplay.cpp.i
+
+src/gameplay.s: src/gameplay.cpp.s
+.PHONY : src/gameplay.s
+
+# target to generate assembly for a file
+src/gameplay.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.s
+.PHONY : src/gameplay.cpp.s
 
 src/logger.o: src/logger.cpp.o
 .PHONY : src/logger.o
@@ -286,101 +382,29 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/menu/main_menu.o: src/menu/main_menu.cpp.o
-.PHONY : src/menu/main_menu.o
+src/main_menu.o: src/main_menu.cpp.o
+.PHONY : src/main_menu.o
 
 # target to build an object file
-src/menu/main_menu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.o
-.PHONY : src/menu/main_menu.cpp.o
+src/main_menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o
+.PHONY : src/main_menu.cpp.o
 
-src/menu/main_menu.i: src/menu/main_menu.cpp.i
-.PHONY : src/menu/main_menu.i
-
-# target to preprocess a source file
-src/menu/main_menu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.i
-.PHONY : src/menu/main_menu.cpp.i
-
-src/menu/main_menu.s: src/menu/main_menu.cpp.s
-.PHONY : src/menu/main_menu.s
-
-# target to generate assembly for a file
-src/menu/main_menu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/main_menu.cpp.s
-.PHONY : src/menu/main_menu.cpp.s
-
-src/menu/menu_background.o: src/menu/menu_background.cpp.o
-.PHONY : src/menu/menu_background.o
-
-# target to build an object file
-src/menu/menu_background.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.o
-.PHONY : src/menu/menu_background.cpp.o
-
-src/menu/menu_background.i: src/menu/menu_background.cpp.i
-.PHONY : src/menu/menu_background.i
+src/main_menu.i: src/main_menu.cpp.i
+.PHONY : src/main_menu.i
 
 # target to preprocess a source file
-src/menu/menu_background.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.i
-.PHONY : src/menu/menu_background.cpp.i
+src/main_menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.i
+.PHONY : src/main_menu.cpp.i
 
-src/menu/menu_background.s: src/menu/menu_background.cpp.s
-.PHONY : src/menu/menu_background.s
-
-# target to generate assembly for a file
-src/menu/menu_background.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/menu/menu_background.cpp.s
-.PHONY : src/menu/menu_background.cpp.s
-
-src/npc.o: src/npc.cpp.o
-.PHONY : src/npc.o
-
-# target to build an object file
-src/npc.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o
-.PHONY : src/npc.cpp.o
-
-src/npc.i: src/npc.cpp.i
-.PHONY : src/npc.i
-
-# target to preprocess a source file
-src/npc.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/npc.cpp.i
-.PHONY : src/npc.cpp.i
-
-src/npc.s: src/npc.cpp.s
-.PHONY : src/npc.s
+src/main_menu.s: src/main_menu.cpp.s
+.PHONY : src/main_menu.s
 
 # target to generate assembly for a file
-src/npc.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/npc.cpp.s
-.PHONY : src/npc.cpp.s
-
-src/player.o: src/player.cpp.o
-.PHONY : src/player.o
-
-# target to build an object file
-src/player.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/player.cpp.o
-.PHONY : src/player.cpp.o
-
-src/player.i: src/player.cpp.i
-.PHONY : src/player.i
-
-# target to preprocess a source file
-src/player.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/player.cpp.i
-.PHONY : src/player.cpp.i
-
-src/player.s: src/player.cpp.s
-.PHONY : src/player.s
-
-# target to generate assembly for a file
-src/player.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/player.cpp.s
-.PHONY : src/player.cpp.s
+src/main_menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.s
+.PHONY : src/main_menu.cpp.s
 
 src/tile/dirt_tile.o: src/tile/dirt_tile.cpp.o
 .PHONY : src/tile/dirt_tile.o
@@ -454,6 +478,30 @@ src/tile/tile_factory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.s
 .PHONY : src/tile/tile_factory.cpp.s
 
+src/tile/tile_map.o: src/tile/tile_map.cpp.o
+.PHONY : src/tile/tile_map.o
+
+# target to build an object file
+src/tile/tile_map.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o
+.PHONY : src/tile/tile_map.cpp.o
+
+src/tile/tile_map.i: src/tile/tile_map.cpp.i
+.PHONY : src/tile/tile_map.i
+
+# target to preprocess a source file
+src/tile/tile_map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.i
+.PHONY : src/tile/tile_map.cpp.i
+
+src/tile/tile_map.s: src/tile/tile_map.cpp.s
+.PHONY : src/tile/tile_map.s
+
+# target to generate assembly for a file
+src/tile/tile_map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.s
+.PHONY : src/tile/tile_map.cpp.s
+
 src/tile/water_tile.o: src/tile/water_tile.cpp.o
 .PHONY : src/tile/water_tile.o
 
@@ -477,54 +525,6 @@ src/tile/water_tile.s: src/tile/water_tile.cpp.s
 src/tile/water_tile.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.s
 .PHONY : src/tile/water_tile.cpp.s
-
-src/tile_map.o: src/tile_map.cpp.o
-.PHONY : src/tile_map.o
-
-# target to build an object file
-src/tile_map.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o
-.PHONY : src/tile_map.cpp.o
-
-src/tile_map.i: src/tile_map.cpp.i
-.PHONY : src/tile_map.i
-
-# target to preprocess a source file
-src/tile_map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.i
-.PHONY : src/tile_map.cpp.i
-
-src/tile_map.s: src/tile_map.cpp.s
-.PHONY : src/tile_map.s
-
-# target to generate assembly for a file
-src/tile_map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s
-.PHONY : src/tile_map.cpp.s
-
-test/game_test.o: test/game_test.cpp.o
-.PHONY : test/game_test.o
-
-# target to build an object file
-test/game_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/game_test.cpp.o
-.PHONY : test/game_test.cpp.o
-
-test/game_test.i: test/game_test.cpp.i
-.PHONY : test/game_test.i
-
-# target to preprocess a source file
-test/game_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/game_test.cpp.i
-.PHONY : test/game_test.cpp.i
-
-test/game_test.s: test/game_test.cpp.s
-.PHONY : test/game_test.s
-
-# target to generate assembly for a file
-test/game_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/game_test.cpp.s
-.PHONY : test/game_test.cpp.s
 
 test/main_test.o: test/main_test.cpp.o
 .PHONY : test/main_test.o
@@ -560,36 +560,39 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... sdlGameEngine"
 	@echo "... tests"
+	@echo "... src/button.o"
+	@echo "... src/button.i"
+	@echo "... src/button.s"
 	@echo "... src/camera/camera.o"
 	@echo "... src/camera/camera.i"
 	@echo "... src/camera/camera.s"
-	@echo "... src/character.o"
-	@echo "... src/character.i"
-	@echo "... src/character.s"
-	@echo "... src/character_factory.o"
-	@echo "... src/character_factory.i"
-	@echo "... src/character_factory.s"
+	@echo "... src/character/character.o"
+	@echo "... src/character/character.i"
+	@echo "... src/character/character.s"
+	@echo "... src/character/character_factory.o"
+	@echo "... src/character/character_factory.i"
+	@echo "... src/character/character_factory.s"
+	@echo "... src/character/npc.o"
+	@echo "... src/character/npc.i"
+	@echo "... src/character/npc.s"
+	@echo "... src/character/player.o"
+	@echo "... src/character/player.i"
+	@echo "... src/character/player.s"
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
+	@echo "... src/gameplay.o"
+	@echo "... src/gameplay.i"
+	@echo "... src/gameplay.s"
 	@echo "... src/logger.o"
 	@echo "... src/logger.i"
 	@echo "... src/logger.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/menu/main_menu.o"
-	@echo "... src/menu/main_menu.i"
-	@echo "... src/menu/main_menu.s"
-	@echo "... src/menu/menu_background.o"
-	@echo "... src/menu/menu_background.i"
-	@echo "... src/menu/menu_background.s"
-	@echo "... src/npc.o"
-	@echo "... src/npc.i"
-	@echo "... src/npc.s"
-	@echo "... src/player.o"
-	@echo "... src/player.i"
-	@echo "... src/player.s"
+	@echo "... src/main_menu.o"
+	@echo "... src/main_menu.i"
+	@echo "... src/main_menu.s"
 	@echo "... src/tile/dirt_tile.o"
 	@echo "... src/tile/dirt_tile.i"
 	@echo "... src/tile/dirt_tile.s"
@@ -599,15 +602,12 @@ help:
 	@echo "... src/tile/tile_factory.o"
 	@echo "... src/tile/tile_factory.i"
 	@echo "... src/tile/tile_factory.s"
+	@echo "... src/tile/tile_map.o"
+	@echo "... src/tile/tile_map.i"
+	@echo "... src/tile/tile_map.s"
 	@echo "... src/tile/water_tile.o"
 	@echo "... src/tile/water_tile.i"
 	@echo "... src/tile/water_tile.s"
-	@echo "... src/tile_map.o"
-	@echo "... src/tile_map.i"
-	@echo "... src/tile_map.s"
-	@echo "... test/game_test.o"
-	@echo "... test/game_test.i"
-	@echo "... test/game_test.s"
 	@echo "... test/main_test.o"
 	@echo "... test/main_test.i"
 	@echo "... test/main_test.s"
