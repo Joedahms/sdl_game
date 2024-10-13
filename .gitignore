@@ -6,4 +6,4 @@ build/Makefile
 build/CMakeCache.txt
 build/cmake_install.cmake 
 build/sdlGameEngine
-build/test
+build/tests
