@@ -99,9 +99,6 @@ SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int 
 void Game::checkState() {
   switch(this->state) {
     case 0:
-    if (!this->mainMenuStateInitialized) {
-    
-    }
     break;
 
     case 1:
@@ -111,9 +108,6 @@ void Game::checkState() {
     break;
 
     case 2:
-    if (!this->pauseMenuStateInitialized) {
-      
-    }
     break;
 
     default:
@@ -238,15 +232,15 @@ void Game::setSelectedTile() {
  * Output: None
  */
 void Game::update() {
-	current_ticks = SDL_GetTicks();	
+	this->currentTicks = SDL_GetTicks();	
 
-	delta_time = current_ticks - prev_ticks;		// calc delta time from ticks
-	total_delta_time += delta_time;				// num used to check if time to update
-	prev_ticks = current_ticks;				// set prev ticks
+	this->deltaTime = this->currentTicks - this->previousTicks;		// calc delta time from ticks
+	this->totalDeltaTime += this->deltaTime;				// num used to check if time to update
+	this->previousTicks = this->currentTicks;				// set prev ticks
 
-	if (total_delta_time >= 128)				// update if it is time
+	if (this->totalDeltaTime >= 128)				// update if it is time
 	{
-		total_delta_time = 0;				// reset counter
+		this->totalDeltaTime = 0;				// reset counter
     switch(this->state) {
       case 0:
       break;
