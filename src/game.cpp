@@ -9,24 +9,50 @@
 #include "logger.h"
 #include "menu.h"
 
+/*
+ * Name: Game
+ * Purpose: Construct the game object and set up relevant components
+ * Input:
+ * - The title of the game window
+ * - X position of the game window
+ * - Y position of the game window
+ * - The width of the game window
+ * - The height of the game window
+ * - Whether or not the game window should be fullscreen
+ * - The path of the logfile relative to the main function
+ * Output: None
+*/
 Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, std::string logFile) {
   writeToLogFile(logFile, "Constructing game...");
-  this->screenWidth = screenWidth;
-  this->screenHeight = screenHeight;
-  this->logFile = logFile;
-  this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
+  this->screenWidth = screenWidth;              // Set the width of the game window
+  this->screenHeight = screenHeight;            // Set the height of the game window
+  this->logFile = logFile;                      // Set the path of the log file
+  this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen); // Setup the SDL game window
 
-  initializeSdl(this->window);
+  initializeSdl(this->window);                  // Initialize SDL and its components
 
   // Initialize states
-  this->mainMenu = std::make_unique<MainMenu>(this->logFile, this->renderer);
-  this->gameplay = std::make_unique<Gameplay>(this->logFile);
+  this->mainMenu = std::make_unique<MainMenu>(this->logFile, this->renderer); // Main menu
+  this->gameplay = std::make_unique<Gameplay>(this->logFile);                 // Gameplay
   
-  this->previousTicks = SDL_GetTicks(); // first physics tick count
-  gameIsRunning = true;                 // Game is now running
+  this->previousTicks = SDL_GetTicks();         // First physics tick count
+  gameIsRunning = true;                         // Game is now running
   writeToLogFile(logFile, "Game constructed");
 }
 
+/*
+ * Name: setupWindow
+ * Purpose: Setup the SDL game window
+ * Input:
+ * - The name of the window
+ * - The X position of the window on the user's screen
+ * - The Y position of the window on the user's screen
+ * - The width of the screen in pixels
+ * - The height of the screen in pixels
+ * - Whether or not the game window should be fullscreen
+ * Output:
+ * - Pointer to the game window
+*/
 SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
   writeToLogFile(logFile, "Creating SDL game window...");
 
@@ -47,6 +73,13 @@ SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int 
   writeToLogFile(logFile, "SDL game window created");
 }
 
+/*
+ * Name: initializeSdl
+ * Purpose: Setup SDL, the renderer, and TTF
+ * Input:
+ * - The game window
+ * Output: None
+*/
 void Game::initializeSdl(SDL_Window* window) {
   // Initialize SDL
   writeToLogFile(this->logFile, "Initializing SDL...");
@@ -92,18 +125,26 @@ void Game::initializeSdl(SDL_Window* window) {
   writeToLogFile(this->logFile, "TTF initialized");
 }
 
+/*
+ * Name: checkState
+ * Purpose: Check which state the game is in. If there was a state switch and the current state
+ * has not been entered before, run its enter method.
+ * Input:
+ * - None
+ * Output: None
+*/
 void Game::checkState() {
   switch(this->state) {
-    case 0:
+    case 0: // Main menu
     break;
 
-    case 1:
+    case 1: // Gameplay
     if (!this->gameplay->getStateEntered()) {
       this->gameplay->enterGameplay(this->screenHeight, this->screenWidth, this->renderer);  
     }
     break;
 
-    case 2:
+    case 2: // Pause menu
     break;
 
     default:
@@ -113,162 +154,94 @@ void Game::checkState() {
 
 /*
  * Name: handleEvents
- * Purpose: Check if SDL event has occured and handle accordingly
- * Input: None
+ * Purpose: Check the current state, and call that state's handle events method
+ * Input:
+ * - None
  * Output: None
  */
 void Game::handleEvents() {
-	//SDL_Event event;
-	//while (SDL_PollEvent(&event) != 0) {    // SDL event occured
-    switch (this->state) {
-      case 0: // Main menu
-      this->state = this->mainMenu->handleEvents(&this->gameIsRunning);
-      break;
-      case 1: // Gameplay
-      this->state = this->gameplay->handleEvents(&this->gameIsRunning);
-      break;
-      case 2: // Pause menu
-      // this->pauseMenu->handleEvents();
-      break;
-      default:
-      break;
-    }
-
-
-
-    /*
-		switch (event.type) {                 // Which type of event occured
-			case SDL_QUIT:                      // Quit event
-        gameIsRunning = false;
-        return;
-			case SDL_MOUSEWHEEL:                // Mousewheel event
-				if (event.wheel.y > 0) {          // Scroll up -> zoom in
-					if (tileMap->getTileSize() == 16) {
-						zoom_in_flag = true;
-						zoom_out_flag = false;
-
-						tileMap->setTileSize(32);
-						camera->zoomIn(32);	
-					}
-				}
-				else if (event.wheel.y < 0) {     // Scroll down -> zoom out
-          if (tileMap->getTileSize() == 32) {
-						zoom_in_flag = false;
-						zoom_out_flag = true;
-
-						tileMap->setTileSize(16);
-						camera->zoomOut(16);
-					}
-				}
-        break;                        
-
-      case SDL_MOUSEMOTION:
-        this->mainMenu->testButton->checkHovered(event);
-        break;
-
-      case SDL_MOUSEBUTTONDOWN:
-        this->mainMenu->testButton->checkPressed(event);
-        break;
-
-      default:
-        break;
-		}
-    */
-	//}
-}
-
-void Game::checkKeystates()
-{
-  switch(this->state) {
-    case 0:
+  switch (this->state) {
+    case 0: // Main menu
+    this->state = this->mainMenu->handleEvents(&this->gameIsRunning);
     break;
 
-    case 1:
-    this->gameplay->checkKeystates();
+    case 1: // Gameplay
+    this->state = this->gameplay->handleEvents(&this->gameIsRunning);
     break;
 
-    case 2:
+    case 2: // Pause menu
     break;
 
     default:
     break;
   }
-
 }
 
-/* Name: setSelectedTile
- * Purpose: Determines where the mouse is and sets the tile it is over to selected
- * Input: None
- * Output: None
- */
 /*
-void Game::setSelectedTile() {
-	int X; 
-	int Y;
-	Uint32 mouse = SDL_GetMouseState(&X, &Y);	
-
-	int xCoordinate = floor(X / tileMap->getTileSize()) + camera->x_pos;			// x coordinate of moused over tile
-	int yCoordinate = floor(Y / tileMap->getTileSize()) + camera->y_pos;			// y coordinate of moused over tile
-
-	for (int x = 0; x < camera->getVisibleXTiles() + camera->x_pos; x++)
-	{
-		for (int y = 0; y < camera->getVisibleYTiles() + camera->y_pos; y++)
-		{
-			tileMap->unselectTile(x, y);
-		}
-	}
-	tileMap->selectTile(xCoordinate, yCoordinate);
-}
+ * Name: checkKeystates
+ * Purpose: Check the current state of the game and call that state's method to check the key states
+ * Input:
+ * - None
+ * Output: None
 */
+void Game::checkKeystates()
+{
+  switch(this->state) {
+    case 0: // Main menu
+    break;
+
+    case 1: // Gameplay
+    this->gameplay->checkKeystates();
+    break;
+
+    case 2: // Pause menu
+    break;
+
+    default:
+    break;
+  }
+}
 
 /*
  * Name: update
- * Purpose: Execute actions every game loop
- * Input: None
+ * Purpose: First check if it's time to update. If it is, reset the time since last update. Then check the current
+ * state and call that state's function to update
+ * Input:
+ * - None
  * Output: None
  */
 void Game::update() {
-	this->currentTicks = SDL_GetTicks();	
+  
+  // Calculate values used to check if it's time to update
+	this->currentTicks = SDL_GetTicks();                          // Ticks at this very moment
+	this->deltaTime = this->currentTicks - this->previousTicks;   // Time since this funnction was last executed
+	this->totalDeltaTime += this->deltaTime;                      // Add the time since the function was last executed to the time the game was last updated
+	this->previousTicks = this->currentTicks;
 
-	this->deltaTime = this->currentTicks - this->previousTicks;		// calc delta time from ticks
-	this->totalDeltaTime += this->deltaTime;				// num used to check if time to update
-	this->previousTicks = this->currentTicks;				// set prev ticks
-
-	if (this->totalDeltaTime >= 128)				// update if it is time
-	{
-		this->totalDeltaTime = 0;				// reset counter
-    switch(this->state) {
-      case 0:
+	if (this->totalDeltaTime >= 128) {                            // Check if it is time to update
+		this->totalDeltaTime = 0;                                   // Reset time since last update
+    switch(this->state) {                                       // Check current state
+      case 0:                                                   // Main menu
       break;
-      case 1:
+
+      case 1:                                                   // Gameplay
       this->gameplay->update();
       break;
-      case 2:
+
+      case 2:                                                   // Pause menu
       break;
+
       default:
       break;
     } 
-		//camera->update(tileMap->getTotalXTiles(), tileMap->getTotalYTiles());	// update camera
-		//setSelectedTile();
 	}
 }
 
-void enterMainMenuState() {
-
-}
-
-void enterGameplayState() {
-
-}
-
-void enterPauseMenuState() {
-
-}
-
 /*
- * Name: render
- * Purpose: Either renders textures directly or calls functions to render
- * Input: None
+ * Name: renderState
+ * Purpose: Check current state and call that state's function to render
+ * Input: 
+ * - None
  * Output: None
  */
 void Game::renderState() {
@@ -290,36 +263,10 @@ void Game::renderState() {
 }
 
 /*
-void Game::renderGameplay() {
-  // Print out camera position. Temporary for debugging
-  std::cout << "cam x pos: " << camera->x_pos << std::endl;
-	std::cout << "cam y pos: " << camera->y_pos << std::endl;
-
-	SDL_RenderClear(renderer);
-
-	for (int x = 0; x < camera->getVisibleXTiles(); x++)		// visible x tiles
-	{
-		for (int y = 0; y < camera->getVisibleYTiles(); y++)	// visible y tiles
-		{
-			int currentXPosition = x + camera->x_pos;
-			int currentYPosition = y + camera->y_pos;
-			SDL_RenderCopy(renderer, tileMap->getTileTexture(currentXPosition, currentYPosition), NULL, &(camera->destinationRect[x][y]));	// render all visible tiles
-
-			if (tileMap->getSelected(currentXPosition, currentYPosition))							// if selected
-			{
-				SDL_RenderCopy(renderer, selectedTexture, NULL, &(camera->destinationRect[x][y]));		// render selected texture over it
-			}
-		}
-	}
-  testButton->render(renderer);
-	SDL_RenderPresent(renderer);
-}
-*/
-
-/*
  * Name: clean
  * Purpose: Frees SDL resources and quits
- * Input: None
+ * Input: 
+ * - None
  * Output: None
  */
 void Game::clean()
@@ -327,5 +274,5 @@ void Game::clean()
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
-	std::cout << "game cleaned" << std::endl;
+  writeToLogFile(logFile, "Game cleaned");
 }

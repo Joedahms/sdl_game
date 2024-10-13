@@ -3,53 +3,87 @@
 #include "button.h"
 #include "logger.h"
 
-Button::Button(int x, int y, int w, int h, const std::string& text, TTF_Font* font, std::string logFile) {
-  rect = {x, y, w, h};
-  color = {255, 0, 0, 255}; // Red
+/*
+ * Name: Button
+ * Purpose: Set the properties of the button
+ * Input:
+ * - X position of the button
+ * - Y position of the button
+ * - Width of the button in pixels
+ * - Height of the button in pixels
+ * - The text to print in the middle of the button
+ * - The font of the text
+ * - Path to the log file
+ * Output: None
+*/
+Button::Button(int xPosition, int yPosition, int width, int height, const std::string& text, TTF_Font* textFont, std::string logFile) {
+  this->backgroundRectangle = {xPosition, yPosition, width, height};
+  this->backgroundColor = {255, 0, 0, 255}; // Red
+  this->hoveredColor = {0, 255, 0, 255};    // Green
+  this->defaultColor = {255, 0, 0, 255};    // Red
   this->text = text;
-  this->font = font;
+  this->textFont = textFont;
   this->logFile = logFile;
 }
 
+/*
+ * Name: checkHovered
+ * Purpose: Check if the mouse is over the button
+ * Input:
+ * - X position of the mouse
+ * - Y position of the mouse
+ * Output: Whether or not the mouse is over the button
+*/
 bool Button::checkHovered(int mouseXPosition, int mouseYPosition) {
-  if (mouseXPosition < rect.x) {            // Outside left edge of button
+  if (mouseXPosition < this->backgroundRectangle.x) {                               // Outside left edge of button
     return false;
   }
-  if (mouseXPosition > rect.x + rect.w) {   // Outside right edge of button
+  if (mouseXPosition > this->backgroundRectangle.x + this->backgroundRectangle.w) { // Outside right edge of button
     return false;
   }
-  if (mouseYPosition < rect.y) {            // Outside top edge of button
+  if (mouseYPosition < this->backgroundRectangle.y) {                               // Outside top edge of button
     return false;
   }
-  if (mouseYPosition > rect.y + rect.h) {   // Outside bottom edge of button
+  if (mouseYPosition > this->backgroundRectangle.y + this->backgroundRectangle.h) { // Outside bottom edge of button
     return false;
   }
   return true;
 }
 
+/*
+ * Name: render
+ * Purpose: Render the button
+ * Input:
+ * - The renderer to render the button with
+ * Output: None
+*/
 void Button::render(SDL_Renderer* renderer) {
-    // Change color if hovered
-    int mouseXPosition, mouseYPosition;
-    SDL_GetMouseState(&mouseXPosition, &mouseYPosition);
-    bool hovered = checkHovered(mouseXPosition, mouseYPosition);
-    SDL_Color renderColor = hovered ? SDL_Color{0, 255, 0, 255} : color; // Green if hovered
+  // Change color if hovered
+  int mouseXPosition, mouseYPosition;
+  SDL_GetMouseState(&mouseXPosition, &mouseYPosition);  // Get the position of the mouse
+  if (checkHovered(mouseXPosition, mouseYPosition)) {   // Mouse is hovered over the button
+    this->backgroundColor = this->hoveredColor;         // Change to hovered color
+  }
+  else {                                                // Mouse is not hovered over the button
+    this->backgroundColor = this->defaultColor;         // Change to default color
+  }
 
-    // Set draw color and fill the button
-    SDL_SetRenderDrawColor(renderer, renderColor.r, renderColor.g, renderColor.b, renderColor.a);
-    SDL_RenderFillRect(renderer, &rect);
+  // Set draw color and fill the button
+  SDL_SetRenderDrawColor(renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+  SDL_RenderFillRect(renderer, &this->backgroundRectangle);
 
-    // Render button text
-    SDL_Color textColor = {255, 255, 255, 255}; // White
-    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColor);
-    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+  // Render button text
+  SDL_Color textColor = {255, 255, 255, 255}; // White
+  SDL_Surface* textSurface = TTF_RenderText_Solid(textFont, text.c_str(), textColor);
+  SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 
-    int textW, textH;
-    SDL_QueryTexture(textTexture, NULL, NULL, &textW, &textH);
-    SDL_Rect textRect = {rect.x + (rect.w - textW) / 2, rect.y + (rect.h - textH) / 2, textW, textH};
+  int textW, textH;
+  SDL_QueryTexture(textTexture, NULL, NULL, &textW, &textH);
+  SDL_Rect textRect = {this->backgroundRectangle.x + (this->backgroundRectangle.w - textW) / 2, this->backgroundRectangle.y + (this->backgroundRectangle.h - textH) / 2, textW, textH};
 
-    SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+  SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 
-    SDL_FreeSurface(textSurface);
-    SDL_DestroyTexture(textTexture);
+  SDL_FreeSurface(textSurface);
+  SDL_DestroyTexture(textTexture);
 }
 
