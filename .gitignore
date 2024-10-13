@@ -2,3 +2,4 @@ log.txt
 build/Makefile
 *.o
 *.o.d
+build/CMakeCache.txt

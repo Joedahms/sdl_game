@@ -16,15 +16,11 @@ class Button {
 
   private:
   std::unique_ptr<Text> text;
-
-  //std::string text;             // Text to print inside the button
   std::string logFile;          // Path to the log file
-
   SDL_Rect backgroundRectangle; // Rectangle defining where to render the button to
   SDL_Color backgroundColor;    // Current color
   SDL_Color defaultColor;       // Color when not hovered
   SDL_Color hoveredColor;       // Color when hovered
-  //TTF_Font* textFont;           // Font of the text within the button
 };
 
 #endif
