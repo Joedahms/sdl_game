@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #include "button.h"
 #include "logger.h"
@@ -16,14 +17,17 @@
  * - Path to the log file
  * Output: None
 */
-Button::Button(int xPosition, int yPosition, int width, int height, const std::string& text, TTF_Font* textFont, std::string logFile) {
-  this->backgroundRectangle = {xPosition, yPosition, width, height};
+Button::Button(SDL_Rect rectangle, const std::string& text, std::string logFile, SDL_Renderer* renderer) {
+  this->backgroundRectangle = rectangle;
   this->backgroundColor = {255, 0, 0, 255}; // Red
   this->hoveredColor = {0, 255, 0, 255};    // Green
   this->defaultColor = {255, 0, 0, 255};    // Red
-  this->text = text;
-  this->textFont = textFont;
+  //this->text = text;
+//  this->textFont = textFont;
   this->logFile = logFile;
+
+  SDL_Color textColor = {255, 255, 0, 255};
+  this->text = std::make_unique<Text>(this->logFile, "../16020_FUTURAM.ttf", "Start", 24, textColor, rectangle, renderer);
 }
 
 /*
@@ -72,6 +76,8 @@ void Button::render(SDL_Renderer* renderer) {
   SDL_SetRenderDrawColor(renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
   SDL_RenderFillRect(renderer, &this->backgroundRectangle);
 
+  this->text->render(renderer);
+  /*
   // Render button text
   SDL_Color textColor = {255, 255, 255, 255}; // White
   SDL_Surface* textSurface = TTF_RenderText_Solid(textFont, text.c_str(), textColor);
@@ -83,7 +89,9 @@ void Button::render(SDL_Renderer* renderer) {
 
   SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 
+
   SDL_FreeSurface(textSurface);
-  SDL_DestroyTexture(textTexture);
+  */
+  //SDL_DestroyTexture(textTexture);
 }
 

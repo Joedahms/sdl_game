@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/logger.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -162,4 +162,4 @@ CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h
+ /home/joe/Documents/coding_projects/Trashore/src/logger.h

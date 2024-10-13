@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sdlGameEngine.dir/src/main.cpp.o.d"
   "CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o"
   "CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o.d"
+  "CMakeFiles/sdlGameEngine.dir/src/text.cpp.o"
+  "CMakeFiles/sdlGameEngine.dir/src/text.cpp.o.d"
   "CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o"
   "CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o.d"
   "CMakeFiles/sdlGameEngine.dir/src/tile/tile.cpp.o"

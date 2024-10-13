@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/character/character_factory.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -199,7 +199,7 @@ CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.h
+ /home/joe/Documents/coding_projects/Trashore/src/character/character.h \
+ /home/joe/Documents/coding_projects/Trashore/src/character/character_factory.h \
+ /home/joe/Documents/coding_projects/Trashore/src/character/player.h \
+ /home/joe/Documents/coding_projects/Trashore/src/character/npc.h

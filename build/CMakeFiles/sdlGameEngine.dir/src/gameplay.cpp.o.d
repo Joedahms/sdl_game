@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/gameplay.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/gameplay.cpp \
  /usr/include/stdc-predef.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
@@ -293,7 +293,7 @@ CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/assert.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/gameplay.h \
+ /home/joe/Documents/coding_projects/Trashore/src/gameplay.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -338,12 +338,12 @@ CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile_map.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile_factory.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h
+ /home/joe/Documents/coding_projects/Trashore/src/camera/camera.h \
+ /home/joe/Documents/coding_projects/Trashore/src/logger.h

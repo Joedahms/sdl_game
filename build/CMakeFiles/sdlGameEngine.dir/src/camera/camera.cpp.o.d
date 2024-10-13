@@ -1,7 +1,7 @@
 CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/camera/camera.cpp \
  /usr/include/stdc-predef.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.h \
+ /home/joe/Documents/coding_projects/Trashore/src/camera/camera.h \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \

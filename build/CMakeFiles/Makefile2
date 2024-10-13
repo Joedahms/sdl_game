@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/joe/Documents/coding_projects/sdl_tutorial
+CMAKE_SOURCE_DIR = /home/joe/Documents/coding_projects/Trashore
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/joe/Documents/coding_projects/sdl_tutorial/build
+CMAKE_BINARY_DIR = /home/joe/Documents/coding_projects/Trashore/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -83,14 +83,14 @@ clean: CMakeFiles/tests.dir/clean
 CMakeFiles/sdlGameEngine.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdlGameEngine.dir/build.make CMakeFiles/sdlGameEngine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target sdlGameEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Built target sdlGameEngine"
 .PHONY : CMakeFiles/sdlGameEngine.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sdlGameEngine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/Trashore/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sdlGameEngine.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/Trashore/build/CMakeFiles 0
 .PHONY : CMakeFiles/sdlGameEngine.dir/rule
 
 # Convenience name for target.
@@ -109,14 +109,14 @@ CMakeFiles/sdlGameEngine.dir/clean:
 CMakeFiles/tests.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=18,19 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles --progress-num=19,20 "Built target tests"
 .PHONY : CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/Trashore/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/joe/Documents/coding_projects/Trashore/build/CMakeFiles 0
 .PHONY : CMakeFiles/tests.dir/rule
 
 # Convenience name for target.

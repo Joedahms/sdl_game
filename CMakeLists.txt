@@ -11,6 +11,7 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 add_executable(sdlGameEngine
 src/camera/camera.cpp
 src/camera/camera.h
+
 src/character/character.cpp
 src/character/character_factory.cpp
 src/character/character_factory.h
@@ -19,11 +20,15 @@ src/character/npc.cpp
 src/character/npc.h
 src/character/player.cpp
 src/character/player.h
+
 src/game.cpp
 src/game.h
+
 src/logger.cpp
 src/logger.h
+
 src/main.cpp
+
 src/tile/dirt_tile.cpp
 src/tile/dirt_tile.h
 src/tile/tile.cpp
@@ -34,12 +39,18 @@ src/tile/water_tile.cpp
 src/tile/water_tile.h
 src/tile/tile_map.cpp
 src/tile/tile_map.h
+
 src/button.h
 src/button.cpp
+
 src/main_menu.h
 src/main_menu.cpp
+
 src/gameplay.h
 src/gameplay.cpp
+
+src/text.h
+src/text.cpp
 )
 
 add_executable(tests

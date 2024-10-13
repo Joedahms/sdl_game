@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/dirt_tile.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -156,7 +156,7 @@ CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/assert.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
@@ -294,4 +294,4 @@ CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.h
+ /home/joe/Documents/coding_projects/Trashore/src/tile/dirt_tile.h

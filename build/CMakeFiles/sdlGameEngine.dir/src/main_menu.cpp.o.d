@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/main_menu.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/main_menu.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -296,7 +296,7 @@ CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/main_menu.h \
+ /home/joe/Documents/coding_projects/Trashore/src/main_menu.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
@@ -341,6 +341,7 @@ CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
+ /home/joe/Documents/coding_projects/Trashore/src/button.h \
  /usr/include/SDL2/SDL.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h
+ /home/joe/Documents/coding_projects/Trashore/src/text.h \
+ /home/joe/Documents/coding_projects/Trashore/src/logger.h

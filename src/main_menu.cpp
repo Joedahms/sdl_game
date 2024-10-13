@@ -15,22 +15,15 @@
 */
 MainMenu::MainMenu(std::string logFile, SDL_Renderer* renderer) {
   this->logFile = logFile;
+  const char* fontPath = "../16020_FUTURAM.ttf";
 
-  this->font = TTF_OpenFont("../16020_FUTURAM.ttf", 24);
-  if (font == NULL) {
-    writeToLogFile(this->logFile, TTF_GetError());
-  }
+  const char* titleContent = "TRASHORE";
+  SDL_Color titleColor = {255, 0, 255, 255};
+  SDL_Rect titleRectangle = {100, 100, 0, 0,};
+  this->title = std::make_unique<Text>(this->logFile, fontPath, titleContent, 24, titleColor, titleRectangle, renderer);
 
-  this->textColor = {255, 255, 255, 255};                                         // White
-  SDL_Surface *textSurface = TTF_RenderText_Solid(this->font, "SDL Game Engine", this->textColor);
-  this->gameTitleTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-  SDL_FreeSurface(textSurface);
-
-  SDL_QueryTexture(gameTitleTexture, NULL, NULL, &this->gameTitleTextWidth, &this->gameTitleTextHeight);
-
-  this->gameTitleRectangle = { 100, 100, this->gameTitleTextWidth, this->gameTitleTextHeight }; // Set position and size
-
-  this->startButton = std::make_unique<Button>(200, 150, 200, 50, "click", this->font, this->logFile);
+  SDL_Rect startButtonRectangle = {200, 150, 200, 50};
+  this->startButton = std::make_unique<Button>(startButtonRectangle, "click", this->logFile, renderer);
 }
 
 /*
@@ -72,11 +65,10 @@ int MainMenu::handleEvents(bool* gameIsRunning) {
  * Output: None
 */
 void MainMenu::render(SDL_Renderer* renderer) {
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, gameTitleTexture, NULL, &gameTitleRectangle);
   this->startButton->render(renderer);
-
+  this->title->render(renderer);
   SDL_RenderPresent(renderer);
 }
 

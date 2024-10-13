@@ -1,5 +1,5 @@
 CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.o: \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.cpp \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile_factory.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -199,7 +199,7 @@ CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile.h \
  /usr/include/SDL2/SDL_image.h /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
@@ -337,6 +337,6 @@ CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL_locale.h /usr/include/SDL2/SDL_misc.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/water_tile.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.h
+ /home/joe/Documents/coding_projects/Trashore/src/tile/tile_factory.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/water_tile.h \
+ /home/joe/Documents/coding_projects/Trashore/src/tile/dirt_tile.h

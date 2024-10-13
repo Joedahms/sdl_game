@@ -1,4 +1,4 @@
-# Install script for directory: /home/joe/Documents/coding_projects/sdl_tutorial
+# Install script for directory: /home/joe/Documents/coding_projects/Trashore
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/joe/Documents/coding_projects/sdl_tutorial/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/joe/Documents/coding_projects/Trashore/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

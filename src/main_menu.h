@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "button.h"
+#include "text.h"
 
 class MainMenu {
   public:
@@ -15,16 +16,7 @@ class MainMenu {
 
   private:
   std::string logFile;                  // Path to the log file
-
-  TTF_Font* font;                       // Font for all elements in the main menu
-  SDL_Color textColor;                  // Text color for all elements in the main menu
-  SDL_Texture* gameTitleTexture;
-
-  int gameTitleTextWidth;               // Width of the game title in pixels
-  int gameTitleTextHeight;              // Height of the game title in pixels
-
-  SDL_Rect gameTitleRectangle;
-
+  std::unique_ptr<Text> title;          // Title of the game
   std::unique_ptr<Button> startButton;  // Button to launch the game
 };
 
