@@ -30,6 +30,7 @@ class Game {
   Game(const char*, int, int, int, int, bool, std::string);       // Constructor
 
   SDL_Window* setupWindow(const char*, int, int, int, int, bool); // Setup the SDL game window
+  void initializeSdl(SDL_Window*);
 
   void checkState();                                              // Check which state the game is in
   void handleEvents();                                            // Handle events depending on current state

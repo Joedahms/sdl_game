@@ -16,8 +16,40 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
   this->logFile = logFile;
   this->window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen);
 
+  initializeSdl(this->window);
+
+  // Initialize states
+  this->mainMenu = std::make_unique<MainMenu>(this->logFile, this->renderer);
+  this->gameplay = std::make_unique<Gameplay>(this->logFile);
+  
+  this->previousTicks = SDL_GetTicks(); // first physics tick count
+  gameIsRunning = true;                 // Game is now running
+  writeToLogFile(logFile, "Game constructed");
+}
+
+SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
+  writeToLogFile(logFile, "Creating SDL game window...");
+
+  // Check for fullscreen
+  int flags = 0;
+	if (fullscreen) {
+		flags = SDL_WINDOW_FULLSCREEN;
+	}
+
+  // Create the SDL window
+  try {
+    return SDL_CreateWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, flags);
+  }
+  catch(...) {
+    writeToLogFile(logFile, "Error setting up SDL game window");
+    exit(1);
+  }
+  writeToLogFile(logFile, "SDL game window created");
+}
+
+void Game::initializeSdl(SDL_Window* window) {
   // Initialize SDL
-  writeToLogFile(logFile, "Initializing SDL...");
+  writeToLogFile(this->logFile, "Initializing SDL...");
   try {
     int sdlInitReturn = SDL_Init(SDL_INIT_EVERYTHING);
     if (sdlInitReturn != 0) {
@@ -25,28 +57,28 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
     }
   }
   catch (...) {
-    writeToLogFile(logFile, "Failed to initialize SDL");
+    writeToLogFile(this->logFile, "Failed to initialize SDL");
     exit(1);
   }
-  writeToLogFile(logFile, "SDL initialized");
+  writeToLogFile(this->logFile, "SDL initialized");
 
   // Create renderer
-  writeToLogFile(logFile, "Creating renderer");
+  writeToLogFile(this->logFile, "Creating renderer");
   try {
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (!renderer) {
+    this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (!this->renderer) {
       throw;
     }
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
   }
   catch (...) {
-    writeToLogFile(logFile, "Error creating renderer");
+    writeToLogFile(this->logFile, "Error creating renderer");
     exit(1);
   }
-  writeToLogFile(logFile, "Renderer created");
+  writeToLogFile(this->logFile, "Renderer created");
 
   // Initialize TTF
-  writeToLogFile(logFile, "Initializing TTF...");
+  writeToLogFile(this->logFile, "Initializing TTF...");
   try {
     int ttfInitReturn = TTF_Init();
     if (ttfInitReturn == -1) {
@@ -54,46 +86,10 @@ Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, in
     }
   }
   catch (...) {
-    writeToLogFile(logFile, "Failed to initialize TTF");
+    writeToLogFile(this->logFile, "Failed to initialize TTF");
     exit(1);
   }
-  writeToLogFile(logFile, "TTF initialized");
-  
-  
-
-  // Create and initialize main menu
-  this->mainMenu = std::make_unique<MainMenu>(this->logFile, this->renderer);
-  
-  this->gameplay = std::make_unique<Gameplay>(this->logFile);
-
-  // use factory to create objects here
-  //std::unique_ptr<Character> player = character_factory->create(character_id::PLAYER);
-  //player_vec.emplace_back(std::move(player));
-  //player_vec[0]->print();
-  //player->print();
-  
-  prev_ticks = SDL_GetTicks();	// first physics tick count
-  gameIsRunning = true;
-}
-
-SDL_Window* Game::setupWindow(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen) {
-  writeToLogFile(logFile, "Creating SDL game window...");
-  int flags = 0;
-	if (fullscreen)
-	{
-		flags = SDL_WINDOW_FULLSCREEN;
-	}
-
-  // Create the window
-  try {
-    window = SDL_CreateWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, flags);
-    return window;
-  }
-  catch(...) {
-    writeToLogFile(logFile, "Error setting up SDL game window");
-    exit(1);
-  }
-  writeToLogFile(logFile, "SDL game window created");
+  writeToLogFile(this->logFile, "TTF initialized");
 }
 
 void Game::checkState() {
