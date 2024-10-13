@@ -14,7 +14,7 @@ MainMenu::MainMenu(std::string logFile, SDL_Renderer* renderer) {
   }
 
   this->textColor = {255, 255, 255, 255}; // White color
-  SDL_Surface *textSurface = TTF_RenderText_Solid(font, "Hello, SDL2!", textColor);
+  SDL_Surface *textSurface = TTF_RenderText_Solid(font, "Main Menu", textColor);
   this->textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
   SDL_FreeSurface(textSurface);
 

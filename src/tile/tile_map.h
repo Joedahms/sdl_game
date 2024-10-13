@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "tile/tile_factory.h"
+#include "tile_factory.h"
 
 class TileMap {
   public:

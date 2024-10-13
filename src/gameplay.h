@@ -5,7 +5,7 @@
 #include <memory>
 #include <SDL2/SDL.h>
 
-#include "tile_map.h"
+#include "tile/tile_map.h"
 #include "camera/camera.h"
 
 class Gameplay {

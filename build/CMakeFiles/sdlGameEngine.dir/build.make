@@ -83,38 +83,66 @@ CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/camera/camera.cpp -o CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.s
 
-CMakeFiles/sdlGameEngine.dir/src/character.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
-CMakeFiles/sdlGameEngine.dir/src/character.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character.cpp
-CMakeFiles/sdlGameEngine.dir/src/character.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
+CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.cpp
 
-CMakeFiles/sdlGameEngine.dir/src/character.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character.cpp > CMakeFiles/sdlGameEngine.dir/src/character.cpp.i
+CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.cpp > CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.i
 
-CMakeFiles/sdlGameEngine.dir/src/character.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character.cpp -o CMakeFiles/sdlGameEngine.dir/src/character.cpp.s
+CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.cpp -o CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.s
 
-CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
-CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.cpp
-CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
+CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.cpp
 
-CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.cpp > CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.i
+CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.cpp > CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.i
 
-CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.cpp -o CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.s
+CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.cpp -o CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.s
+
+CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
+CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.cpp
+
+CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.cpp > CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.i
+
+CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.cpp -o CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.s
+
+CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
+CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.cpp
+CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.cpp
+
+CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.cpp > CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.i
+
+CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.cpp -o CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.s
 
 CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
 CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/game.cpp
 CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/game.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/game.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/game.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/game.cpp
 
 CMakeFiles/sdlGameEngine.dir/src/game.cpp.i: cmake_force
@@ -128,7 +156,7 @@ CMakeFiles/sdlGameEngine.dir/src/game.cpp.s: cmake_force
 CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
 CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.cpp
 CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.cpp
 
 CMakeFiles/sdlGameEngine.dir/src/logger.cpp.i: cmake_force
@@ -142,7 +170,7 @@ CMakeFiles/sdlGameEngine.dir/src/logger.cpp.s: cmake_force
 CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
 CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/main.cpp
 CMakeFiles/sdlGameEngine.dir/src/main.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/main.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/main.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/main.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/main.cpp
 
 CMakeFiles/sdlGameEngine.dir/src/main.cpp.i: cmake_force
@@ -152,34 +180,6 @@ CMakeFiles/sdlGameEngine.dir/src/main.cpp.i: cmake_force
 CMakeFiles/sdlGameEngine.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/main.cpp -o CMakeFiles/sdlGameEngine.dir/src/main.cpp.s
-
-CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
-CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.cpp
-CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.cpp
-
-CMakeFiles/sdlGameEngine.dir/src/npc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/npc.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.cpp > CMakeFiles/sdlGameEngine.dir/src/npc.cpp.i
-
-CMakeFiles/sdlGameEngine.dir/src/npc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/npc.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.cpp -o CMakeFiles/sdlGameEngine.dir/src/npc.cpp.s
-
-CMakeFiles/sdlGameEngine.dir/src/player.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
-CMakeFiles/sdlGameEngine.dir/src/player.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/player.cpp
-CMakeFiles/sdlGameEngine.dir/src/player.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/player.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/player.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/player.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/player.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/player.cpp
-
-CMakeFiles/sdlGameEngine.dir/src/player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/player.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/player.cpp > CMakeFiles/sdlGameEngine.dir/src/player.cpp.i
-
-CMakeFiles/sdlGameEngine.dir/src/player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/player.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/player.cpp -o CMakeFiles/sdlGameEngine.dir/src/player.cpp.s
 
 CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
 CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/dirt_tile.cpp
@@ -237,19 +237,19 @@ CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/water_tile.cpp -o CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.s
 
-CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
-CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.cpp
-CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.cpp
+CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
+CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.cpp
+CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o: CMakeFiles/sdlGameEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/joe/Documents/coding_projects/sdl_tutorial/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o -MF CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o.d -o CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o -c /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.cpp
 
-CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.cpp > CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.i
+CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.cpp > CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.i
 
-CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.cpp -o CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.s
+CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.cpp -o CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.s
 
 CMakeFiles/sdlGameEngine.dir/src/button.cpp.o: CMakeFiles/sdlGameEngine.dir/flags.make
 CMakeFiles/sdlGameEngine.dir/src/button.cpp.o: /home/joe/Documents/coding_projects/sdl_tutorial/src/button.cpp
@@ -296,18 +296,18 @@ CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.s: cmake_force
 # Object files for target sdlGameEngine
 sdlGameEngine_OBJECTS = \
 "CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o" \
-"CMakeFiles/sdlGameEngine.dir/src/character.cpp.o" \
-"CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o" \
+"CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o" \
+"CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o" \
+"CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o" \
+"CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/game.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/main.cpp.o" \
-"CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o" \
-"CMakeFiles/sdlGameEngine.dir/src/player.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/tile/tile.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.o" \
-"CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o" \
+"CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/button.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o" \
 "CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o"
@@ -316,18 +316,18 @@ sdlGameEngine_OBJECTS = \
 sdlGameEngine_EXTERNAL_OBJECTS =
 
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/camera/camera.cpp.o
-sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character.cpp.o
-sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character_factory.cpp.o
+sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character/character.cpp.o
+sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character/character_factory.cpp.o
+sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character/npc.cpp.o
+sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/character/player.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/game.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/logger.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/main.cpp.o
-sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/npc.cpp.o
-sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/player.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile/dirt_tile.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile/tile.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile/tile_factory.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile/water_tile.cpp.o
-sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile_map.cpp.o
+sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/tile/tile_map.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/button.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/main_menu.cpp.o
 sdlGameEngine: CMakeFiles/sdlGameEngine.dir/src/gameplay.cpp.o

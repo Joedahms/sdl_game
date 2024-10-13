@@ -9,10 +9,10 @@
 #include <memory>
 #include <string>
 
-#include "character.h"
-#include "character_factory.h"
-#include "player.h"
-#include "npc.h"
+#include "character/character.h"
+#include "character/character_factory.h"
+#include "character/player.h"
+#include "character/npc.h"
 
 #include "tile/tile.h"
 #include "tile/tile_factory.h"

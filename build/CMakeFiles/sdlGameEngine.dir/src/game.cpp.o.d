@@ -342,10 +342,11 @@ CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/character_factory.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/player.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/npc.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character_factory.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/character.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/player.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/character/npc.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile.h \
@@ -355,7 +356,8 @@ CMakeFiles/sdlGameEngine.dir/src/game.cpp.o: \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/main_menu.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/button.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/gameplay.h \
- /home/joe/Documents/coding_projects/sdl_tutorial/src/tile_map.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_map.h \
+ /home/joe/Documents/coding_projects/sdl_tutorial/src/tile/tile_factory.h \
  /home/joe/Documents/coding_projects/sdl_tutorial/src/logger.h \
  /usr/include/menu.h /usr/include/curses.h /usr/include/ncurses_dll.h \
  /usr/include/unctrl.h /usr/include/eti.h

@@ -5,7 +5,7 @@
 
 #include "gameplay.h"
 #include "logger.h"
-#include "tile_map.h"
+#include "tile/tile_map.h"
 #include "camera/camera.h"
 
 Gameplay::Gameplay(std::string logFile) {
