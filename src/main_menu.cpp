@@ -22,14 +22,14 @@ MainMenu::MainMenu(struct GameGlobal gameGlobal) {
   // Title
   const char* fontPath = "../16020_FUTURAM.ttf";
   const char* titleContent = "TRASHORE";
-  SDL_Color titleColor = {255, 0, 255, 255};
+  SDL_Color titleColor = {0, 255, 0, 255};
   SDL_Rect titleRectangle = {100, 100, 0, 0,};
-  titleRectangle = centerRectangleHorizontal(windowSurface, titleRectangle);
   this->title = std::make_unique<Text>(this->gameGlobal, fontPath, titleContent, 24, titleColor, titleRectangle);
+  this->title->centerHorizontal(windowSurface);
 
   // Start button
   SDL_Rect startButtonRectangle = {200, 150, 200, 50};
-  startButtonRectangle = centerRectangleVertical(windowSurface, startButtonRectangle);
+  startButtonRectangle = centerRectangleHorizontal(windowSurface, startButtonRectangle);
   this->startButton = std::make_unique<Button>(this->gameGlobal, startButtonRectangle, "click");
 }
 
@@ -72,7 +72,7 @@ int MainMenu::handleEvents(bool* gameIsRunning) {
  * Output: None
 */
 void MainMenu::render() {
-  SDL_SetRenderDrawColor(this->gameGlobal.renderer, 255, 255, 255, 255);
+  SDL_SetRenderDrawColor(this->gameGlobal.renderer, 0, 0, 0, 255);
   SDL_RenderClear(this->gameGlobal.renderer);
   this->startButton->render();
   this->title->render();

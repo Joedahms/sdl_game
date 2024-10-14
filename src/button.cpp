@@ -30,7 +30,8 @@ Button::Button(struct GameGlobal gameGlobal, SDL_Rect rectangle, const std::stri
 
   SDL_Color textColor = {255, 255, 0, 255};
   this->text = std::make_unique<Text>(this->gameGlobal, "../16020_FUTURAM.ttf", "Start", 24, textColor, rectangle);
-  this->text->centerHorizontal();
+  this->text->centerHorizontal(&this->backgroundRectangle);
+  this->text->centerVertical(&this->backgroundRectangle);
 }
 
 /*

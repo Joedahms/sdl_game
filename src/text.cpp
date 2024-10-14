@@ -26,17 +26,21 @@ Text::Text(struct GameGlobal gameGlobal, const char* fontPath, const char* conte
   SDL_QueryTexture(this->texture, NULL, NULL, &this->rectangle.w, &this->rectangle.h);
 }
 
-SDL_Rect Text::centerHorizontal() {
+/*
+void Text::centerHorizontal() {
   SDL_Surface* windowSurface = SDL_GetWindowSurface(this->gameGlobal.window);
   SDL_Rect centeredRectangle = centerRectangleHorizontal(windowSurface, this->rectangle);
-  return centeredRectangle;
+  this->rectangle = centeredRectangle;
 }
+*/
 
+/*
 SDL_Rect Text::centerVertical() {
   SDL_Surface* windowSurface = SDL_GetWindowSurface(this->gameGlobal.window);
   SDL_Rect centeredRectangle = centerRectangleVertical(windowSurface, this->rectangle);
   return centeredRectangle;
 }
+*/
 
 void Text::render() {
   SDL_RenderCopy(this->gameGlobal.renderer, this->texture, NULL, &this->rectangle);

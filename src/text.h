@@ -6,12 +6,23 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "game_global.h"
+#include "rectangle.h"
 
 class Text {
   public:
   Text(struct GameGlobal, const char*, const char*, int, SDL_Color, SDL_Rect);
-  SDL_Rect centerHorizontal();
-  SDL_Rect centerVertical();
+
+  template <typename T>
+  void centerHorizontal(T centerWithin) {
+    this->rectangle = centerRectangleHorizontal(centerWithin, this->rectangle);  
+  }
+
+  template <typename T>
+  void centerVertical(T centerWithin) {
+    this->rectangle = centerRectangleVertical(centerWithin, this->rectangle);
+  }
+
+  //SDL_Rect centerVertical();
   void render();
 
   private:
