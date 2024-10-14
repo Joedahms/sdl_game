@@ -7,21 +7,22 @@
 
 #include "tile/tile_map.h"
 #include "camera/camera.h"
+#include "game_global.h"
 
 class Gameplay {
   public:
-  Gameplay(std::string);
+  Gameplay(struct GameGlobal);
   int handleEvents(bool*);                      // Handle SDL events
   void checkKeystates();                        // Check which keys on the keyboard are pressed
   void setSelectedTile();                       // Set the hovered tile as selected
   void update();
-  void render(SDL_Renderer*);                   // Render to window
-  void enterGameplay(int, int, SDL_Renderer*);  // Set up upon first entry into state
-  void initializeTextures(SDL_Renderer*);
+  void render();                                // Render to window
+  void enterGameplay();                         // Set up upon first entry into state
+  void initializeTextures();
   bool getStateEntered();                       // Check if the state has already been entered
 
   private:
-  std::string logFile;                          // Path to the log file
+  struct GameGlobal gameGlobal;                 // Global variables
   bool stateEntered = false;                    // Has the state been entered before
 
   std::unique_ptr<Camera> camera;               // Camera

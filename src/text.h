@@ -5,14 +5,29 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "game_global.h"
+#include "rectangle.h"
+
 class Text {
   public:
-  Text(std::string, const char*, const char*, int, SDL_Color, SDL_Rect, SDL_Renderer*);
-  void render(SDL_Renderer*);
+  Text(struct GameGlobal, const char*, const char*, int, SDL_Color, SDL_Rect);
+
+  // Center text horizontally within a type
+  template <typename T>
+  void centerHorizontal(T centerWithin) {
+    this->rectangle = centerRectangleHorizontal(centerWithin, this->rectangle);  
+  }
+
+  // Center text vertically within a type
+  template <typename T>
+  void centerVertical(T centerWithin) {
+    this->rectangle = centerRectangleVertical(centerWithin, this->rectangle);
+  }
+
+  void render();
 
   private:
-  std::string logFile;
-
+  struct GameGlobal gameGlobal;
   TTF_Font* font;
   const char* content;
   int fontSize;

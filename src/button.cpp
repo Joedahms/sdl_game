@@ -1,33 +1,33 @@
 #include <iostream>
 #include <memory>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL.h>
 
 #include "button.h"
 #include "logger.h"
+#include "game_global.h"
 
 /*
  * Name: Button
  * Purpose: Set the properties of the button
  * Input:
- * - X position of the button
- * - Y position of the button
- * - Width of the button in pixels
- * - Height of the button in pixels
+ * - Global game variables
+ * - Rectangle to render the button with
  * - The text to print in the middle of the button
- * - The font of the text
- * - Path to the log file
  * Output: None
 */
-Button::Button(SDL_Rect rectangle, const std::string& text, std::string logFile, SDL_Renderer* renderer) {
+Button::Button(struct GameGlobal gameGlobal, SDL_Rect rectangle, const std::string& text) {
+  this->gameGlobal = gameGlobal;
+
   this->backgroundRectangle = rectangle;
   this->backgroundColor = {255, 0, 0, 255}; // Red
   this->hoveredColor = {0, 255, 0, 255};    // Green
   this->defaultColor = {255, 0, 0, 255};    // Red
-  //this->text = text;
-//  this->textFont = textFont;
-  this->logFile = logFile;
 
-  SDL_Color textColor = {255, 255, 0, 255};
-  this->text = std::make_unique<Text>(this->logFile, "../16020_FUTURAM.ttf", "Start", 24, textColor, rectangle, renderer);
+  SDL_Color textColor = {255, 255, 0, 255};                 // Yellow
+  this->text = std::make_unique<Text>(this->gameGlobal, "../16020_FUTURAM.ttf", "Start", 24, textColor, rectangle);
+  this->text->centerHorizontal(&this->backgroundRectangle); // Center the text horizontally within the button
+  this->text->centerVertical(&this->backgroundRectangle);   // Center the text vertically within the button
 }
 
 /*
@@ -58,10 +58,10 @@ bool Button::checkHovered(int mouseXPosition, int mouseYPosition) {
  * Name: render
  * Purpose: Render the button
  * Input:
- * - The renderer to render the button with
+ * - None
  * Output: None
 */
-void Button::render(SDL_Renderer* renderer) {
+void Button::render() {
   // Change color if hovered
   int mouseXPosition, mouseYPosition;
   SDL_GetMouseState(&mouseXPosition, &mouseYPosition);  // Get the position of the mouse
@@ -73,25 +73,9 @@ void Button::render(SDL_Renderer* renderer) {
   }
 
   // Set draw color and fill the button
-  SDL_SetRenderDrawColor(renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
-  SDL_RenderFillRect(renderer, &this->backgroundRectangle);
+  SDL_SetRenderDrawColor(this->gameGlobal.renderer, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+  SDL_RenderFillRect(this->gameGlobal.renderer, &this->backgroundRectangle);
 
-  this->text->render(renderer);
-  /*
-  // Render button text
-  SDL_Color textColor = {255, 255, 255, 255}; // White
-  SDL_Surface* textSurface = TTF_RenderText_Solid(textFont, text.c_str(), textColor);
-  SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-
-  int textW, textH;
-  SDL_QueryTexture(textTexture, NULL, NULL, &textW, &textH);
-  SDL_Rect textRect = {this->backgroundRectangle.x + (this->backgroundRectangle.w - textW) / 2, this->backgroundRectangle.y + (this->backgroundRectangle.h - textH) / 2, textW, textH};
-
-  SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
-
-
-  SDL_FreeSurface(textSurface);
-  */
-  //SDL_DestroyTexture(textTexture);
+  this->text->render();
 }
 

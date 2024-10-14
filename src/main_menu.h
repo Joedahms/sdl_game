@@ -7,14 +7,16 @@
 
 #include "button.h"
 #include "text.h"
+#include "game_global.h"
 
 class MainMenu {
   public:
-  MainMenu(std::string, SDL_Renderer*);
+  MainMenu(struct GameGlobal);
   int handleEvents(bool*);              // Handle SDL events while in the main menu state
-  void render(SDL_Renderer*);           // Render the main menu
+  void render();                        // Render the main menu
 
   private:
+  struct GameGlobal gameGlobal;         // Global variables
   std::string logFile;                  // Path to the log file
   std::unique_ptr<Text> title;          // Title of the game
   std::unique_ptr<Button> startButton;  // Button to launch the game

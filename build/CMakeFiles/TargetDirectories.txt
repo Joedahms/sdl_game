@@ -1,4 +1,0 @@
-/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles/sdlGameEngine.dir
-/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles/tests.dir
-/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles/edit_cache.dir
-/home/joe/Documents/coding_projects/Trashore/build/CMakeFiles/rebuild_cache.dir

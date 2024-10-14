@@ -51,6 +51,11 @@ src/gameplay.cpp
 
 src/text.h
 src/text.cpp
+
+src/rectangle.h
+src/rectangle.cpp
+
+src/game_global.h
 )
 
 add_executable(tests

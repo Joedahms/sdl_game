@@ -6,25 +6,21 @@
 #include <string>
 
 #include "text.h"
+#include "game_global.h"
 
 class Button {
   public:
-  Button(SDL_Rect, const std::string&, std::string, SDL_Renderer*);
-
+  Button(struct GameGlobal gameGlobal, struct SDL_Rect, const std::string&);
   bool checkHovered(int mouseXPosition, int mouseYPosition);
-  void render(SDL_Renderer*);
+  void render();
 
   private:
-  std::unique_ptr<Text> text;
-
-  //std::string text;             // Text to print inside the button
-  std::string logFile;          // Path to the log file
-
+  struct GameGlobal gameGlobal; // Global variables
+  std::unique_ptr<Text> text;   // Text within the button
   SDL_Rect backgroundRectangle; // Rectangle defining where to render the button to
   SDL_Color backgroundColor;    // Current color
   SDL_Color defaultColor;       // Color when not hovered
   SDL_Color hoveredColor;       // Color when hovered
-  //TTF_Font* textFont;           // Font of the text within the button
 };
 
 #endif

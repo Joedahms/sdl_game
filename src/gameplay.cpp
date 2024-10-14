@@ -7,16 +7,17 @@
 #include "logger.h"
 #include "tile/tile_map.h"
 #include "camera/camera.h"
+#include "game_global.h"
 
 /*
  * Name: Gameplay
- * Purpose: Set the path of the log file
+ * Purpose: Set the global variables
  * Input:
- * - Path of the log file
+ * - Global variables
  * Output: None
 */
-Gameplay::Gameplay(std::string logFile) {
-  this->logFile = logFile;
+Gameplay::Gameplay(struct GameGlobal gameGlobal) {
+  this->gameGlobal = gameGlobal;
 }
 
 /*
@@ -125,7 +126,7 @@ void Gameplay::setSelectedTile() {
  * Output: None
 */
 void Gameplay::update() {
-  writeToLogFile(this->logFile, "updating in gameplay");
+  writeToLogFile(this->gameGlobal.logFile, "updating in gameplay");
   this->camera->update(this->tileMap->getTotalXTiles(), this->tileMap->getTotalYTiles());	// update camera
   setSelectedTile();
 }
@@ -134,54 +135,54 @@ void Gameplay::update() {
  * Name: render
  * Purpose: Render all gameplay elements
  * Input:
- * - Renderer to render gameplay elements with
+ * - None
  * Output: None
 */
-void Gameplay::render(SDL_Renderer* renderer) {
+void Gameplay::render() {
   // Print out camera position. Temporary for debugging
   std::cout << "cam x pos: " << this->camera->x_pos << std::endl;
 	std::cout << "cam y pos: " << this->camera->y_pos << std::endl;
 
-	SDL_RenderClear(renderer);
+	SDL_RenderClear(this->gameGlobal.renderer);
 
 	for (int x = 0; x < this->camera->getVisibleXTiles(); x++) {    // Loop through all visible x tiles
 		for (int y = 0; y < this->camera->getVisibleYTiles(); y++) {  // Loop through all visible y tiles
 			int currentXPosition = x + this->camera->x_pos;
 			int currentYPosition = y + this->camera->y_pos;
-			SDL_RenderCopy(renderer, this->tileMap->getTileTexture(currentXPosition, currentYPosition), NULL, &(this->camera->destinationRect[x][y]));  // Render all visible tiles
+			SDL_RenderCopy(this->gameGlobal.renderer, this->tileMap->getTileTexture(currentXPosition, currentYPosition), NULL, &(this->camera->destinationRect[x][y]));  // Render all visible tiles
 
 			if (this->tileMap->getSelected(currentXPosition, currentYPosition)) {                       // If the current tile is selected
-				SDL_RenderCopy(renderer, this->selectedTexture, NULL, &(camera->destinationRect[x][y]));  // Render selected texture over it
+				SDL_RenderCopy(this->gameGlobal.renderer, this->selectedTexture, NULL, &(camera->destinationRect[x][y]));  // Render selected texture over it
 			}
 		}
 	}
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(this->gameGlobal.renderer);
 }
 
 /*
  * Name: enterGameplay
  * Purpose: Perform necessary actions when the gameplay state is entered for the first time
  * Input:
- * - Height of the screen in pixels
- * - Width of the screen in pixels
- * - Renderer to render gameplay elements with
+ * - None
  * Output: None
 */
-void Gameplay::enterGameplay(int screenHeight, int screenWidth, SDL_Renderer* renderer) {
+void Gameplay::enterGameplay() {
+  SDL_Surface* windowSurface = SDL_GetWindowSurface(this->gameGlobal.window);
+
   // Initialize the camera
-  writeToLogFile(this->logFile, "Initializing camera");
-  this->camera = std::make_unique<Camera>(screenHeight, screenWidth, 16);
-  assert(this->camera->getScreenHeight() == screenHeight);
-  assert(this->camera->getScreenWidth() == screenWidth);
+  writeToLogFile(this->gameGlobal.logFile, "Initializing camera");
+  this->camera = std::make_unique<Camera>(windowSurface->h, windowSurface->w, 16);
+  assert(this->camera->getScreenHeight() == windowSurface->h);
+  assert(this->camera->getScreenWidth() == windowSurface->w);
   this->camera->zoomChange(16);
-  writeToLogFile(this->logFile, "Camera initialized");
+  writeToLogFile(this->gameGlobal.logFile, "Camera initialized");
 
   // Initialize the tile map
-  writeToLogFile(this->logFile, "Initializing tile map...");
-  this->tileMap = std::make_unique<TileMap>(16, 200, 200, renderer);
-  writeToLogFile(this->logFile, "Tile map initialized");
+  writeToLogFile(this->gameGlobal.logFile, "Initializing tile map...");
+  this->tileMap = std::make_unique<TileMap>(16, 200, 200, this->gameGlobal.renderer);
+  writeToLogFile(this->gameGlobal.logFile, "Tile map initialized");
 
-  initializeTextures(renderer);
+  initializeTextures();
 
   // State has been entered once
   this->stateEntered = true;
@@ -191,15 +192,15 @@ void Gameplay::enterGameplay(int screenHeight, int screenWidth, SDL_Renderer* re
  * Name: initializeTextures
  * Purpose: Initialize all textures in the gameplay state
  * Input:
- * - Renderer to render gameplay elements with
+ * - None
  * Output: None
 */
-void Gameplay::initializeTextures(SDL_Renderer* renderer) {
-  writeToLogFile(logFile, "Initializing textures...");
+void Gameplay::initializeTextures() {
+  writeToLogFile(this->gameGlobal.logFile, "Initializing textures...");
 	SDL_Surface* tmp_surface = IMG_Load("sprites/selected.png");
-	selectedTexture = SDL_CreateTextureFromSurface(renderer, tmp_surface);
+	selectedTexture = SDL_CreateTextureFromSurface(this->gameGlobal.renderer, tmp_surface);
 	SDL_FreeSurface(tmp_surface);
-  writeToLogFile(logFile, "Textures initialized");
+  writeToLogFile(this->gameGlobal.logFile, "Textures initialized");
 }
 
 /*
