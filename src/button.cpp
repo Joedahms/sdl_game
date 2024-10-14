@@ -11,13 +11,9 @@
  * Name: Button
  * Purpose: Set the properties of the button
  * Input:
- * - X position of the button
- * - Y position of the button
- * - Width of the button in pixels
- * - Height of the button in pixels
+ * - Global game variables
+ * - Rectangle to render the button with
  * - The text to print in the middle of the button
- * - The font of the text
- * - Path to the log file
  * Output: None
 */
 Button::Button(struct GameGlobal gameGlobal, SDL_Rect rectangle, const std::string& text) {
@@ -28,10 +24,10 @@ Button::Button(struct GameGlobal gameGlobal, SDL_Rect rectangle, const std::stri
   this->hoveredColor = {0, 255, 0, 255};    // Green
   this->defaultColor = {255, 0, 0, 255};    // Red
 
-  SDL_Color textColor = {255, 255, 0, 255};
+  SDL_Color textColor = {255, 255, 0, 255};                 // Yellow
   this->text = std::make_unique<Text>(this->gameGlobal, "../16020_FUTURAM.ttf", "Start", 24, textColor, rectangle);
-  this->text->centerHorizontal(&this->backgroundRectangle);
-  this->text->centerVertical(&this->backgroundRectangle);
+  this->text->centerHorizontal(&this->backgroundRectangle); // Center the text horizontally within the button
+  this->text->centerVertical(&this->backgroundRectangle);   // Center the text vertically within the button
 }
 
 /*
@@ -62,7 +58,7 @@ bool Button::checkHovered(int mouseXPosition, int mouseYPosition) {
  * Name: render
  * Purpose: Render the button
  * Input:
- * - The renderer to render the button with
+ * - None
  * Output: None
 */
 void Button::render() {

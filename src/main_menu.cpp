@@ -11,8 +11,7 @@
  * Name: MainMenu
  * Purpose: Setup the game title and start button
  * Input:
- * - Path of the log file
- * - SDL renderer
+ * - Global game variables
  * Output: None
 */
 MainMenu::MainMenu(struct GameGlobal gameGlobal) {
@@ -20,16 +19,16 @@ MainMenu::MainMenu(struct GameGlobal gameGlobal) {
   SDL_Surface* windowSurface = SDL_GetWindowSurface(this->gameGlobal.window);
 
   // Title
-  const char* fontPath = "../16020_FUTURAM.ttf";
-  const char* titleContent = "TRASHORE";
-  SDL_Color titleColor = {0, 255, 0, 255};
-  SDL_Rect titleRectangle = {100, 100, 0, 0,};
+  const char* fontPath = "../16020_FUTURAM.ttf";  // Path to the font
+  const char* titleContent = "TRASHORE";          // Title of the game
+  SDL_Color titleColor = {0, 255, 0, 255};        // Green
+  SDL_Rect titleRectangle = {100, 100, 0, 0,};    // x,y -> 100, 100. 0 width/height
   this->title = std::make_unique<Text>(this->gameGlobal, fontPath, titleContent, 24, titleColor, titleRectangle);
-  this->title->centerHorizontal(windowSurface);
+  this->title->centerHorizontal(windowSurface);   // Center the title horizontally
 
   // Start button
   SDL_Rect startButtonRectangle = {200, 150, 200, 50};
-  startButtonRectangle = centerRectangleHorizontal(windowSurface, startButtonRectangle);
+  startButtonRectangle = centerRectangleHorizontal(windowSurface, startButtonRectangle);          // Center the start button horizontally
   this->startButton = std::make_unique<Button>(this->gameGlobal, startButtonRectangle, "click");
 }
 
@@ -68,11 +67,11 @@ int MainMenu::handleEvents(bool* gameIsRunning) {
  * Name: render
  * Purpose: Render the game title and the start button
  * Input:
- * - SDL renderer
+ * - None
  * Output: None
 */
 void MainMenu::render() {
-  SDL_SetRenderDrawColor(this->gameGlobal.renderer, 0, 0, 0, 255);
+  SDL_SetRenderDrawColor(this->gameGlobal.renderer, 0, 0, 0, 255);  // Black background
   SDL_RenderClear(this->gameGlobal.renderer);
   this->startButton->render();
   this->title->render();

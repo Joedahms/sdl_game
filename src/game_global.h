@@ -5,7 +5,7 @@
 #include <string>
 
 struct GameGlobal {
-  std::string logFile;
+  std::string logFile;    // Path to the log file
   SDL_Renderer* renderer;
   SDL_Window* window;
 };

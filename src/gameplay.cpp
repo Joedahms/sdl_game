@@ -11,9 +11,9 @@
 
 /*
  * Name: Gameplay
- * Purpose: Set the path of the log file
+ * Purpose: Set the global variables
  * Input:
- * - Path of the log file
+ * - Global variables
  * Output: None
 */
 Gameplay::Gameplay(struct GameGlobal gameGlobal) {
@@ -163,9 +163,7 @@ void Gameplay::render() {
  * Name: enterGameplay
  * Purpose: Perform necessary actions when the gameplay state is entered for the first time
  * Input:
- * - Height of the screen in pixels
- * - Width of the screen in pixels
- * - Renderer to render gameplay elements with
+ * - None
  * Output: None
 */
 void Gameplay::enterGameplay() {
@@ -194,7 +192,7 @@ void Gameplay::enterGameplay() {
  * Name: initializeTextures
  * Purpose: Initialize all textures in the gameplay state
  * Input:
- * - Renderer to render gameplay elements with
+ * - None
  * Output: None
 */
 void Gameplay::initializeTextures() {

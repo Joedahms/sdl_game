@@ -16,13 +16,13 @@ class Gameplay {
   void checkKeystates();                        // Check which keys on the keyboard are pressed
   void setSelectedTile();                       // Set the hovered tile as selected
   void update();
-  void render();                   // Render to window
-  void enterGameplay();  // Set up upon first entry into state
+  void render();                                // Render to window
+  void enterGameplay();                         // Set up upon first entry into state
   void initializeTextures();
   bool getStateEntered();                       // Check if the state has already been entered
 
   private:
-  struct GameGlobal gameGlobal;
+  struct GameGlobal gameGlobal;                 // Global variables
   bool stateEntered = false;                    // Has the state been entered before
 
   std::unique_ptr<Camera> camera;               // Camera

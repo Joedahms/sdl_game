@@ -12,17 +12,18 @@ class Text {
   public:
   Text(struct GameGlobal, const char*, const char*, int, SDL_Color, SDL_Rect);
 
+  // Center text horizontally within a type
   template <typename T>
   void centerHorizontal(T centerWithin) {
     this->rectangle = centerRectangleHorizontal(centerWithin, this->rectangle);  
   }
 
+  // Center text vertically within a type
   template <typename T>
   void centerVertical(T centerWithin) {
     this->rectangle = centerRectangleVertical(centerWithin, this->rectangle);
   }
 
-  //SDL_Rect centerVertical();
   void render();
 
   private:

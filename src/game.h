@@ -46,9 +46,6 @@ class Game {
 	private:
   struct GameGlobal gameGlobal;
 
-//  int screenHeight;                                               // Height of the screen in pixels
- // int screenWidth;                                                // Width of the screen in pixels
-
   // State the game is currently in
   // 0: Main menu
   // 1: Gameplay
@@ -66,9 +63,6 @@ class Game {
   std::vector<std::unique_ptr<Character>> player_vec;             // Not currently used
   std::vector<std::unique_ptr<Character>> npc_vec;                // Not currently used
 
-//  SDL_Window* window;                                             // SDL game window
- // SDL_Renderer* renderer;                                         // Renderer for rendering textures
-  
   int deltaTime = 0;                                              // Time since last checked if game should update
   int totalDeltaTime = 0;                                         // Time since last update
 

@@ -19,24 +19,22 @@
  * - The width of the game window
  * - The height of the game window
  * - Whether or not the game window should be fullscreen
- * - The path of the logfile relative to the main function
+ * - Global game variables
  * Output: None
 */
 Game::Game(const char* windowTitle, int windowXPosition, int windowYPosition, int screenWidth, int screenHeight, bool fullscreen, struct GameGlobal gameGlobal) {
   writeToLogFile(gameGlobal.logFile, "Constructing game...");
   this->gameGlobal = gameGlobal;
-//  this->screenWidth = screenWidth;              // Set the width of the game window
- // this->screenHeight = screenHeight;            // Set the height of the game window
   this->gameGlobal.window = setupWindow(windowTitle, windowXPosition, windowYPosition, screenWidth, screenHeight, fullscreen); // Setup the SDL game window
 
-  initializeSdl(this->gameGlobal.window);                  // Initialize SDL and its components
+  initializeSdl(this->gameGlobal.window);                         // Initialize SDL and its components
 
   // Initialize states
-  this->mainMenu = std::make_unique<MainMenu>(this->gameGlobal); // Main menu
-  this->gameplay = std::make_unique<Gameplay>(this->gameGlobal);                 // Gameplay
+  this->mainMenu = std::make_unique<MainMenu>(this->gameGlobal);  // Main menu
+  this->gameplay = std::make_unique<Gameplay>(this->gameGlobal);  // Gameplay
   
-  this->previousTicks = SDL_GetTicks();         // First physics tick count
-  gameIsRunning = true;                         // Game is now running
+  this->previousTicks = SDL_GetTicks();                           // First physics tick count
+  gameIsRunning = true;                                           // Game is now running
   writeToLogFile(this->gameGlobal.logFile, "Game constructed");
 }
 
