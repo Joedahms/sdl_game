@@ -5,14 +5,17 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
+#include "game_global.h"
+
 class Text {
   public:
-  Text(std::string, const char*, const char*, int, SDL_Color, SDL_Rect, SDL_Renderer*);
-  void render(SDL_Renderer*);
+  Text(struct GameGlobal, const char*, const char*, int, SDL_Color, SDL_Rect);
+  SDL_Rect centerHorizontal();
+  SDL_Rect centerVertical();
+  void render();
 
   private:
-  std::string logFile;
-
+  struct GameGlobal gameGlobal;
   TTF_Font* font;
   const char* content;
   int fontSize;

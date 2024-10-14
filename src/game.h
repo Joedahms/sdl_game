@@ -25,9 +25,11 @@
 #include "main_menu.h"
 #include "gameplay.h"
 
+#include "game_global.h"
+
 class Game {
 	public:
-  Game(const char*, int, int, int, int, bool, std::string);       // Constructor
+  Game(const char*, int, int, int, int, bool, struct GameGlobal);       // Constructor
 
   SDL_Window* setupWindow(const char*, int, int, int, int, bool); // Setup the SDL game window
   void initializeSdl(SDL_Window*);
@@ -42,8 +44,10 @@ class Game {
   bool running() { return gameIsRunning; }                        // Check if the game is running
 
 	private:
-  int screenHeight;                                               // Height of the screen in pixels
-  int screenWidth;                                                // Width of the screen in pixels
+  struct GameGlobal gameGlobal;
+
+//  int screenHeight;                                               // Height of the screen in pixels
+ // int screenWidth;                                                // Width of the screen in pixels
 
   // State the game is currently in
   // 0: Main menu
@@ -56,15 +60,14 @@ class Game {
   std::unique_ptr<Gameplay> gameplay;                             // Game play. State the game is in when it is running
 
   bool gameIsRunning = false;                                     // If the game is running
-  std::string logFile;                                            // Path to the log file
 
   std::unique_ptr<CharacterFactory> character_factory = std::make_unique<CharacterFactory>(); // Not currently used
 
   std::vector<std::unique_ptr<Character>> player_vec;             // Not currently used
   std::vector<std::unique_ptr<Character>> npc_vec;                // Not currently used
 
-  SDL_Window* window;                                             // SDL game window
-  SDL_Renderer* renderer;                                         // Renderer for rendering textures
+//  SDL_Window* window;                                             // SDL game window
+ // SDL_Renderer* renderer;                                         // Renderer for rendering textures
   
   int deltaTime = 0;                                              // Time since last checked if game should update
   int totalDeltaTime = 0;                                         // Time since last update

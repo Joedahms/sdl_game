@@ -4,6 +4,8 @@
 
 #include "main_menu.h"
 #include "logger.h"
+#include "rectangle.h"
+#include "game_global.h"
 
 /*
  * Name: MainMenu
@@ -13,17 +15,22 @@
  * - SDL renderer
  * Output: None
 */
-MainMenu::MainMenu(std::string logFile, SDL_Renderer* renderer) {
-  this->logFile = logFile;
-  const char* fontPath = "../16020_FUTURAM.ttf";
+MainMenu::MainMenu(struct GameGlobal gameGlobal) {
+  this->gameGlobal = gameGlobal;
+  SDL_Surface* windowSurface = SDL_GetWindowSurface(this->gameGlobal.window);
 
+  // Title
+  const char* fontPath = "../16020_FUTURAM.ttf";
   const char* titleContent = "TRASHORE";
   SDL_Color titleColor = {255, 0, 255, 255};
   SDL_Rect titleRectangle = {100, 100, 0, 0,};
-  this->title = std::make_unique<Text>(this->logFile, fontPath, titleContent, 24, titleColor, titleRectangle, renderer);
+  titleRectangle = centerRectangleHorizontal(windowSurface, titleRectangle);
+  this->title = std::make_unique<Text>(this->gameGlobal, fontPath, titleContent, 24, titleColor, titleRectangle);
 
+  // Start button
   SDL_Rect startButtonRectangle = {200, 150, 200, 50};
-  this->startButton = std::make_unique<Button>(startButtonRectangle, "click", this->logFile, renderer);
+  startButtonRectangle = centerRectangleVertical(windowSurface, startButtonRectangle);
+  this->startButton = std::make_unique<Button>(this->gameGlobal, startButtonRectangle, "click");
 }
 
 /*
@@ -46,7 +53,7 @@ int MainMenu::handleEvents(bool* gameIsRunning) {
       if (this->startButton->checkHovered(event.motion.x, event.motion.y) == 0) { // If mouse is not over the button
         break;                          // Stay in main menu state
       }
-      writeToLogFile(logFile, "Main menu button was pressed, switching to gameplay state");
+      writeToLogFile(this->gameGlobal.logFile, "Main menu button was pressed, switching to gameplay state");
       returnValue = 1;                  // Mouse was over button, switch to gameplay state
       break;
 
@@ -64,12 +71,12 @@ int MainMenu::handleEvents(bool* gameIsRunning) {
  * - SDL renderer
  * Output: None
 */
-void MainMenu::render(SDL_Renderer* renderer) {
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-  SDL_RenderClear(renderer);
-  this->startButton->render(renderer);
-  this->title->render(renderer);
-  SDL_RenderPresent(renderer);
+void MainMenu::render() {
+  SDL_SetRenderDrawColor(this->gameGlobal.renderer, 255, 255, 255, 255);
+  SDL_RenderClear(this->gameGlobal.renderer);
+  this->startButton->render();
+  this->title->render();
+  SDL_RenderPresent(this->gameGlobal.renderer);
 }
 
 
